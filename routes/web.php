@@ -23,5 +23,7 @@ Route::group(
         {
             return view('home');
         });
+
+        Route::resource('grade','GradeController');
 });
 
