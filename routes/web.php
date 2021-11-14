@@ -21,7 +21,7 @@ Route::group(
         /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
         Route::get('/', function()
         {
-            return view('home');
+            return view('dashboard');
         });
 
         Route::resource('grade','GradeController');
