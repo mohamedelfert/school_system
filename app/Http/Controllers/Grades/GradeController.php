@@ -16,7 +16,8 @@ class GradeController extends controller
     public function index()
     {
         $title = 'مدرستي - المراحل الدراسيه';
-        return view('grades.grades',compact('title'));
+        $all_grades = Grade::all();
+        return view('grades.grades',compact('title','all_grades'));
     }
 
     /**
@@ -37,7 +38,21 @@ class GradeController extends controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name_ar' => 'required|min:5|unique:Grades',
+            'name_en' => 'required|min:5|unique:Grades',
+            'notes'   => 'required'
+        ];
+        $validate_msg_ar = [
+            'name_ar.required' => 'يجب كتابه اسم المرحله باللغه العربيه',
+            'name_ar.unique'   => 'اسم المرحله بالعربيه مسجل مسبقا',
+            'name_ar.min'      => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
+            'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
+            'name_en.unique'   => 'اسم المرحله بالانجليزيه مسجل مسبقا',
+            'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف',
+            'notes.required'   => 'يجب كتابه ملاحظات'
+        ];
+        $validate = $this->validate($request,$rules,$validate_msg_ar);
     }
 
     /**

@@ -26,20 +26,21 @@
             </ul>
             <!-- top bar right -->
             <ul class="nav navbar-nav ml-auto">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-group-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{trans('main_header.change_language')}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <ul>
-                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                <li class="dropdown-item">
-                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                <div class="card card-statistics mb-30" style="margin-top: 10px;">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{trans('main_header.change_language')}}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                         {{ $properties['native'] }}
                                     </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
 
