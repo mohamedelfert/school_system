@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// if user didn't login forward to login page
 Route::group(['middleware' => 'guest'], function () {
 
     Route::get('/', function () {
@@ -29,14 +30,16 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth' ]
     ], function(){
 
-        //==============================dashboard============================
+//        /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+//        Route::get('/', function()
+//        {
+//            return view('dashboard');
+//        });
+
+        // forward to dashboard
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-        /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-        Route::get('/', function()
-        {
-            return view('dashboard');
+        Route::group(['namespace' => 'Grades'],function (){
+            Route::resource('/grade','GradeController');
         });
-
-        Route::resource('grade','GradeController');
 });
