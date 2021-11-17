@@ -179,6 +179,7 @@ return [
          * My Package
          */
         Collective\Html\HtmlServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class
 
     ],
 

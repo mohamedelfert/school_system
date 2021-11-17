@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-
+    @toastr_css
 @section('title')
     {{$title}}
 @stop
@@ -84,12 +84,12 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">اسم المرحله عربي</label>
-                            <input type="text" class="form-control" id="name_ar" name="name_ar" value="{{old('grade_name')}}">
+                            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">اسم المرحله انجليزي</label>
-                            <input type="text" class="form-control" id="name_en" name="name_en" value="{{old('grade_name')}}">
+                            <input type="text" class="form-control" id="name_en" name="name_en" value="{{old('name_en')}}" required>
                         </div>
 
                         <div class="form-group">
@@ -177,6 +177,8 @@
 <!-- row closed -->
 @endsection
 @section('js')
+    @toastr_js
+    @toastr_render
     <!-- Internal Modal js-->
     <script src="{{URL::asset('assets/js/modal.js')}}"></script>
 @endsection
