@@ -3,7 +3,14 @@
       <div class="row">
         <div class="col-md-6">
           <div class="text-center text-md-left">
-              <p class="mb-0"> &copy; Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span>. <a href="#"> Webmin </a> All Rights Reserved. </p>
+              <p class="mb-0"> &copy; {{ trans('main_sidebar.copyright') }}
+                  <span id="copyright">
+                      <script>
+                          document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                      </script>
+                  </span>. <a href="#"> {{ trans('main_sidebar.signature') }} </a>
+                  {{ trans('main_sidebar.programmer_name') }}.
+              </p>
           </div>
         </div>
         <div class="col-md-6">

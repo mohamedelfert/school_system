@@ -30,7 +30,9 @@
             <div class="card-body">
                 <div style="margin-bottom: 10px;">
                     <button type="button" class="modal-effect btn btn-success" data-effect="effect-scale"
-                            data-toggle="modal" href="#modaldemo8"><i class="ti-plus"></i> اضافة مرحله </button>
+                            data-toggle="modal" data-target="#exampleModal">
+                            <i class="ti-plus"></i> {{trans('grades_trans.add_new_stage')}}
+                    </button>
                 </div>
                 <hr>
                 <div class="table-responsive">
@@ -38,9 +40,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>اسم المرحله</th>
-                                <th>ملاحظات</th>
-                                <th>العمليات</th>
+                                <th>{{trans('grades_trans.stage_name')}}</th>
+                                <th>{{trans('grades_trans.notes')}}</th>
+                                <th>{{trans('grades_trans.control')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,11 +56,11 @@
                                         <a class="modal-effect btn btn-info" data-effect="effect-scale"
                                            data-id="{{ $grade->id }}" data-grade_name="{{ $grade->name }}"
                                            data-grade_notes="{{ $grade->notes }}" data-toggle="modal"
-                                           href="#exampleModal2" title="تعديل"><i class="ti-settings"></i>
+                                           href="#exampleModal2" title="تعديل"><i class="fa fa-edit"></i>
                                         </a>
                                         <a class="modal-effect btn btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $grade->id }}" data-toggle="modal"
-                                           href="#modaldemo9" title="حذف"><i class="ti-trash"></i>
+                                           data-id="{{ $grade->id }}" data-grade_name="{{ $grade->name }}"
+                                           data-toggle="modal" href="#modaldemo9" title="حذف"><i class="fa fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -71,35 +73,34 @@
     </div>
 
     <!-- This Is For Add New Grade -->
-    <div class="modal" id="modaldemo8">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">اضافة مرحله</h6>
+                    <h6 class="modal-title">{{trans('grades_trans.add_new_stage')}}</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('grade.store') }}" method="post">
                         {{ csrf_field() }}
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">اسم المرحله عربي</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required>
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleInputEmail1">{{trans('grades_trans.name_ar')}}</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required>
+                            </div>
+                            <div class="col">
+                                <label for="exampleInputEmail1">{{trans('grades_trans.name_en')}}</label>
+                                <input type="text" class="form-control" id="name_en" name="name_en" value="{{old('name_en')}}" required>
+                            </div>
                         </div>
-
                         <div class="form-group">
-                            <label for="exampleInputEmail1">اسم المرحله انجليزي</label>
-                            <input type="text" class="form-control" id="name_en" name="name_en" value="{{old('name_en')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">ملاحظات</label>
+                            <label for="exampleFormControlTextarea1">{{trans('grades_trans.notes')}}</label>
                             <textarea class="form-control" id="notes" name="notes" rows="3">{{old('notes')}}</textarea>
                         </div>
-
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">تاكيد</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                            <button type="submit" class="btn btn-success">{{trans('grades_trans.btn_confirm')}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('grades_trans.btn_close')}}</button>
                         </div>
                     </form>
                 </div>
@@ -109,68 +110,70 @@
     <!-- This Is For Add New Grade -->
 
     <!-- edit Grade -->
-{{--    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"--}}
-{{--         aria-hidden="true">--}}
-{{--        <div class="modal-dialog" role="document">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h5 class="modal-title" id="exampleModalLabel">تعديل المرحله</h5>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <form action="" method="post">--}}
-{{--                    {{ method_field('patch') }}--}}
-{{--                    {{ csrf_field() }}--}}
-{{--                    <div class="modal-body">--}}
-{{--                        <div class="form-group">--}}
-{{--                            <input type="hidden" name="id" id="id" value="">--}}
-{{--                            <label for="recipient-name" class="col-form-label">اسم المرحله عربي:</label>--}}
-{{--                            <input class="form-control" name="name_ar" id="name_ar" type="text">--}}
-{{--                        </div>--}}
-{{--                        <div class="form-group">--}}
-{{--                            <label for="recipient-name" class="col-form-label">اسم المرحله انجليزي:</label>--}}
-{{--                            <input class="form-control" name="name_en" id="name_en" type="text">--}}
-{{--                        </div>--}}
-{{--                        <div class="form-group">--}}
-{{--                            <label for="message-text" class="col-form-label">ملاحظات:</label>--}}
-{{--                            <textarea class="form-control" id="notes" name="notes"></textarea>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="modal-footer">--}}
-{{--                        <button type="submit" class="btn btn-primary">تاكيد</button>--}}
-{{--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{trans('grades_trans.edit_stage')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" method="post">
+                    {{ method_field('patch') }}
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <input type="hidden" name="id" id="id" value="">
+                                <label for="recipient-name" class="col-form-label">{{trans('grades_trans.name_ar')}}</label>
+                                <input class="form-control" name="name_ar" id="name_ar" type="text">
+                            </div>
+                            <div class="col">
+                                <label for="recipient-name" class="col-form-label">{{trans('grades_trans.name_en')}}</label>
+                                <input class="form-control" name="name_en" id="name_en" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">{{trans('grades_trans.notes')}}</label>
+                            <textarea class="form-control" id="notes" name="notes"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">{{trans('grades_trans.btn_confirm')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('grades_trans.btn_close')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- edit Grade -->
 
     <!-- delete Grade -->
-{{--    <div class="modal fade" id="modaldemo9">--}}
-{{--        <div class="modal-dialog modal-dialog-centered" role="document">--}}
-{{--            <div class="modal-content modal-content-demo">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h6 class="modal-title">حذف المرحله</h6>--}}
-{{--                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>--}}
-{{--                </div>--}}
-{{--                <form action="" method="post">--}}
-{{--                    {{ method_field('delete') }}--}}
-{{--                    {{ csrf_field() }}--}}
-{{--                    <div class="modal-body">--}}
-{{--                        <p>هل انت متاكد من عملية الحذف ؟</p><br>--}}
-{{--                        <input type="hidden" name="id" id="id" value="">--}}
-{{--                        <input class="form-control" name="name_ar" id="name_ar" type="text" readonly>--}}
-{{--                    </div>--}}
-{{--                    <div class="modal-footer">--}}
-{{--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>--}}
-{{--                        <button type="submit" class="btn btn-danger">تاكيد</button>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="modal fade" id="modaldemo9">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">{{trans('grades_trans.delete_stage')}}</h6>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="/grade/destroy" method="post">
+                    {{ method_field('delete') }}
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <p>{{trans('grades_trans.msg_delete_stage')}}</p><br>
+                        <input type="hidden" name="id" id="id" value="">
+                        <input class="form-control" name="grade_name" id="grade_name" type="text" readonly>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('grades_trans.btn_cancel')}}</button>
+                        <button type="submit" class="btn btn-danger">{{trans('grades_trans.btn_confirm')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- delete Grade -->
 
 </div>
@@ -181,4 +184,17 @@
     @toastr_render
     <!-- Internal Modal js-->
     <script src="{{URL::asset('assets/js/modal.js')}}"></script>
+
+    <!-- This For Delete Form -->
+    <script>
+        $('#modaldemo9').on('show.bs.modal',function (event){
+            var button = $(event.relatedTarget)
+            var id     = button.data('id')
+            var name   = button.data('grade_name')
+            var modal  = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #grade_name').val(name);
+        })
+    </script>
+    <!-- This For Delete Form -->
 @endsection

@@ -15,7 +15,7 @@ class GradeController extends controller
      */
     public function index()
     {
-        $title = 'مدرستي - المراحل الدراسيه';
+        $title = trans('grades_trans.grades_title');
         $all_grades = Grade::all();
         return view('grades.grades',compact('title','all_grades'));
     }
@@ -60,7 +60,7 @@ class GradeController extends controller
             $garde->notes = $request->notes;
             $garde->save();
 
-            toastr()->success('تم الحفظ بنجاح');
+            toastr()->success(trans('messages.success'));
             return back();
 
         }catch (\Exception $e){
@@ -108,8 +108,11 @@ class GradeController extends controller
      * @param  \App\Models\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grade $grade)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        Grade::find($id)->delete();
+        toastr()->success(trans('messages.delete'));
+        return back();
     }
 }

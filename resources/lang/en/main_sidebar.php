@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'dashboard'      => 'Dashboard',
+    'dashboard'      => 'Home',
     'grades'         => 'Grades',
     'grades_list'    => 'Grades List',
 ];
