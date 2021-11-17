@@ -54,9 +54,10 @@
                                     <td>{{$grade->notes}}</td>
                                     <td>
                                         <a class="modal-effect btn btn-info" data-effect="effect-scale"
-                                           data-id="{{ $grade->id }}" data-grade_name="{{ $grade->name }}"
-                                           data-grade_notes="{{ $grade->notes }}" data-toggle="modal"
-                                           href="#exampleModal2" title="تعديل"><i class="fa fa-edit"></i>
+                                           data-id="{{ $grade->id }}" data-grade_name="{{ $grade->getTranslation('name','ar') }}"
+                                           data-grade_name_en="{{ $grade->getTranslation('name','en') }}" data-grade_notes="{{ $grade->notes }}"
+                                           data-toggle="modal" href="#exampleModal2" title="تعديل">
+                                            <i class="fa fa-edit"></i>
                                         </a>
                                         <a class="modal-effect btn btn-danger" data-effect="effect-scale"
                                            data-id="{{ $grade->id }}" data-grade_name="{{ $grade->name }}"
@@ -120,7 +121,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="post">
+                <form action="{{route('grade.update','test')}}" method="post">
                     {{ method_field('patch') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
@@ -128,7 +129,7 @@
                             <div class="col">
                                 <input type="hidden" name="id" id="id" value="">
                                 <label for="recipient-name" class="col-form-label">{{trans('grades_trans.name_ar')}}</label>
-                                <input class="form-control" name="name_ar" id="name_ar" type="text">
+                                <input class="form-control" name="name" id="name" type="text">
                             </div>
                             <div class="col">
                                 <label for="recipient-name" class="col-form-label">{{trans('grades_trans.name_en')}}</label>
@@ -158,7 +159,7 @@
                     <h6 class="modal-title">{{trans('grades_trans.delete_stage')}}</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="/grade/destroy" method="post">
+                <form action="{{route('grade.destroy','test')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
@@ -184,6 +185,23 @@
     @toastr_render
     <!-- Internal Modal js-->
     <script src="{{URL::asset('assets/js/modal.js')}}"></script>
+
+    <!-- This For Edit Form -->
+    <script>
+        $('#exampleModal2').on('show.bs.modal',function (event){
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name_ar = button.data('grade_name')
+            var name_en = button.data('grade_name_en')
+            var notes = button.data('grade_notes')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name_ar);
+            modal.find('.modal-body #name_en').val(name_en);
+            modal.find('.modal-body #notes').val(notes);
+        })
+    </script>
+    <!-- This For Edit Form -->
 
     <!-- This For Delete Form -->
     <script>

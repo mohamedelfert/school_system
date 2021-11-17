@@ -41,17 +41,15 @@ class GradeController extends controller
         try {
 
             $rules = [
-                'name'    => 'required|min:5|unique:grades',
-                'name_en' => 'required|min:5',
-                'notes'   => 'required'
+                'name'    => 'required|min:5|unique:Grades',
+                'name_en' => 'required|min:5'
             ];
             $validate_msg_ar = [
                 'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
                 'name.unique'      => 'اسم المرحله بالعربيه مسجل مسبقا',
                 'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
                 'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
-                'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف',
-                'notes.required'   => 'يجب كتابه ملاحظات'
+                'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
             ];
             $validate = $this->validate($request,$rules,$validate_msg_ar);
 
@@ -97,9 +95,35 @@ class GradeController extends controller
      * @param  \App\Models\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grade $grade)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        try {
+
+            $rules = [
+                'name'    => 'required|min:5|unique:Grades,name,'.$id,
+                'name_en' => 'required|min:5'
+            ];
+            $validate_msg_ar = [
+                'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
+                'name.unique'      => 'اسم المرحله بالعربيه مسجل مسبقا',
+                'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
+                'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
+                'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
+            ];
+            $data = $this->validate($request,$rules,$validate_msg_ar);
+
+            $garde = Grade::find($id);
+            $data['name']  = ['en' => $request->name_en, 'ar' => $request->name];
+            $data['notes'] = $request->notes;
+            $garde->update($data);
+
+            toastr()->success(trans('messages.update'));
+            return back();
+
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -112,7 +136,7 @@ class GradeController extends controller
     {
         $id = $request->id;
         Grade::find($id)->delete();
-        toastr()->success(trans('messages.delete'));
+        toastr()->error(trans('messages.delete'));
         return back();
     }
 }
