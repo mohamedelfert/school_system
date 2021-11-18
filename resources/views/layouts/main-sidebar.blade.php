@@ -37,8 +37,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="chapters" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="calendar.html">Events Calendar </a> </li>
-                            <li> <a href="calendar-list.html">List Calendar</a> </li>
+                            <li><a href="{{route('chapter.index')}}">{{trans('main_sidebar.chapters')}}</a></li>
                         </ul>
                     </li>
                     <!-- menu item mailbox-->

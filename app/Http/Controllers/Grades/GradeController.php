@@ -38,15 +38,18 @@ class GradeController extends controller
      */
     public function store(Request $request)
     {
+//        if (Grade::where('name->ar',$request->name)->orWhere('name->en',$request->name_en)->exists()){
+//            return redirect()->back()->withErrors(['errors' => 'هذا الحقل مسجل مسبقا']);
+//        }
+
         try {
 
             $rules = [
-                'name'    => 'required|min:5|unique:Grades',
+                'name'    => 'required|min:5',
                 'name_en' => 'required|min:5'
             ];
             $validate_msg_ar = [
                 'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
-                'name.unique'      => 'اسم المرحله بالعربيه مسجل مسبقا',
                 'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
                 'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
                 'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
@@ -54,7 +57,7 @@ class GradeController extends controller
             $validate = $this->validate($request,$rules,$validate_msg_ar);
 
             $garde = new Grade();
-            $garde->name  = ['en' => $request->name_en, 'ar' => $request->name];
+            $garde->name  = ['ar' => $request->name,'en' => $request->name_en,];
             $garde->notes = $request->notes;
             $garde->save();
 
@@ -101,12 +104,11 @@ class GradeController extends controller
         try {
 
             $rules = [
-                'name'    => 'required|min:5|unique:Grades,name,'.$id,
+                'name'    => 'required|min:5',
                 'name_en' => 'required|min:5'
             ];
             $validate_msg_ar = [
                 'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
-                'name.unique'      => 'اسم المرحله بالعربيه مسجل مسبقا',
                 'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
                 'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
                 'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
