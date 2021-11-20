@@ -33,20 +33,43 @@
                             data-toggle="modal" data-target="#exampleModal">
                             <i class="ti-plus"></i> اضافه صف جديد
                     </button>
+                    <button type="button" class="btn btn-danger" id="btn_delete_all">
+                        <i class="ti-trash"></i> حذف الصفوف المختاره
+                    </button>
+                    <!-- This Form For Filter -->
+                    <form action="{{ route('filter_chapters') }}" method="POST" class="d-inline-block">
+                        {{ csrf_field() }}
+                        <select class="custom-select mr-sm-2" name="grade_id" data-style="btn-info" onchange="this.form.submit()">
+                            <option value="" selected disabled>اظهر عن طريق المرحله</option>
+                            @foreach($all_grades as $grade)
+                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                    <!-- This Form For Filter -->
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table id="datatable" class="table table-striped table-bordered p-0">
+                    <table id="datatable" class="table table-striped table-bordered p-0 text-center">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>اسم الصف</th>
                                 <th>اسم المرحله</th>
                                 <th>العمليات</th>
+                                <th>اختر : <input type="checkbox" id="select_all" name="select_all" onclick="checkAll('box',this)"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; ?>
+                            <?php
+                                /* This For check filter */
+                                if (isset($filter)){
+                                    $all_chapters = $filter;
+                                }else{
+                                    $all_chapters = $all_chapters;
+                                }
+                                $i = 1;
+                            ?>
                             @foreach($all_chapters as $chapter)
                                 <tr>
                                     <td>{{$i++}}</td>
@@ -67,6 +90,7 @@
                                            data-toggle="modal" href="#modaldemo9" title="حذف"><i class="fa fa-trash"></i>
                                         </a>
                                     </td>
+                                    <td><input type="checkbox" name="box" class="box" value="{{ $chapter->id }}"></td>
                                 </tr>
 
                                 <!-- This Is For Edit Chapter -->
@@ -308,6 +332,30 @@
     </div>
     <!-- This Is For Delete Chapter -->
 
+    <!-- This Is For Delete Checked Chapters -->
+    <div class="modal fade" id="delete_all">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">حذف الصف</h6>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="{{route('delete_checked_chapters')}}" method="post">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <p>{{trans('grades_trans.msg_delete_stage')}}</p><br>
+                        <input type="hidden" name="checked_chapters_id" id="checked_chapters_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('grades_trans.btn_cancel')}}</button>
+                        <button type="submit" class="btn btn-danger">{{trans('grades_trans.btn_confirm')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- This Is For Delete Checked Chapters -->
+
 </div>
 <!-- row closed -->
 @endsection
@@ -346,4 +394,39 @@
         })
     </script>
     <!-- This For Delete Form -->
+
+    <!-- This For check all boxes -->
+    <script>
+        function checkAll(className,elem){
+            var elements = document.getElementsByClassName(className)
+            var l        = elements.length
+            if (elem.checked){
+                for (i = 0; i < l; i++){
+                    elements[i].checked = true;
+                }
+            }else {
+                for (i = 0; i < l; i++){
+                    elements[i].checked = false;
+                }
+            }
+        }
+    </script>
+    <!-- This For check all boxes -->
+
+    <!-- This For delete all checked -->
+    <script>
+        $(function (){
+            $('#btn_delete_all').click(function (){
+                var selected = new Array();
+                $('#datatable input[type = checkbox]:checked').each(function (){
+                    selected.push(this.value);
+                })
+                if(selected.length > 0){
+                    $('#delete_all').modal('show')
+                    $('input[id = "checked_chapters_id"]').val(selected);
+                }
+            })
+        })
+    </script>
+    <!-- This For delete all checked -->
 @endsection

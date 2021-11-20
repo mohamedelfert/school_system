@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Grades;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chapter;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 
@@ -138,8 +139,14 @@ class GradeController extends controller
     public function destroy(Request $request)
     {
         $id = $request->id;
-        Grade::find($id)->delete();
-        toastr()->error(trans('messages.delete'));
-        return back();
+        $chapter_id = Chapter::where('grade_id',$id)->pluck('grade_id');
+        if ($chapter_id->count() > 0){
+            toastr()->warning('لا يمكن اكمال عمليه الحذف بسبب ارتباط المرحله بصفوف دراسيه يرجي حذفها اولا !');
+            return back();
+        }else{
+            Grade::find($id)->delete();
+            toastr()->error(trans('messages.delete'));
+            return back();
+        }
     }
 }

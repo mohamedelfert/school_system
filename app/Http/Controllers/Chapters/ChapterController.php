@@ -157,4 +157,29 @@ class ChapterController extends Controller
         toastr()->error(trans('messages.delete'));
         return back();
     }
+
+    /**
+     * This For Deletes All Checked Chapters .
+     * @return \Illuminate\Http\Response
+     */
+    public function delete_checked(Request $request)
+    {
+        $checked_chapters = explode(',',$request->checked_chapters_id);
+        Chapter::whereIn('id',$checked_chapters)->delete();
+        toastr()->error(trans('messages.delete'));
+        return back();
+    }
+
+    /**
+     * This For Show Chapters By Grade .
+     * @return \Illuminate\Http\Response
+     */
+    public function filter_chapters(Request $request)
+    {
+        $id = $request->grade_id;
+        $all_grades = Grade::all();
+        $title = trans('chapters_trans.chapters_title');
+        $filter = Chapter::select('*')->where('grade_id','=',$id)->get();
+        return view('chapters.chapters',compact('all_grades','title','filter'));
+    }
 }

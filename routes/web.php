@@ -45,5 +45,7 @@ Route::group(
 
         Route::group(['namespace' => 'Chapters'],function (){
             Route::resource('/chapter','ChapterController');
+            Route::post('delete_checked_chapters','ChapterController@delete_checked')->name('delete_checked_chapters');
+            Route::post('filter_chapters','ChapterController@filter_chapters')->name('filter_chapters');
         });
 });
