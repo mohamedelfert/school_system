@@ -104,8 +104,6 @@ header start-->
             <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
                 <img src="{{ URL::asset('assets/images/user-bg.jpg') }}" alt="avatar">
-
-
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header">

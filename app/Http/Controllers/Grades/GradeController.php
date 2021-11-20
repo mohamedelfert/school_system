@@ -42,22 +42,22 @@ class GradeController extends controller
 //            return redirect()->back()->withErrors(['errors' => 'هذا الحقل مسجل مسبقا']);
 //        }
 
+        $rules = [
+            'name'    => 'required|min:5',
+            'name_en' => 'required|min:5'
+        ];
+        $validate_msg_ar = [
+            'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
+            'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
+            'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
+            'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
+        ];
+        $validate = $this->validate($request,$rules,$validate_msg_ar);
+
         try {
 
-            $rules = [
-                'name'    => 'required|min:5',
-                'name_en' => 'required|min:5'
-            ];
-            $validate_msg_ar = [
-                'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
-                'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
-                'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
-                'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
-            ];
-            $validate = $this->validate($request,$rules,$validate_msg_ar);
-
             $garde = new Grade();
-            $garde->name  = ['ar' => $request->name,'en' => $request->name_en,];
+            $garde->name  = ['ar' => $request->name,'en' => $request->name_en];
             $garde->notes = $request->notes;
             $garde->save();
 
@@ -101,22 +101,23 @@ class GradeController extends controller
     public function update(Request $request)
     {
         $id = $request->id;
+
+        $rules = [
+            'name'    => 'required|min:5',
+            'name_en' => 'required|min:5'
+        ];
+        $validate_msg_ar = [
+            'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
+            'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
+            'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
+            'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
+        ];
+        $data = $this->validate($request,$rules,$validate_msg_ar);
+
         try {
 
-            $rules = [
-                'name'    => 'required|min:5',
-                'name_en' => 'required|min:5'
-            ];
-            $validate_msg_ar = [
-                'name.required'    => 'يجب كتابه اسم المرحله باللغه العربيه',
-                'name.min'         => 'اسم المرحله بالعربيه يجب ان يكون اكثر من 5 احرف',
-                'name_en.required' => 'يجب كتابه اسم المرحله باللغه الانجليزيه',
-                'name_en.min'      => 'اسم المرحله بالانجليزيه يجب ان يكون اكثر من 5 احرف'
-            ];
-            $data = $this->validate($request,$rules,$validate_msg_ar);
-
             $garde = Grade::find($id);
-            $data['name']  = ['en' => $request->name_en, 'ar' => $request->name];
+            $data['name']  = ['ar' => $request->name,'en' => $request->name_en];
             $data['notes'] = $request->notes;
             $garde->update($data);
 
