@@ -48,4 +48,10 @@ Route::group(
             Route::post('delete_checked_chapters','ChapterController@delete_checked')->name('delete_checked_chapters');
             Route::post('filter_chapters','ChapterController@filter_chapters')->name('filter_chapters');
         });
+
+        Route::group(['namespace' => 'Sections'],function (){
+            Route::resource('/section','SectionController');
+            // this route to get Chapters Name by ajax when he chose Grade.
+            Route::get('/chapter/{id}','SectionController@getChaptersName');
+        });
 });

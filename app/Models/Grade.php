@@ -13,4 +13,8 @@ class Grade extends Model
     protected $table = 'grades';
 
     protected $fillable = ['id','name','notes'];
+
+    public function getSections(){
+        return $this->hasMany(Section::class,'grade_id','id');
+    }
 }

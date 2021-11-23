@@ -37,7 +37,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="chapters" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{route('chapter.index')}}">{{trans('main_sidebar.chapters')}}</a></li>
+                            <li><a href="{{route('chapter.index')}}">{{trans('main_sidebar.chapters_list')}}</a></li>
                         </ul>
                     </li>
                     <!-- menu item mailbox-->
@@ -50,9 +50,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="sections" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="chart-js.html">Chart.js</a> </li>
-                            <li> <a href="chart-morris.html">Chart morris </a> </li>
-                            <li> <a href="chart-sparkline.html">Chart Sparkline</a> </li>
+                            <li><a href="{{route('section.index')}}">{{trans('main_sidebar.sections_list')}}</a></li>
                         </ul>
                     </li>
                     <!-- menu title -->

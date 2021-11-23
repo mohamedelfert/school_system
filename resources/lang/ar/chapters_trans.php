@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'chapters_title' => 'مدرستي - الفصول الدراسيه',
+    'chapters_title' => 'مدرستي - الصفوف الدراسيه',
     'stage_name' => 'اسم المرحله',
     'notes'      => 'ملاحظات',
     'control'      => 'العمليات',
