@@ -14,7 +14,7 @@ class CreateNationalitiesTable extends Migration
     public function up()
     {
         Schema::create('nationalities', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->text('name');
             $table->timestamps();
         });

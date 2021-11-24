@@ -13,7 +13,7 @@ class NationalitiesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('nationalities')->truncate();
+        DB::table('nationalities')->delete();
 
         $nationals = [
             [

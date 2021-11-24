@@ -14,7 +14,7 @@ class CreateReligionsTable extends Migration
     public function up()
     {
         Schema::create('religions', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('religion_name');
             $table->timestamps();
         });

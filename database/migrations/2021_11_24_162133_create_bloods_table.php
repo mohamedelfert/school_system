@@ -14,7 +14,7 @@ class CreateBloodsTable extends Migration
     public function up()
     {
         Schema::create('bloods', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('blood_name');
             $table->timestamps();
         });
