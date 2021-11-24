@@ -54,4 +54,6 @@ Route::group(
             // this route to get Chapters Name by ajax when he chose Grade.
             Route::get('/chapter/{id}','SectionController@getChaptersName');
         });
+
+        Route::view('add_parent','livewire.show_form');
 });

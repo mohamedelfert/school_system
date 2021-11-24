@@ -12,6 +12,8 @@ return [
     'students'              => 'الطلاب',
     'teachers'              => 'المعلمين',
     'parents'               => 'أولياء الامور',
+    'add_parent'            => 'اضافه ولي أمر',
+    'list_parent'           => 'قائمه اولياء الامور',
     'accounts'              => 'الحسابات',
     'attendance_absence'    => 'الحضور والغياب',
     'exams'                 => 'الامتحانات',

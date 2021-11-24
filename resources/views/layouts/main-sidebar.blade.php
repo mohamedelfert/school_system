@@ -64,8 +64,6 @@
                         </a>
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="chart-js.html">Chart.js</a> </li>
-                            <li> <a href="chart-morris.html">Chart morris </a> </li>
-                            <li> <a href="chart-sparkline.html">Chart Sparkline</a> </li>
                         </ul>
                     </li>
                     <!-- menu title -->
@@ -78,10 +76,6 @@
                         </a>
                         <ul id="teachers" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
                     <!-- menu item Form-->
@@ -93,11 +87,8 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="parents" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
+                            <li> <a href="#">{{trans('main_sidebar.add_parent')}}</a> </li>
+                            <li> <a href="{{ url('add_parent') }}">{{trans('main_sidebar.list_parent')}}</a> </li>
                         </ul>
                     </li>
                     <!-- menu item Form-->
