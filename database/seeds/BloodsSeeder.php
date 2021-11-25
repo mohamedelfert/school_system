@@ -18,7 +18,7 @@ class BloodsSeeder extends Seeder
         $blood_type = ['O +', 'O -', 'A +', 'A -', 'B +', 'B -', 'AB +', 'AB -'];
 
         foreach ($blood_type as $type){
-            Blood::create(['blood_name' => $type]);
+            Blood::create(['name' => $type]);
         }
     }
 }

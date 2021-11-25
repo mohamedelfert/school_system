@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Blood extends Model
 {
     protected $table = 'bloods';
-    protected $fillable = ['id','blood_name'];
+    protected $fillable = ['id','name'];
 }

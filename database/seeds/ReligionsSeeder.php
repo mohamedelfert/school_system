@@ -17,21 +17,21 @@ class ReligionsSeeder extends Seeder
 
         $religions = [
             [
-                'مسلم',
-                'Muslim'
+                'ar' => 'مسلم',
+                'en' => 'Muslim'
             ],
             [
-                'مسيحي',
-                'Christian'
+                'ar' => 'مسيحي',
+                'en' => 'Christian'
             ],
             [
-                'غير ذلك',
-                'Other'
+                'ar' => 'غير ذلك',
+                'en' => 'Other'
             ]
         ];
 
         foreach ($religions as $r){
-            Religion::create(['religion_name' => $r]);
+            Religion::create(['name' => $r]);
         }
     }
 }

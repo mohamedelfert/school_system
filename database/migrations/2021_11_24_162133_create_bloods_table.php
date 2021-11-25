@@ -15,7 +15,7 @@ class CreateBloodsTable extends Migration
     {
         Schema::create('bloods', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('blood_name');
+            $table->string('name');
             $table->timestamps();
         });
     }
