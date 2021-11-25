@@ -8,14 +8,14 @@
                         <label for="mother_name">اسم الام بالعربيه</label>
                         <input type="text" wire:model="mother_name" class="form-control" >
                         @error('mother_name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col">
                         <label for="mother_name_en">اسم الام بالانجليزيه</label>
                         <input type="text" wire:model="mother_name_en" class="form-control" >
                         @error('mother_name_en')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -25,35 +25,35 @@
                         <label for="mother_job">وظيفه الام بالعربيه</label>
                         <input type="text" wire:model="mother_job" class="form-control">
                         @error('mother_job')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <label for="mother_job_en">وظيفه الاب بالانجليزيه</label>
+                        <label for="mother_job_en">وظيفه الام بالانجليزيه</label>
                         <input type="text" wire:model="mother_job_en" class="form-control">
                         @error('mother_job_en')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col">
                         <label for="mother_id">الرقم القومي</label>
                         <input type="text" wire:model="mother_id" class="form-control">
                         @error('mother_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col">
                         <label for="mother_passport">رقم الباسبور</label>
                         <input type="text" wire:model="mother_passport" class="form-control">
                         @error('mother_passport')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col">
                         <label for="mother_phone">رقم الهاتف</label>
                         <input type="text" wire:model="mother_phone" class="form-control">
                         @error('mother_phone')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                             @endforeach
                         </select>
                         @error('mother_nationality_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col">
@@ -80,7 +80,7 @@
                             @endforeach
                         </select>
                         @error('mother_blood_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col">
@@ -92,7 +92,7 @@
                             @endforeach
                         </select>
                         @error('mother_religion_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                     <label for="exampleFormControlTextarea1">العنوان</label>
                     <textarea class="form-control" wire:model="mother_address" id="exampleFormControlTextarea1" rows="4"></textarea>
                     @error('mother_address')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
