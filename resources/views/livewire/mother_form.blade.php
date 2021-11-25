@@ -62,7 +62,7 @@
                     <div class="form-group col-md-6">
                         <label for="mother_nationality_id">الجنسيه</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="mother_nationality_id">
-                            <option value="" selected disabled>اختر الجنسيه</option>
+                            <option value="" selected>اختر الجنسيه</option>
                             @foreach($nationalities as $nation)
                                 <option value="{{$nation->id}}">{{$nation->name}}</option>
                             @endforeach
@@ -74,7 +74,7 @@
                     <div class="form-group col">
                         <label for="mother_blood_id">فصيله الدم</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="mother_blood_id">
-                            <option value="" selected disabled>اختر فصيله الدم</option>
+                            <option value="" selected>اختر فصيله الدم</option>
                             @foreach($bloods as $blood)
                                 <option value="{{$blood->id}}">{{$blood->name}}</option>
                             @endforeach
@@ -86,7 +86,7 @@
                     <div class="form-group col">
                         <label for="mother_religion_id">الديانه</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="mother_religion_id">
-                            <option value="" selected disabled>اختر الديانه</option>
+                            <option value="" selected>اختر الديانه</option>
                             @foreach($religions as $r)
                                 <option value="{{$r->id}}">{{$r->name}}</option>
                             @endforeach
