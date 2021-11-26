@@ -23,7 +23,7 @@
                 <a href="#step-3" type="button"
                    class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-success' }}"
                    disabled="disabled">3</a>
-                <p>تأكيد البيانات</p>
+                <p>المرفقات و تأكيد البيانات</p>
             </div>
         </div>
     </div>
@@ -37,8 +37,14 @@
         <div style="display: none" class="row setup-content" id="step-3">
     @endif
             <div class="col-xs-12">
-                <div class="col-md-12" style="margin-top: 35px;">
-                    <h3 style="font-family: 'Cairo', sans-serif;">هل انت متاكد من حفظ البيانات ؟</h3><br>
+                <div class="col-md-12" style="margin-top: 30px;">
+                    <label style="color: red">المرفقات :</label>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" wire:model="photos" accept="image/*" multiple>
+                            <label class="custom-file-label" for="inputGroupFile01">اختر الملفات</label>
+                        </div>
+                    </div>
                     <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
                             wire:click="back(2)">السابق</button>
                     <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitForm"

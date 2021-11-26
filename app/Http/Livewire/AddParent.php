@@ -5,12 +5,16 @@ namespace App\Http\Livewire;
 use App\Models\Blood;
 use App\Models\MyParent;
 use App\Models\Nationality;
+use App\Models\ParentAttachment;
 use App\Models\Religion;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddParent extends Component
 {
+    use WithFileUploads;
+
     public $currentStep = 1;
     public $successMessages = '';
 
@@ -23,6 +27,8 @@ class AddParent extends Component
     public $mother_name,$mother_name_en,$mother_job,$mother_job_en,
            $mother_id,$mother_passport,$mother_phone,$mother_nationality_id,$mother_blood_id,
            $mother_religion_id,$mother_address;
+
+    public $photos;
 
     /**
      * this method for real time validation for this inputs
@@ -188,6 +194,17 @@ class AddParent extends Component
         $my_parent->mother_address          = $this->mother_address;
 
         $my_parent->save();
+
+        if (!empty($this->photos)){
+            foreach ($this->photos as $photo){
+                $photo->storeAs($this->father_id ,$photo->getClientOriginalName() ,$disk = 'parent_attach_path');
+                ParentAttachment::create([
+                    'file_name'  => $photo->getClientOriginalName(),
+                    'parent_id'  => MyParent::latest()->first()->id
+                ]);
+            }
+        }
+
         $this->successMessages = 'تم حفظ البيانات بنجاح';
         $this->clearForm();
         $this->currentStep = 1;
@@ -221,6 +238,7 @@ class AddParent extends Component
         $this->mother_blood_id = '';
         $this->mother_religion_id = '';
         $this->mother_address = '';
+        $this->photos = '';
     }
 
     /**

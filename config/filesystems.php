@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'parent_attach_path' => [
+            'driver' => 'local',
+            'root' => public_path('ParentAttachments'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

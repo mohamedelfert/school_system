@@ -20,9 +20,9 @@ class CreateMyParentsTable extends Migration
             // Father Info
             $table->string('father_name')->unique();
             $table->string('father_address');
-            $table->string('father_phone');
-            $table->string('father_id');
-            $table->string('father_passport');
+            $table->string('father_phone')->unique();
+            $table->string('father_id')->unique();
+            $table->string('father_passport')->unique();
             $table->string('father_job');
             $table->integer('father_nationality_id')->unsigned();
             $table->foreign('father_nationality_id')->references('id')->on('nationalities')->onDelete('cascade');
@@ -33,9 +33,9 @@ class CreateMyParentsTable extends Migration
             // Mother Info
             $table->string('mother_name')->unique();
             $table->string('mother_address');
-            $table->string('mother_phone');
-            $table->string('mother_id');
-            $table->string('mother_passport');
+            $table->string('mother_phone')->unique();
+            $table->string('mother_id')->unique();
+            $table->string('mother_passport')->unique();
             $table->string('mother_job');
             $table->integer('mother_nationality_id')->unsigned();
             $table->foreign('mother_nationality_id')->references('id')->on('nationalities')->onDelete('cascade');
