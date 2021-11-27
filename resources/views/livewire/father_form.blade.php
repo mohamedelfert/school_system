@@ -11,13 +11,17 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col">
-                        <label for="password">كلمه المرور</label>
-                        <input type="password" wire:model="password" class="form-control" >
-                        @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @if($edit_mode)
+
+                    @else
+                        <div class="col">
+                            <label for="password">كلمه المرور</label>
+                            <input type="password" wire:model="password" class="form-control" >
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
 
                 <div class="form-row" style="margin-top: 10px">
