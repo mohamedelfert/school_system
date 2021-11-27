@@ -8,7 +8,6 @@ use App\Models\Nationality;
 use App\Models\ParentAttachment;
 use App\Models\Religion;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -310,7 +309,7 @@ class AddParent extends Component
             ]);
         }
         toastr()->success(trans('messages.update'));
-        return $this->redirect('/parent');
+        return redirect()->to('/parent');
     }
 
     /**
@@ -319,7 +318,7 @@ class AddParent extends Component
     public function delete($id){
         MyParent::find($id)->delete();
         toastr()->success(trans('messages.delete'));
-        return $this->redirect('/parent');
+        return redirect()->to('/parent');
     }
 
     /**
