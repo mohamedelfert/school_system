@@ -55,5 +55,5 @@ Route::group(
             Route::get('/chapter/{id}','SectionController@getChaptersName');
         });
 
-        Route::view('add_parent','livewire.show_form');
+        Route::view('/parent','livewire.show_form');
 });

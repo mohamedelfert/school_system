@@ -9,7 +9,7 @@
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    {{trans('main_sidebar.add_parent')}}
+    {{trans('main_sidebar.parents')}}
 @stop
 <!-- breadcrumb -->
 @endsection

@@ -12,6 +12,7 @@ return [
     'students'              => 'Students',
     'teachers'              => 'Teachers',
     'parents'               => 'Parents',
+    'list_parent'           => 'List Parents',
     'accounts'              => 'Accounts',
     'attendance_absence'    => 'Attendances & Absence',
     'exams'                 => 'Exams',

@@ -108,9 +108,13 @@
                 <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
                         wire:click="back(1)">السابق</button>
 
-                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
-                        wire:click="secondStep">التالي</button>
-
+                @if($edit_mode)
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
+                            wire:click="secondStep_edit">التالي</button>
+                @else
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
+                            wire:click="secondStep">التالي</button>
+                @endif
             </div>
         </div>
     </div>
