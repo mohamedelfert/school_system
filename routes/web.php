@@ -43,6 +43,10 @@ Route::group(
             Route::resource('/grade','GradeController');
         });
 
+        Route::group(['namespace' => 'Specializations'],function (){
+            Route::resource('/specialization','SpecializationController');
+        });
+
         Route::group(['namespace' => 'Chapters'],function (){
             Route::resource('/chapter','ChapterController');
             Route::post('delete_checked_chapters','ChapterController@delete_checked')->name('delete_checked_chapters');

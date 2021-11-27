@@ -11,6 +11,8 @@ return [
     'sections_list'         => 'Sections List',
     'students'              => 'Students',
     'teachers'              => 'Teachers',
+    'specialization'        => 'Specialization',
+    'specialization_list'   => 'Specialization List',
     'parents'               => 'Parents',
     'list_parent'           => 'List Parents',
     'accounts'              => 'Accounts',

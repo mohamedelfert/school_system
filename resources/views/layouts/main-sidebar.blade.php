@@ -5,7 +5,8 @@
             <div class="scrollbar side-menu-bg">
 {{--                <div class="scrollbar side-menu-bg" style="overflow: scroll">--}}
                 <ul class="nav navbar-nav side-menu" id="sidebarnav">
-                    <!-- menu item Dashboard-->
+
+                    <!-- Dashboard -->
                     <li>
                         <a href="{{ url('/dashboard') }}">
                             <div class="pull-left"><i class="ti-home"></i>
@@ -14,9 +15,13 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
-                    <!-- menu title -->
+                    <!-- Dashboard -->
+
+                    <!-- Title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">{{ trans('main_sidebar.main_title') }}</li>
-                    <!-- menu item Elements-->
+                    <!-- Title -->
+
+                    <!-- Grades -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#grades">
                             <div class="pull-left"><i class="fas fa-school"></i><span
@@ -28,7 +33,9 @@
                             <li><a href="{{route('grade.index')}}">{{trans('main_sidebar.grades_list')}}</a></li>
                         </ul>
                     </li>
-                    <!-- menu item calendar-->
+                    <!-- Grades -->
+
+                    <!-- Chapters -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#chapters">
                             <div class="pull-left"><i class="fa fa-building"></i><span
@@ -40,8 +47,9 @@
                             <li><a href="{{route('chapter.index')}}">{{trans('main_sidebar.chapters_list')}}</a></li>
                         </ul>
                     </li>
-                    <!-- menu item mailbox-->
-                    <!-- menu item Charts-->
+                    <!-- Chapters -->
+
+                    <!-- Sections -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections">
                             <div class="pull-left"><i class="fas fa-chalkboard"></i><span
@@ -53,8 +61,9 @@
                             <li><a href="{{route('section.index')}}">{{trans('main_sidebar.sections_list')}}</a></li>
                         </ul>
                     </li>
-                    <!-- menu title -->
-                    <!-- menu item Charts-->
+                    <!-- Sections -->
+
+                    <!-- Students -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
                             <div class="pull-left"><i class="fas fa-user-graduate"></i><span
@@ -66,8 +75,9 @@
                             <li> <a href="chart-js.html">Chart.js</a> </li>
                         </ul>
                     </li>
-                    <!-- menu title -->
-                    <!-- menu item Form-->
+                    <!-- Students -->
+
+                    <!-- Teachers -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers">
                             <div class="pull-left"><i class="fas fa-chalkboard-teacher"></i><span class="right-nav-text">{{trans('main_sidebar.teachers')}}</span></div>
@@ -78,8 +88,22 @@
                             <li> <a href="editor.html">Editor</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Teachers -->
+
+                    <!-- Specialization -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#specialization">
+                            <div class="pull-left"><i class="fas fa-books"></i><span class="right-nav-text">{{trans('main_sidebar.specialization')}}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="specialization" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{route('specialization.index')}}">{{trans('main_sidebar.specialization_list')}}</a> </li>
+                        </ul>
+                    </li>
+                    <!-- Specialization -->
+
+                    <!-- Parents -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#parents">
                             <div class="pull-left"><i class="fas fa-user-tie"></i><span class="right-nav-text">{{trans('main_sidebar.parents')}}</span></div>
@@ -90,8 +114,9 @@
                             <li> <a href="{{ url('/parent') }}">{{trans('main_sidebar.list_parent')}}</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Parents -->
+
+                    <!-- Accounts -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#accounts">
                             <div class="pull-left"><i class="fas fa-money-bill-wave-alt"></i><span class="right-nav-text">{{trans('main_sidebar.accounts')}}</span></div>
@@ -100,14 +125,11 @@
                         </a>
                         <ul id="accounts" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Accounts -->
+
+                    <!-- attendance_absence -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#attendance_absence">
                             <div class="pull-left"><i class="fas fa-calendar-alt"></i><span class="right-nav-text">{{trans('main_sidebar.attendance_absence')}}</span></div>
@@ -116,14 +138,11 @@
                         </a>
                         <ul id="attendance_absence" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- attendance_absence -->
+
+                    <!-- Exams -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">
                             <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{trans('main_sidebar.exams')}}</span></div>
@@ -132,14 +151,11 @@
                         </a>
                         <ul id="exams" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Exams -->
+
+                    <!-- Library -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#library">
                             <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{trans('main_sidebar.library')}}</span></div>
@@ -148,14 +164,11 @@
                         </a>
                         <ul id="library" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Library -->
+
+                    <!-- Online -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#online">
                             <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{trans('main_sidebar.online')}}</span></div>
@@ -164,14 +177,11 @@
                         </a>
                         <ul id="online" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Online -->
+
+                    <!-- Settings -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#settings">
                             <div class="pull-left"><i class="fas fa-cogs"></i><span class="right-nav-text">{{trans('main_sidebar.settings')}}</span></div>
@@ -180,14 +190,11 @@
                         </a>
                         <ul id="settings" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
-                    <!-- menu item Form-->
+                    <!-- Settings -->
+
+                    <!-- Users -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#users">
                             <div class="pull-left"><i class="fas fa-users"></i><span class="right-nav-text">{{trans('main_sidebar.users')}}</span></div>
@@ -196,17 +203,14 @@
                         </a>
                         <ul id="users" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="editor.html">Editor</a> </li>
-                            <li> <a href="editor-markdown.html">Editor Markdown</a> </li>
-                            <li> <a href="form-input.html">Form input</a> </li>
-                            <li> <a href="form-validation-jquery.html">form validation jquery</a> </li>
-                            <li> <a href="form-wizard.html">form wizard</a> </li>
                         </ul>
                     </li>
-                    <!-- menu item Form-->
+                    <!-- Users -->
+
                 </ul>
             </div>
         </div>
 
         <!-- Left Sidebar End-->
 
-        <!--=================================
+        <!--=================================-->
