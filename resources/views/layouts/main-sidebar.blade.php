@@ -85,7 +85,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="teachers" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
+                            <li> <a href="{{route('teacher.index')}}">{{trans('main_sidebar.teachers_list')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Teachers -->

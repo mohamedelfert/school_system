@@ -15,4 +15,12 @@ class Teacher extends Model
                             'id','teacher_name','teacher_email','password',
                             'teacher_address','specialization_id','gender_id','joining_at'
     ];
+
+    public function getGender(){
+        return $this->hasOne(Gender::class,'id','gender_id');
+    }
+
+    public function getSpecialization(){
+        return $this->hasOne(Specialization::class,'id','specialization_id');
+    }
 }

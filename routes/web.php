@@ -60,4 +60,8 @@ Route::group(
         });
 
         Route::view('/parent','livewire.show_form');
+
+        Route::group(['namespace' => 'Teachers'],function (){
+            Route::resource('/teacher','TeacherController');
+        });
 });

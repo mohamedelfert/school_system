@@ -11,6 +11,7 @@ return [
     'sections_list'         => 'قائمه الفصول الدراسيه',
     'students'              => 'الطلاب',
     'teachers'              => 'المعلمين',
+    'teachers_list'         => 'قائمه المعلمين',
     'specialization'        => 'التخصصات',
     'specialization_list'   => 'قائمه التخصصات',
     'parents'               => 'أولياء الامور',
