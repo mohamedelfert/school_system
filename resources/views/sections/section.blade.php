@@ -100,7 +100,7 @@
                                                                                 <form action="{{ route('section.update', 'test') }}" method="post">
                                                                                     {{ method_field('patch') }}
                                                                                     {{ csrf_field() }}
-                                                                                    <div class="row">
+                                                                                    <div class="row" style="margin-bottom: 10px">
                                                                                         <div class="col">
                                                                                             <input id="id" type="hidden" name="id" class="form-control" value="{{ $list_section->id }}">
                                                                                             <label for="section_name" class="mr-sm-2">اسم الفصل بالعربيه:</label>
@@ -113,7 +113,7 @@
                                                                                                    value="{{ $list_section->getTranslation('section_name', 'en') }}" required>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row" style="margin-bottom: 10px">
                                                                                         <div class="col">
                                                                                             <label for="exampleFormControlTextarea1">اسم المرحله:</label>
                                                                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="grade_id" name="grade_id">
@@ -124,7 +124,7 @@
                                                                                             </select>
                                                                                         </div>
                                                                                         <div class="col">
-                                                                                            <label for="exampleFormControlTextarea1">اسم المرحله:</label>
+                                                                                            <label for="exampleFormControlTextarea1">اسم الصف:</label>
                                                                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="chapter_id" name="chapter_id">
                                                                                                 {{--<option value="{{ $chapter->getGrades->id }}">{{ $chapter->getGrades->name }}</option>--}}
                                                                                                 @foreach ($all_chapters as $chapter)
@@ -133,12 +133,26 @@
                                                                                             </select>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="form-group">
+                                                                                    <div class="form-group" style="margin-bottom: 10px">
                                                                                         <label for="exampleFormControlTextarea1">الحاله:</label>
                                                                                         <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="status" name="status">
                                                                                             <option value="1" {{ ($list_section->status === 1) ? 'selected' : '' }}>نشط</option>
                                                                                             <option value="2" {{ ($list_section->status === 2) ? 'selected' : '' }}>غير نشط</option>
                                                                                         </select>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="col">
+                                                                                            <label for="inputName" class="control-label">المدرسين</label>
+                                                                                            <select multiple id="teacher_id" name="teacher_id[]" class="form-control">
+                                                                                                @foreach($list_section->teachers as $list_teacher)
+                                                                                                    <option value="{{ $list_teacher->id }}" selected>{{ $list_teacher->teacher_name }}</option>
+                                                                                                @endforeach
+                                                                                                <option value="" disabled class="text-center text-info font-bold">في حاله اضافه معلم اخر</option>
+                                                                                                @foreach($all_teachers as $teacher)
+                                                                                                    <option value="{{ $teacher->id }}">{{ $teacher->teacher_name }} --- ( {{ $teacher->getSpecialization->name }} )</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>

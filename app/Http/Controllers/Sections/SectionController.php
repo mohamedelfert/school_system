@@ -20,9 +20,9 @@ class SectionController extends Controller
     {
         $title = 'مدرستي - الفصول الدراسيه';
         $grades_by_sections = Grade::with(['getSections'])->get();
-        $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
-        $all_teachers = Teacher::all();
+        $all_grades         = Grade::all();
+        $all_chapters       = Chapter::all();
+        $all_teachers       = Teacher::all();
         return view('sections.section',compact('title','grades_by_sections','all_grades','all_chapters','all_teachers'));
     }
 
@@ -58,11 +58,11 @@ class SectionController extends Controller
 
         try {
 
-            $section = new Section();
+            $section                = new Section();
             $section->section_name  = ['ar' => $request->section_name,'en' => $request->section_name_en];
-            $section->status = $request->status;
-            $section->grade_id = $request->grade_id;
-            $section->chapter_id = $request->chapter_id;
+            $section->status        = $request->status;
+            $section->grade_id      = $request->grade_id;
+            $section->chapter_id    = $request->chapter_id;
             $section->save();
 
             // to add teacher_id and section_id in teachers_sections table
@@ -123,11 +123,17 @@ class SectionController extends Controller
 
         try {
 
-            $sections = Section::find($id);
+            $sections              = Section::find($id);
             $data['section_name']  = ['ar' => $request->section_name,'en' => $request->section_name_en];
             $data['status']        = $request->status;
             $data['grade_id']      = $request->grade_id;
             $data['chapter_id']    = $request->chapter_id;
+
+            // to update teacher_id and section_id in teachers_sections table
+            if (isset($request->teacher_id)){
+                $sections->teachers()->sync($request->teacher_id);
+            }
+
             $sections->update($data);
 
             toastr()->success(trans('messages.update'));
