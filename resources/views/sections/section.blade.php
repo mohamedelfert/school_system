@@ -210,11 +210,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label">اختر الحاله</label>
+                            <label for="inputName" class="control-label">الحاله</label>
                             <select id="status" name="status" class="form-control">
+                                <option value="" selected disabled>اختر الحاله</option>
                                 <option value="1">نشط</option>
                                 <option value="2">غير نشط</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="inputName" class="control-label">المدرسين</label>
+                                <select multiple id="teacher_id" name="teacher_id[]" class="form-control">
+                                    @foreach($all_teachers as $teacher)
+                                        <option value="{{ $teacher->id }}">{{ $teacher->teacher_name }} --- ( {{ $teacher->getSpecialization->name }} )</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer" style="margin-top: 10px">
                             <button type="submit" class="btn btn-success">{{trans('grades_trans.btn_confirm')}}</button>

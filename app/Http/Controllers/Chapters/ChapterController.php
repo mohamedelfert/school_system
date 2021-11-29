@@ -19,7 +19,7 @@ class ChapterController extends Controller
         $all_grades     = Grade::all();
         $all_chapters   = Chapter::all();
         $title = trans('chapters_trans.chapters_title');
-        return view('chapters.chapters',compact('all_chapters','all_grades','title'));
+        return view('chapters.chapter',compact('all_chapters','all_grades','title'));
     }
 
     /**
@@ -180,6 +180,6 @@ class ChapterController extends Controller
         $all_grades = Grade::all();
         $title = trans('chapters_trans.chapters_title');
         $filter = Chapter::select('*')->where('grade_id','=',$id)->get();
-        return view('chapters.chapters',compact('all_grades','title','filter'));
+        return view('chapters.chapter',compact('all_grades','title','filter'));
     }
 }

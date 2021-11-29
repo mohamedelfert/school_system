@@ -18,7 +18,7 @@ class GradeController extends controller
     {
         $title = trans('grades_trans.grades_title');
         $all_grades = Grade::all();
-        return view('grades.grades',compact('title','all_grades'));
+        return view('grades.grade',compact('title','all_grades'));
     }
 
     /**

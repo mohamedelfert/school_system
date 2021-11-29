@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Chapter;
 use App\Models\Grade;
 use App\Models\section;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -21,7 +22,8 @@ class SectionController extends Controller
         $grades_by_sections = Grade::with(['getSections'])->get();
         $all_grades   = Grade::all();
         $all_chapters = Chapter::all();
-        return view('sections.sections',compact('title','grades_by_sections','all_grades','all_chapters'));
+        $all_teachers = Teacher::all();
+        return view('sections.section',compact('title','grades_by_sections','all_grades','all_chapters','all_teachers'));
     }
 
     /**
@@ -62,6 +64,9 @@ class SectionController extends Controller
             $section->grade_id = $request->grade_id;
             $section->chapter_id = $request->chapter_id;
             $section->save();
+
+            // to add teacher_id and section_id in teachers_sections table
+            $section->teachers()->attach($request->teacher_id);
 
             toastr()->success(trans('messages.success'));
             return back();
@@ -150,7 +155,6 @@ class SectionController extends Controller
     /**
      * This Function To Get Chapters Name And ID By grade_id.
      * using $id From Route /section/{id} With Ajax.
-     * @return \Illuminate\Http\Response
      */
     public function getChaptersName($id){
         $chaptersName = Chapter::where('grade_id',$id)->pluck('chapter_name','id');
