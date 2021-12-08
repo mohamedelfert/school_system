@@ -10,6 +10,8 @@ interface StudentRepositoryInterface {
 
     public function storeStudent($request);
 
+    public function showStudent($id);
+
     public function editStudent($id);
 
     public function updateStudent($request);

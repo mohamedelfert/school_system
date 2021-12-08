@@ -22,7 +22,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        return $this->students->getAllStudents();
     }
 
     /**
@@ -90,7 +90,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->students->showStudent($id);
     }
 
     /**
@@ -101,7 +101,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $this->students->editStudent($id);
     }
 
     /**
@@ -111,9 +111,46 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $rules = [
+            'student_name'      => 'required',
+            'student_name_en'   => 'required',
+            'student_email'     => 'required|email|unique:students,student_email,'.$id,
+            'password'          => 'required',
+            'gender_id'         => 'required',
+            'nationality_id'    => 'required',
+            'blood_id'          => 'required',
+            'parent_id'         => 'required',
+            'date_of_birth'     => 'required',
+            'grade_id'          => 'required',
+            'chapter_id'        => 'required',
+            'section_id'        => 'required',
+            'joining_at'        => 'required',
+            'academic_year'     => 'required',
+        ];
+        $validate_msg_ar = [
+            'student_name.required'         => 'يجب كتابه اسم الطالب بالعربيه',
+            'student_name_en.required'      => 'يجب كتابه اسم الطالب بالانجليزيه',
+            'student_email.required'        => 'يجب كتابه البريد الالكتروني',
+            'student_email.email'           => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
+            'student_email.unique'          => 'البريد الالكتروني مسجل مسبقا',
+            'password.required'             => 'يجب كتابه كلمه مرور',
+            'gender_id.required'            => 'يجب اختيار النوع',
+            'nationality_id.required'       => 'يجب اختيار الجنسيه',
+            'blood_id.required'             => 'يجب اختيار فصيله الدم',
+            'parent_id.required'            => 'يجب اختيار ولي الامر',
+            'date_of_birth.required'        => 'يجب كتابه تاريخ الميلاد',
+            'grade_id.required'             => 'يجب اختيار المرحله',
+            'chapter_id.required'           => 'يجب اختيار الصف',
+            'section_id.required'           => 'يجب اختيار الفصل',
+            'joining_at.required'           => 'يجب كتابه تاريخ الالتحاق',
+            'academic_year.required'        => 'يجب اختيار السنه الدراسيه',
+        ];
+        $data = $this->validate($request,$rules,$validate_msg_ar);
+
+        return $this->students->updateStudent($request);
     }
 
     /**
@@ -122,9 +159,9 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        return $this->students->deleteStudent($request);
     }
 
     /**

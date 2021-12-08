@@ -32,7 +32,13 @@
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <div class="modal-body">
-                            <form action="{{ route('student.store') }}" method="post">
+                                <div style="margin-bottom: 10px;">
+                                    <a type="button" class="modal-effect btn btn-primary" href="../student">
+                                        <i class="ti-back-left"></i> رجوع للطلاب
+                                    </a>
+                                </div>
+                                <hr>
+                                <form action="{{ route('student.store') }}" method="post">
                                 {{ csrf_field() }}
 
                                 <div class="content-header" style="margin: 15px 0;">
@@ -158,7 +164,7 @@
                                     <button type="submit" class="btn btn-success">{{trans('grades_trans.btn_confirm')}}</button>
                                 </div>
                             </form>
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
