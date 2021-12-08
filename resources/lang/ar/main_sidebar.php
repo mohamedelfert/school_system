@@ -10,6 +10,8 @@ return [
     'sections'              => 'الفصول',
     'sections_list'         => 'قائمه الفصول الدراسيه',
     'students'              => 'الطلاب',
+    'add_student'           => 'اضافه طالب',
+    'students_list'         => 'قائمه الطلاب',
     'teachers'              => 'المعلمين',
     'teachers_list'         => 'قائمه المعلمين',
     'specialization'        => 'التخصصات',

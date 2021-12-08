@@ -64,4 +64,12 @@ Route::group(
         Route::group(['namespace' => 'Teachers'],function (){
             Route::resource('/teacher','TeacherController');
         });
+
+        Route::group(['namespace' => 'Students'],function (){
+            Route::resource('/student','StudentController');
+            // this route to get Chapters Name by ajax when he chose Grade.
+            Route::get('/chapter/{id}','StudentController@getChapters');
+            // this route to get Section Name by ajax when he chose Grade.
+            Route::get('/section/{id}','StudentController@getSections');
+        });
 });
