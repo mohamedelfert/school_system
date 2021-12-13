@@ -14,6 +14,7 @@ return [
     'edit_student'          => 'Edit Student Information',
     'students_list'         => 'Student List',
     'show_student'          => 'Student Information',
+    'student_promotion'     => 'Students Promotion',
     'teachers'              => 'Teachers',
     'teachers_list'         => 'Teachers List',
     'specialization'        => 'Specialization',

@@ -14,6 +14,7 @@ return [
     'edit_student'          => 'تعديل بيانات طالب',
     'students_list'         => 'قائمه الطلاب',
     'show_student'          => 'بيانات طالب',
+    'student_promotion'     => 'ترقيه الطلاب',
     'teachers'              => 'المعلمين',
     'teachers_list'         => 'قائمه المعلمين',
     'specialization'        => 'التخصصات',

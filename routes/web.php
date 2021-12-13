@@ -79,5 +79,8 @@ Route::group(
             Route::get('download/{student_name}/{file_name}','StudentController@downloadPhoto');
             // to Delete photo
             Route::post('delete_photo','StudentController@deletePhoto')->name('delete_photo');
+
+            // this route for students promotion
+            Route::resource('/promotion','PromotionController');
         });
 });
