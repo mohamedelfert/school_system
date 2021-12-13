@@ -38,7 +38,7 @@
                                     </a>
                                 </div>
                                 <hr>
-                                <form action="{{ route('student.store') }}" method="post">
+                                <form action="{{ route('student.store') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
                                 <div class="content-header" style="margin: 15px 0;">
@@ -142,7 +142,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-bottom: 20px;">
+                                <div class="row">
                                     <div class="col">
                                         <label for="exampleInputEmail1">تاريخ الالتحاق</label>
                                         <input type="date" class="form-control" id="joining_at" name="joining_at" value="{{old('joining_at')}}" required>
@@ -158,6 +158,17 @@
                                                 <option value="{{ $year }}">{{ $year }}</option>
                                             @endfor
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 20px;">
+                                    <div class="col-md-12" style="margin-top: 30px;">
+                                        <label style="color: red">المرفقات :</label>
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" name="photos[]" accept="image/*" multiple>
+                                                <label class="custom-file-label" for="inputGroupFile01">اختر الملفات</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

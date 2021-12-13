@@ -13,6 +13,11 @@ class Student extends Model
     protected $table = 'students';
     protected $guarded = [];
 
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageAble');
+    }
+
     public function getGrades(){
         return $this->belongsTo(Grade::class,'grade_id');
     }

@@ -6,10 +6,12 @@ use App\Models\Blood;
 use App\Models\Chapter;
 use App\Models\Gender;
 use App\Models\Grade;
+use App\Models\Image;
 use App\Models\MyParent;
 use App\Models\Nationality;
 use App\Models\Section;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use mysql_xdevapi\Exception;
 
@@ -40,6 +42,7 @@ class StudentRepository implements StudentRepositoryInterface {
 
     public function storeStudent($request)
     {
+        DB::beginTransaction();
         try {
 
             $data['student_name']           = ['ar' => $request->student_name,'en' => $request->student_name_en];
@@ -57,10 +60,27 @@ class StudentRepository implements StudentRepositoryInterface {
             $data['academic_year']          = $request->academic_year;
 
             Student::create($data);
+
+            if ($request->hasFile('photos')){
+                foreach ($request->photos as $photo){
+                    $name = $photo->getClientOriginalName();
+                    $photo->storeAs('attachments/students/'.$request->student_name , $name, 'upload_attach_path');
+
+                    $image = new Image();
+                    $image->file_name  = $name;
+                    $image->image_id   = Student::latest()->first()->id;
+                    $image->image_type = 'App\Models\Student';
+                    $image->save();
+                }
+            }
+
+            DB::commit();
+
             toastr()->success(trans('messages.success'));
             return back();
 
         }catch (\Exception $e){
+            DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
     }
