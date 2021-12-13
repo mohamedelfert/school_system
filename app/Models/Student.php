@@ -15,7 +15,7 @@ class Student extends Model
 
     public function images()
     {
-        return $this->morphMany(Image::class, 'imageAble');
+        return $this->morphMany(Image::class, 'image');
     }
 
     public function getGrades(){

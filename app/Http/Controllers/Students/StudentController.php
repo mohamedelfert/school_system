@@ -177,4 +177,39 @@ class StudentController extends Controller
     public function getSections($id){
         return $this->students->getAllSections($id);
     }
+
+    /**
+     * This Function to add new attachments
+     */
+    public function upload_attach(Request $request){
+        $rules = ['photos.*' => 'required|mimes:jpg,jpeg,png,gif'];
+        $validate_msg_ar = [
+            'photos.required' => 'يجب ارفاق صوره اولا',
+            'photos.mimes'    => 'يجب ان تكون الصوره باحد الصيغ : GIF , JPG , JPEG , PNG'
+        ];
+        $data = $this->validate($request,$rules,$validate_msg_ar);
+
+        return $this->students->uploadAttachments($request);
+    }
+
+    /**
+     * This Function to Show Photo
+     */
+    public function showPhoto($student_name,$file_name){
+        return $this->students->showPhoto($student_name,$file_name);
+    }
+
+    /**
+     * This Function to download Photo
+     */
+    public function downloadPhoto($student_name,$file_name){
+        return $this->students->download($student_name,$file_name);
+    }
+
+    /**
+     * This Function to delete Photo
+     */
+    public function deletePhoto(Request $request){
+        return $this->students->deletePhoto($request);
+    }
 }

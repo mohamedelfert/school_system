@@ -21,4 +21,12 @@ interface StudentRepositoryInterface {
     public function getAllChapters($id);
 
     public function getAllSections($id);
+
+    public function uploadAttachments($request);
+
+    public function showPhoto($student_name,$file_name);
+
+    public function download($student_name,$file_name);
+
+    public function deletePhoto($request);
 }

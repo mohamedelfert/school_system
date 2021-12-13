@@ -71,5 +71,13 @@ Route::group(
             Route::get('/chapter/{id}','StudentController@getChapters');
             // this route to get Section Name by ajax when he chose Grade.
             Route::get('/section/{id}','StudentController@getSections');
+            // to add new attachments
+            Route::post('upload_attach','StudentController@upload_attach');
+            // to show photo
+            Route::get('viewPhoto/{student_name}/{file_name}','StudentController@showPhoto');
+            // to download photo
+            Route::get('download/{student_name}/{file_name}','StudentController@downloadPhoto');
+            // to Delete photo
+            Route::post('delete_photo','StudentController@deletePhoto')->name('delete_photo');
         });
 });

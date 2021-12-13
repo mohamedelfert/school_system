@@ -13,6 +13,7 @@ use App\Models\Section;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
 
 class StudentRepository implements StudentRepositoryInterface {
@@ -156,6 +157,46 @@ class StudentRepository implements StudentRepositoryInterface {
     {
         $all_sections = Section::where('chapter_id',$id)->pluck('section_name','id');
         return $all_sections;
+    }
+
+    public function uploadAttachments($request)
+    {
+        foreach ($request->photos as $photo){
+            $name = $photo->getClientOriginalName();
+            $photo->storeAs('attachments/students/'.$request->student_name , $name, 'upload_attach_path');
+
+            $image = new Image();
+            $image->file_name  = $name;
+            $image->image_id   = $request->id;
+            $image->image_type = 'App\Models\Student';
+            $image->save();
+        }
+
+        toastr()->success(trans('messages.success'));
+        return back();
+    }
+
+    public function showPhoto($student_name, $file_name)
+    {
+        $viewPhoto = Storage::disk('upload_attach_path')->getDriver()->getAdapter()->applyPathPrefix('attachments/students/'.$student_name.'/'.$file_name);
+        return response()->file($viewPhoto);
+    }
+
+    public function download($student_name, $file_name)
+    {
+        //$download = ('attachments/students/'.$student_name.'/'.$file_name); or
+        $download = Storage::disk('upload_attach_path')->getDriver()->getAdapter()->applyPathPrefix('attachments/students/'.$student_name.'/'.$file_name);
+        return response()->download($download);
+    }
+
+    public function deletePhoto($request)
+    {
+        Image::findOrFail($request->id)->delete(); // delete from database or
+//        Image::where('id',$request->id)->where('file_name',$request->file_name)->delete(); // delete from database
+        // delete from local file
+        Storage::disk('upload_attach_path')->delete('attachments/students/'.$request->student_name.'/'.$request->file_name);
+        toastr()->error(trans('messages.delete'));
+        return back();
     }
 
 }

@@ -9,7 +9,7 @@ class Image extends Model
     protected $table = 'images';
     protected $fillable = ['id','file_name','image_id','image_type'];
 
-    public function imageAble()
+    public function image()
     {
         return $this->morphTo();
     }
