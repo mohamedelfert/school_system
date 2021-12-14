@@ -15,6 +15,7 @@ return [
     'students_list'         => 'قائمه الطلاب',
     'show_student'          => 'بيانات طالب',
     'student_promotion'     => 'ترقيه الطلاب',
+    'management_promotion'  => 'اداره ترقيه الطلاب',
     'teachers'              => 'المعلمين',
     'teachers_list'         => 'قائمه المعلمين',
     'specialization'        => 'التخصصات',

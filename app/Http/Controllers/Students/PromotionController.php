@@ -44,8 +44,10 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        $students = Student::where('grade_id',$request->grade_id)->where('chapter_id',$request->chapter_id)
-                            ->where('section_id',$request->section_id)->get();
+        $students = Student::where('grade_id',$request->grade_id)
+                            ->where('chapter_id',$request->chapter_id)
+                            ->where('section_id',$request->section_id)
+                            ->where('academic_year',$request->academic_year)->get();
         if ($students->count() < 1){
             return redirect()->back()->withErrors(['errors' => 'خطأ , لا يوجد بيانات طلاب بهذه المرحله او الصف !']);
         }
@@ -54,9 +56,10 @@ class PromotionController extends Controller
             $ids = explode(',',$student->id);
             Student::whereIn('id',$ids)->update(
                 [
-                    'grade_id'   => $request->grade_id_new,
-                    'chapter_id' => $request->chapter_id_new,
-                    'section_id' => $request->section_id_new,
+                    'grade_id'      => $request->grade_id_new,
+                    'chapter_id'    => $request->chapter_id_new,
+                    'section_id'    => $request->section_id_new,
+                    'academic_year' => $request->academic_year_new,
                 ]
             );
 
@@ -69,6 +72,8 @@ class PromotionController extends Controller
                     'to_grade_id'       => $request->grade_id_new,
                     'to_chapter_id'     => $request->chapter_id_new,
                     'to_section_id'     => $request->section_id_new,
+                    'academic_year'     => $request->academic_year,
+                    'academic_year_new' => $request->academic_year_new,
                 ]
             );
         }
@@ -83,9 +88,11 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $title = 'مدرستي - اداره ترقيه الطلاب';
+        $promotions   = Promotion::all();
+        return view('students.promotions.management',compact('title','promotions'));
     }
 
     /**
@@ -117,8 +124,29 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        if ($request->page_id == 1){
+            $promotions = Promotion::all();
+            foreach ($promotions as $promotion){
+                $ids = explode(',',$promotion->student_id);
+
+                Student::whereIn('id',$ids)->update(
+                    [
+                        'grade_id'      => $promotion->from_grade_id,
+                        'chapter_id'    => $promotion->from_chapter_id,
+                        'section_id'    => $promotion->from_section_id,
+                        'academic_year' => $promotion->academic_year,
+                    ]
+                );
+
+                Promotion::truncate();
+            }
+
+            toastr()->error(trans('messages.delete'));
+            return back();
+        }else{
+
+        }
     }
 }

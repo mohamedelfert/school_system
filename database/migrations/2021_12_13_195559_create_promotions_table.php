@@ -36,6 +36,10 @@ class CreatePromotionsTable extends Migration
 
             $table->integer('to_section_id')->unsigned();
             $table->foreign('to_section_id')->references('id')->on('sections')->onDelete('cascade');
+
+            $table->string('academic_year');
+            $table->string('academic_year_new');
+
             $table->timestamps();
         });
     }

@@ -79,14 +79,14 @@
                                 <td>{{ $student->getGenders->gender_name }}</td>
                                 <td>{{ $student->getNationalities->name }}</td>
                                 <td>
-                                    <a class="modal-effect btn btn-info" href="{{ url('student/'.$student->id.'/edit') }}"
+                                    <a class="modal-effect btn btn-info btn-sm" href="{{ url('student/'.$student->id.'/edit') }}"
                                        title="تعديل"><i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="modal-effect btn btn-danger" data-effect="effect-scale"
+                                    <a class="modal-effect btn btn-danger btn-sm" data-effect="effect-scale"
                                        data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
                                        data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>
                                     </a>
-                                    <a class="modal-effect btn btn-warning" href="{{ route('student.show',$student->id) }}"
+                                    <a class="modal-effect btn btn-warning btn-sm" href="{{ route('student.show',$student->id) }}"
                                        title="عرض"><i class="fa fa-eye"></i>
                                     </a>
                                 </td>

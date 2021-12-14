@@ -75,6 +75,7 @@
                             <li> <a href="{{route('student.create')}}">{{trans('main_sidebar.add_student')}}</a> </li>
                             <li> <a href="{{route('student.index')}}">{{trans('main_sidebar.students_list')}}</a> </li>
                             <li> <a href="{{route('promotion.index')}}">{{trans('main_sidebar.student_promotion')}}</a> </li>
+                            <li> <a href="{{url('promotion/show')}}">{{trans('main_sidebar.management_promotion')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Students -->

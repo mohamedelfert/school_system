@@ -73,6 +73,18 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col">
+                                        <label for="exampleInputEmail1">السنه الدراسيه</label>
+                                        <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="academic_year" name="academic_year">
+                                            <option value="">اختر من القائمه</option>
+                                            @php
+                                                $current_year = date("Y")
+                                            @endphp
+                                            @for($year = $current_year; $year <= $current_year + 1; $year++)
+                                                <option value="{{ $year }}">{{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="content-header" style="margin: 15px 0;">
                                     <h6 class="modal-title text-success">المرحله الدراسيه الجديده</h6>
@@ -104,6 +116,18 @@
                                             @foreach ($sections as $section)
                                                 <option value="{{ $section->id }}">{{ $section->section_name }}</option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleInputEmail1">السنه الدراسيه</label>
+                                        <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="academic_year_new" name="academic_year_new">
+                                            <option value="">اختر من القائمه</option>
+                                            @php
+                                                $current_year = date("Y")
+                                            @endphp
+                                            @for($year = $current_year; $year <= $current_year + 1; $year++)
+                                                <option value="{{ $year }}">{{ $year }}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>

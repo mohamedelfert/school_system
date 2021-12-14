@@ -15,6 +15,7 @@ return [
     'students_list'         => 'Student List',
     'show_student'          => 'Student Information',
     'student_promotion'     => 'Students Promotion',
+    'management_promotion'  => 'Management Promotion',
     'teachers'              => 'Teachers',
     'teachers_list'         => 'Teachers List',
     'specialization'        => 'Specialization',
