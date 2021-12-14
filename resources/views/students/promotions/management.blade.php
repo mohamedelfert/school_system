@@ -34,7 +34,7 @@
                         </a>
                         <a type="button" class="modal-effect btn btn-danger" data-toggle="modal"
                            href="#delete_all" data-effect="effect-scale">
-                            <i class="ti-trash"></i> تراجع للكل
+                            <i class="fas fa-trash-undo-alt"></i> تراجع للكل
                         </a>
                     </div>
                     <hr>
@@ -71,14 +71,11 @@
                                     <td>{{ $promotion->academic_year_new }}</td>
                                     <td>
                                         <a class="modal-effect btn btn-info btn-sm" href=""
-                                           title="تعديل"><i class="fa fa-edit"></i>
+                                           title="تخرج"><i class="fa fa-graduation-cap"></i>
                                         </a>
                                         <a class="modal-effect btn btn-danger btn-sm" data-effect="effect-scale"
-                                           data-id="" data-student_name=""
-                                           data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>
-                                        </a>
-                                        <a class="modal-effect btn btn-warning btn-sm" href=""
-                                           title="عرض"><i class="fa fa-eye"></i>
+                                           data-id="{{ $promotion->id }}" data-student_name="{{ $promotion->getStudents->student_name }}"
+                                           data-toggle="modal" href="#delete" title="تراجع"><i class="fas fa-trash-restore"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -123,7 +120,7 @@
                         <h6 class="modal-title">حذف الطالب</h6>
                         <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{route('promotion.destroy','test')}}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                         <div class="modal-body">

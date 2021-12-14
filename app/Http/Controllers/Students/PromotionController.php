@@ -146,7 +146,20 @@ class PromotionController extends Controller
             toastr()->error(trans('messages.delete'));
             return back();
         }else{
+            $promotion = Promotion::findOrFail($request->id);
+            Student::where('id',$promotion->student_id)->update(
+                [
+                    'grade_id'      => $promotion->from_grade_id,
+                    'chapter_id'    => $promotion->from_chapter_id,
+                    'section_id'    => $promotion->from_section_id,
+                    'academic_year' => $promotion->academic_year,
+                ]
+            );
 
+            $promotion->delete();
+
+            toastr()->error(trans('messages.delete'));
+            return back();
         }
     }
 }
