@@ -57,7 +57,7 @@
                                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 {{--                                                @foreach($student->images as $image)@endforeach--}}
 {{--                                                <img class="rounded-circle mt-5" width="150px" src="{{ 'public/attachments/students/'.$student->student_name .'/'. $image->file_name }}">--}}
-                                                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                                <img class="rounded-circle mt-5" width="150px" src="{{ $student->getGenders->gender_name === 'ذكر' ?  URL::asset('assets/images/male.png') : URL::asset('assets/images/female.png') }}">
                                                 <span class="font-weight-bold">{{ $student->student_name }}</span>
                                                 <span class="text-black-50">{{ $student->student_email }}</span>
                                             </div>

@@ -8,7 +8,7 @@
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    {{trans('main_sidebar.students')}}
+    {{trans('main_sidebar.students_information')}}
 @stop
 <!-- breadcrumb -->
 @endsection

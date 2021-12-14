@@ -65,17 +65,49 @@
 
                     <!-- Students -->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
-                            <div class="pull-left"><i class="fas fa-user-graduate"></i><span
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students_menu">
+                            <div class="pull-left"><i class="fas fa-users-class"></i><span
                                     class="right-nav-text">{{trans('main_sidebar.students')}}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="students" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('student.create')}}">{{trans('main_sidebar.add_student')}}</a> </li>
-                            <li> <a href="{{route('student.index')}}">{{trans('main_sidebar.students_list')}}</a> </li>
-                            <li> <a href="{{route('promotion.index')}}">{{trans('main_sidebar.student_promotion')}}</a> </li>
-                            <li> <a href="{{url('promotion/show')}}">{{trans('main_sidebar.management_promotion')}}</a> </li>
+                        <ul id="students_menu" class="collapse">
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#students_information">
+                                    <div class="pull-left"><i class="fas fa-user-cog"></i><span
+                                            class="right-nav-text">{{trans('main_sidebar.students_information')}}</span></div>
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="students_information" class="collapse" data-parent="#sidebarnav">
+                                    <li> <a href="{{route('student.create')}}">{{trans('main_sidebar.add_student')}}</a> </li>
+                                    <li> <a href="{{route('student.index')}}">{{trans('main_sidebar.students_list')}}</a> </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#students_promotions">
+                                    <div class="pull-left"><i class="fas fa-user-graduate"></i><span
+                                            class="right-nav-text">{{trans('main_sidebar.students_promotion')}}</span></div>
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="students_promotions" class="collapse" data-parent="#sidebarnav">
+                                    <li> <a href="{{route('promotion.index')}}">{{trans('main_sidebar.add_promotion')}}</a> </li>
+                                    <li> <a href="{{url('promotion/show')}}">{{trans('main_sidebar.management_promotion')}}</a> </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#students_graduation">
+                                    <div class="pull-left"><i class="fas fa-graduation-cap"></i><span
+                                            class="right-nav-text">{{trans('main_sidebar.students_graduation')}}</span></div>
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="students_graduation" class="collapse" data-parent="#sidebarnav">
+                                    <li> <a href="{{route('graduation.index')}}">{{trans('main_sidebar.add_graduation')}}</a> </li>
+                                    <li> <a href="{{url('graduation/show')}}">{{trans('main_sidebar.management_graduation')}}</a> </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <!-- Students -->
