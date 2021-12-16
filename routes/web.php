@@ -82,5 +82,14 @@ Route::group(
 
             // this route for students promotion
             Route::resource('/promotion','PromotionController');
+
+            // this route for students Graduation
+            Route::resource('/graduation','GraduationController');
+
+            // this route for delete checked students
+            Route::post('delete_checked_students','StudentController@delete_checked')->name('delete_checked_students');
+
+            // this route for filter students based on grades
+            Route::post('filter_students','StudentController@filter_students')->name('filter_students');
         });
 });

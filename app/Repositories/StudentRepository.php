@@ -22,7 +22,8 @@ class StudentRepository implements StudentRepositoryInterface {
     {
         $title        = 'مدرستي - الطلاب';
         $all_students = Student::all();
-        return view('students.student',compact('title','all_students'));
+        $all_grades   = Grade::all();
+        return view('students.student',compact('title','all_students','all_grades'));
     }
 
     public function createStudent()
@@ -199,4 +200,20 @@ class StudentRepository implements StudentRepositoryInterface {
         return back();
     }
 
+    public function delete_checked_students($request)
+    {
+        $checked_students = explode(',',$request->checked_student_id);
+        Student::whereIn('id',$checked_students)->delete();
+        toastr()->error(trans('messages.delete'));
+        return back();
+    }
+
+    public function filter_students($request)
+    {
+        $grade_id       = $request->grade_id;
+        $all_grades     = Grade::all();
+        $title          = trans('main_sidebar.students_information');
+        $filter         = Student::select('*')->where('grade_id','=',$grade_id)->get();
+        return view('students.student',compact('title','all_grades','filter'));
+    }
 }

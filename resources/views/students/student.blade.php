@@ -36,11 +36,13 @@
                         <i class="ti-trash"></i> حذف الصفوف المختاره
                     </button>
                     <!-- This Form For Filter -->
-                    <form action="" method="POST" class="d-inline-block">
+                    <form action="{{ route('filter_students') }}" method="POST" class="d-inline-block">
                         {{ csrf_field() }}
                         <select class="custom-select mr-sm-2" name="grade_id" data-style="btn-info" onchange="this.form.submit()">
                             <option value="" selected disabled>اظهر عن طريق المرحله</option>
-                            <option value="">$grade->name</option>
+                            @foreach($all_grades as $grade)
+                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                            @endforeach
                         </select>
                     </form>
                     <!-- This Form For Filter -->
@@ -65,7 +67,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @php $i = 1; @endphp
+                        @php
+                            /* This For check filter */
+                            if (isset($filter)){
+                                $all_students = $filter;
+                            }else{
+                                $all_students = $all_students;
+                            }
+                            $i = 1;
+                        @endphp
                         @foreach($all_students as $student)
                             <tr>
                                 <td>{{ $i++ }}</td>
@@ -90,7 +100,7 @@
                                        title="عرض"><i class="fa fa-eye"></i>
                                     </a>
                                 </td>
-                                <td><input type="checkbox" name="box" class="box" value="$chapter->id"></td>
+                                <td><input type="checkbox" name="box" class="box" value="{{$student->id}}"></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -126,19 +136,19 @@
     </div>
     <!-- This Is For Delete Student -->
 
-    <!-- This Is For Delete Checked Chapters -->
+    <!-- This Is For Delete Checked Students -->
     <div class="modal fade" id="delete_all">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">حذف الصف</h6>
+                    <h6 class="modal-title">حذف الطلاب المختارين</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="" method="post">
+                <form action="{{route('delete_checked_students')}}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p>{{trans('grades_trans.msg_delete_stage')}}</p><br>
-                        <input type="hidden" name="checked_chapters_id" id="checked_chapters_id" value="">
+                        <input type="hidden" name="checked_student_id" id="checked_student_id" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('grades_trans.btn_cancel')}}</button>
@@ -148,7 +158,7 @@
             </div>
         </div>
     </div>
-    <!-- This Is For Delete Checked Chapters -->
+    <!-- This Is For Delete Checked Students -->
 
 </div>
 <!-- row closed -->
@@ -200,7 +210,7 @@
                 })
                 if(selected.length > 0){
                     $('#delete_all').modal('show')
-                    $('input[id = "checked_chapters_id"]').val(selected);
+                    $('input[id = "checked_student_id"]').val(selected);
                 }
             })
         })

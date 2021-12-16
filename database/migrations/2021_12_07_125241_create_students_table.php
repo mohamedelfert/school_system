@@ -35,6 +35,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->date('joining_at');
             $table->string('academic_year');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

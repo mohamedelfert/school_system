@@ -23,7 +23,7 @@ class PromotionController extends Controller
         $grades   = Grade::all();
         $chapters = Chapter::all();
         $sections = Section::all();
-        return view('students.promotions.promotion',compact('title','grades','chapters','sections'));
+        return view('students.promotions.add_promotion',compact('title','grades','chapters','sections'));
     }
 
     /**
@@ -92,7 +92,7 @@ class PromotionController extends Controller
     {
         $title = 'مدرستي - اداره ترقيه الطلاب';
         $promotions   = Promotion::all();
-        return view('students.promotions.management',compact('title','promotions'));
+        return view('students.promotions.promotion_management',compact('title','promotions'));
     }
 
     /**

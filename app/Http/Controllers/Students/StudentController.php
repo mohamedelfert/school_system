@@ -212,4 +212,18 @@ class StudentController extends Controller
     public function deletePhoto(Request $request){
         return $this->students->deletePhoto($request);
     }
+
+    /**
+     * This Function to delete checked students
+     */
+    public function delete_checked(Request $request){
+        return $this->students->delete_checked_students($request);
+    }
+
+    /**
+     * This Function to filter students based on grades
+     */
+    public function filter_students(Request $request){
+        return $this->students->filter_students($request);
+    }
 }
