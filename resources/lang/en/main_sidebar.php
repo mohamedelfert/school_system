@@ -28,6 +28,7 @@ return [
     'parents'               => 'Parents',
     'list_parent'           => 'List Parents',
     'accounts'              => 'Accounts',
+    'study_fees'            => 'Study Fees',
     'attendance_absence'    => 'Attendances & Absence',
     'exams'                 => 'Exams',
     'library'               => 'Library',

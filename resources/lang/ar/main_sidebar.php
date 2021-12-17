@@ -28,6 +28,7 @@ return [
     'parents'               => 'أولياء الامور',
     'list_parent'           => 'قائمه اولياء الامور',
     'accounts'              => 'الحسابات',
+    'study_fees'            => 'الرسوم الدراسيه',
     'attendance_absence'    => 'الحضور والغياب',
     'exams'                 => 'الامتحانات',
     'library'               => 'المكتبه',

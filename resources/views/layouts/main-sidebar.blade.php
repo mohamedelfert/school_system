@@ -154,12 +154,12 @@
                     <!-- Accounts -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#accounts">
-                            <div class="pull-left"><i class="fas fa-money-bill-wave-alt"></i><span class="right-nav-text">{{trans('main_sidebar.accounts')}}</span></div>
+                            <div class="pull-left"><i class="fas fa-money-bill-wave"></i><span class="right-nav-text">{{trans('main_sidebar.accounts')}}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="accounts" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
+                            <li> <a href="{{route('fees.index')}}">{{trans('main_sidebar.study_fees')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Accounts -->

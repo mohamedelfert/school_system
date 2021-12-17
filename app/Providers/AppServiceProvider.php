@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\StudentRepositoryInterface',
             'App\Repositories\StudentRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\StudyFeesRepositoryInterface',
+            'App\Repositories\StudyFeesRepository'
+        );
     }
 
     /**
