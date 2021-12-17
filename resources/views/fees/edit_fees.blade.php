@@ -88,6 +88,17 @@
                                                 @endfor
                                             </select>
                                         </div>
+                                        <div class="col">
+                                            <label for="exampleInputEmail1">نوع الرسوم</label>
+                                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="fee_type" name="fee_type">
+                                                <option value="">اختر النوع</option>
+                                                <option value="1" {{ $fee->fee_type === 1 ? 'selected':'' }}>رسوم دراسيه</option>
+                                                <option value="2" {{ $fee->fee_type === 2 ? 'selected':'' }}>رسوم الباص</option>
+                                                <option value="3" {{ $fee->fee_type === 3 ? 'selected':'' }}>رسوم زي مدرسي</option>
+                                                <option value="4" {{ $fee->fee_type === 4 ? 'selected':'' }}>رسوم تسجيل</option>
+                                                <option value="5" {{ $fee->fee_type === 5 ? 'selected':'' }}>رسوم اختبار</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">

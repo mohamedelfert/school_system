@@ -28,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\StudyFeesRepositoryInterface',
             'App\Repositories\StudyFeesRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\FeesInvoicesRepositoryInterface',
+            'App\Repositories\FeesInvoicesRepository'
+        );
     }
 
     /**

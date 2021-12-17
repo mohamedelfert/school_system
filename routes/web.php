@@ -92,5 +92,8 @@ Route::group(
 
         // this route for study fees
         Route::resource('/fees','StudyFeesController');
+
+        // this route for study fees invoices
+        Route::resource('/fees_invoices','FeesInvoicesController');
     });
 });

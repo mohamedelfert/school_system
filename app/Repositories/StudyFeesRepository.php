@@ -34,6 +34,7 @@ class StudyFeesRepository implements StudyFeesRepositoryInterface{
             $data['grade_id']         = $request->grade_id;
             $data['chapter_id']       = $request->chapter_id;
             $data['year']             = $request->year;
+            $data['fee_type']         = $request->fee_type;
             $data['notes']            = $request->notes;
 
             StudyFees::create($data);
@@ -47,15 +48,6 @@ class StudyFeesRepository implements StudyFeesRepositoryInterface{
             DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
-    }
-
-    public function showStudentsFees($id)
-    {
-        $title        = 'مدرستي - الرسوم الدراسيه للطلاب';
-        $fee          = StudyFees::findOrFail($id);
-        $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
-        return view('fees.show_students_fees',compact('title','fee','all_grades','all_chapters'));
     }
 
     public function editFees($id)
@@ -79,6 +71,7 @@ class StudyFeesRepository implements StudyFeesRepositoryInterface{
             $data['grade_id']         = $request->grade_id;
             $data['chapter_id']       = $request->chapter_id;
             $data['year']             = $request->year;
+            $data['fee_type']         = $request->fee_type;
             $data['notes']            = $request->notes;
 
             $fee->update($data);

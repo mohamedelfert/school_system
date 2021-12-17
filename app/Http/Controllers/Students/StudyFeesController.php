@@ -47,8 +47,9 @@ class StudyFeesController extends Controller
             'name_en'       => 'required',
             'amount'        => 'required|min:0',
             'grade_id'      => 'required',
-            'chapter_id'    => 'required|unique:study_fees,chapter_id',
+            'chapter_id'    => 'required',
             'year'          => 'required',
+            'fee_type'      => 'required',
             'notes'         => 'required',
         ];
         $validate_msg_ar = [
@@ -58,8 +59,8 @@ class StudyFeesController extends Controller
             'amount.min'             => 'لا يجب ان يكون المبلغ اقل من 0',
             'grade_id.required'      => 'يجب اختيار المرحله',
             'chapter_id.required'    => 'يجب اختيار الصف',
-            'chapter_id.unique'      => 'تم وضع رسوم لهذا الصف من قبل',
             'year.required'          => 'يجب اختيار السنه الدراسيه',
+            'fee_type.required'      => 'يجب اختيار نوع الرسوم',
             'notes.required'         => 'يجب كتابه ملاحظات',
         ];
         $data = $this->validate($request,$rules,$validate_msg_ar);
@@ -75,7 +76,7 @@ class StudyFeesController extends Controller
      */
     public function show($id)
     {
-        return $this->fees->showStudentsFees($id);
+        //
     }
 
     /**
@@ -104,8 +105,9 @@ class StudyFeesController extends Controller
             'name_en'       => 'required',
             'amount'        => 'required|min:0',
             'grade_id'      => 'required',
-            'chapter_id'    => 'required|unique:study_fees,chapter_id,'.$id,
+            'chapter_id'    => 'required',
             'year'          => 'required',
+            'fee_type'      => 'required',
             'notes'         => 'required',
         ];
         $validate_msg_ar = [
@@ -115,8 +117,8 @@ class StudyFeesController extends Controller
             'amount.min'             => 'لا يجب ان يكون المبلغ اقل من 0',
             'grade_id.required'      => 'يجب اختيار المرحله',
             'chapter_id.required'    => 'يجب اختيار الصف',
-            'chapter_id.unique'      => 'تم وضع رسوم لهذا الصف من قبل',
             'year.required'          => 'يجب اختيار السنه الدراسيه',
+            'fee_type.required'      => 'يجب اختيار نوع الرسوم',
             'notes.required'         => 'يجب كتابه ملاحظات',
         ];
         $data = $this->validate($request,$rules,$validate_msg_ar);

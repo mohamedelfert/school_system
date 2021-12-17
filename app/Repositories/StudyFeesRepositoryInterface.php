@@ -10,8 +10,6 @@ interface StudyFeesRepositoryInterface{
 
     public function storeFees($request);
 
-    public function showStudentsFees($id);
-
     public function editFees($id);
 
     public function updateFees($request);

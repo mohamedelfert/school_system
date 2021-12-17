@@ -89,16 +89,26 @@
                                 <td>{{ $student->getGenders->gender_name }}</td>
                                 <td>{{ $student->getNationalities->name }}</td>
                                 <td>
-                                    <a class="modal-effect btn btn-info btn-sm" href="{{ url('student/'.$student->id.'/edit') }}"
-                                       title="تعديل"><i class="fa fa-edit"></i>
-                                    </a>
-                                    <a class="modal-effect btn btn-danger btn-sm" data-effect="effect-scale"
-                                       data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
-                                       data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>
-                                    </a>
-                                    <a class="modal-effect btn btn-warning btn-sm" href="{{ route('student.show',$student->id) }}"
-                                       title="عرض"><i class="fa fa-eye"></i>
-                                    </a>
+                                    <div class="dropdown">
+                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary btn-sm"
+                                                data-toggle="dropdown" id="dropdownMenuButton" type="button"> العمليات <i class="fas fa-caret-down ml-1"></i>
+                                        </button>
+                                        <div  class="dropdown-menu tx-13" style="padding-right:10px;">
+                                            <a class="modal-effect btn btn-warning btn-sm" href="{{ route('student.show',$student->id) }}"
+                                               title="عرض بيانات الطالب"><i class="fa fa-eye"></i>
+                                            </a>
+                                            <a class="modal-effect btn btn-info btn-sm" href="{{ url('student/'.$student->id.'/edit') }}"
+                                               title="تعديل بيانات الطالب"><i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="modal-effect btn btn-success btn-sm" href="{{ route('fees_invoices.show',$student->id) }}"
+                                               title="اضافه فاتوره رسوم"><i class="fa fa-plus-circle"></i>
+                                            </a>
+                                            <a class="modal-effect btn btn-danger btn-sm" data-effect="effect-scale"
+                                               data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
+                                               data-toggle="modal" href="#delete" title="حذف الطالب"><i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td><input type="checkbox" name="box" class="box" value="{{$student->id}}"></td>
                             </tr>

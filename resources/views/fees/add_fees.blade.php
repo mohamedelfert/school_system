@@ -86,6 +86,17 @@
                                             @endfor
                                         </select>
                                     </div>
+                                    <div class="col">
+                                        <label for="exampleInputEmail1">نوع الرسوم</label>
+                                        <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="fee_type" name="fee_type">
+                                            <option value="">اختر النوع</option>
+                                                <option value="1">رسوم دراسيه</option>
+                                                <option value="2">رسوم الباص</option>
+                                                <option value="3">رسوم زي مدرسي</option>
+                                                <option value="4">رسوم تسجيل</option>
+                                                <option value="5">رسوم اختبار</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">

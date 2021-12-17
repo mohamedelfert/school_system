@@ -44,6 +44,7 @@
                                 <th>المرحله الدراسيه</th>
                                 <th>الصف الدراسي</th>
                                 <th>السنه الدراسيه</th>
+                                <th>نوع الرسوم</th>
                                 <th>ملاحظات</th>
                                 <th>العمليات</th>
                             </tr>
@@ -58,6 +59,19 @@
                                     <td>{{$fee->getGrades->name}}</td>
                                     <td>{{$fee->getChapters->chapter_name}}</td>
                                     <td>{{$fee->year}}</td>
+                                    <td>
+                                        @if($fee->fee_type === 1)
+                                            رسوم دراسيه
+                                        @elseif($fee->fee_type === 2)
+                                            رسوم الباص
+                                        @elseif($fee->fee_type === 3)
+                                            رسوم زي مدرسي
+                                        @elseif($fee->fee_type === 4)
+                                            رسوم تسجيل
+                                        @elseif($fee->fee_type === 5)
+                                            رسوم اختبار
+                                        @endif
+                                    </td>
                                     <td>{{$fee->notes}}</td>
                                     <td>
                                         <a class="modal-effect btn btn-info" href="{{ url('fees/'.$fee->id.'/edit') }}"
@@ -67,7 +81,7 @@
                                            data-id="{{ $fee->id }}" data-name="{{ $fee->name }}"
                                            data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>
                                         </a>
-                                        <a class="modal-effect btn btn-warning" href="{{ route('fees.show',$fee->id) }}"
+                                        <a class="modal-effect btn btn-warning" href="#"
                                            title="عرض"><i class="fa fa-eye"></i>
                                         </a>
                                     </td>

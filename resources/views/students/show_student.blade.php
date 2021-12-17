@@ -45,6 +45,9 @@
                                     <li class="nav-item">
                                         <a href="#tab2" class="nav-link" data-toggle="tab">مرفقات الطالب</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="#tab3" class="nav-link" data-toggle="tab">مدفوعات الطالب</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -251,6 +254,39 @@
                                     </div>
                                 </div>
                                 <!-- Student Attachment Information -->
+
+                                <!-- Student Fees -->
+                                <div class="tab-pane" id="tab3">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table text-md-nowrap" id="example1">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="wd-5p border-bottom-0">#</th>
+                                                        <th class="wd-25p border-bottom-0">اسم الرسوم</th>
+                                                        <th class="wd-25p border-bottom-0">نوع الرسوم</th>
+                                                        <th class="wd-25p border-bottom-0">المدفوع</th>
+                                                        <th class="wd-25p border-bottom-0">المتبقي</th>
+                                                        <th class="wd-15p border-bottom-0">تاريخ الدفع</th>
+                                                        <th class="wd-30p border-bottom-0">العمليات</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th class="wd-5p border-bottom-0">#</th>
+                                                        <th class="wd-25p border-bottom-0">اسم الملف</th>
+                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
+                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
+                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
+                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
+                                                        <th class="wd-30p border-bottom-0">العمليات</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Student Fees -->
 
                                 <!-- delete Attachment -->
                                 <div class="modal fade" id="delete_file">

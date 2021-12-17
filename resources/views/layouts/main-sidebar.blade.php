@@ -160,6 +160,7 @@
                         </a>
                         <ul id="accounts" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('fees.index')}}">{{trans('main_sidebar.study_fees')}}</a> </li>
+                            <li> <a href="{{route('fees_invoices.index')}}">{{trans('main_sidebar.fees_invoices')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Accounts -->

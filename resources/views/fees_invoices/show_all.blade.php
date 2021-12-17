@@ -8,7 +8,7 @@
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    {{trans('main_sidebar.study_fees')}}
+    فواتير الرسوم الدراسيه للطلاب
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -28,49 +28,43 @@
     <div class="col-xl-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
-                <div style="margin-bottom: 10px;">
-                    <a type="button" class="modal-effect btn btn-success" href="{{route('fees.create')}}">
-                        <i class="ti-plus"></i> اضافه رسوم جديده
-                    </a>
-                </div>
-                <hr>
                 <div class="table-responsive">
                     <table id="datatable" class="table table-striped table-bordered p-0">
                         <thead>
                             <tr class="text-center">
                                 <th>#</th>
                                 <th>اسم الطالب</th>
+                                <th>نوع الرسوم</th>
+                                <th>المبلغ</th>
                                 <th>المرحله الدراسيه</th>
                                 <th>الصف الدراسي</th>
-                                <th>السنه الدراسيه</th>
-                                <th>المبلغ الكلي</th>
-                                <th>المبلغ المسدد</th>
-                                <th>المبلغ المتبقي</th>
+                                <th>ملاحظات</th>
                                 <th>العمليات</th>
                             </tr>
                         </thead>
                         <tbody>
-{{--                            <?php $i = 1; ?>--}}
-{{--                            @foreach($all_grades as $f)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$i++}}</td>--}}
-{{--                                    <td>{{$f->name}}</td>--}}
-{{--                                    <td>{{$f->amount}}</td>--}}
-{{--                                    <td>{{$f->getGrades->name}}</td>--}}
-{{--                                    <td>{{$f->getChapters->chapter_name}}</td>--}}
-{{--                                    <td>{{$f->year}}</td>--}}
-{{--                                    <td>{{$f->notes}}</td>--}}
-{{--                                    <td>--}}
-{{--                                        <a class="modal-effect btn btn-info" href="{{ url('fees/'.$f->id.'/edit') }}"--}}
-{{--                                           title="تعديل"><i class="fa fa-edit"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <a class="modal-effect btn btn-danger" data-effect="effect-scale"--}}
-{{--                                           data-id="{{ $f->id }}" data-name="{{ $f->name }}"--}}
-{{--                                           data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>--}}
-{{--                                        </a>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
+                            <?php $i = 1; ?>
+                            @foreach($all_fees_invoices as $fees_invoice)
+                                <tr>
+                                    <td>{{$i++}}</td>
+                                    <td>{{$fees_invoice->getStudent->student_name}}</td>
+                                    <td>{{$fees_invoice->getStudyFees->name}}</td>
+                                    <td>{{number_format($fees_invoice->amount, 2)}} $</td>
+                                    <td>{{$fees_invoice->getgrades->name}}</td>
+                                    <td>{{$fees_invoice->getChapters->chapter_name}}</td>
+                                    <td>{{$fees_invoice->notes}}</td>
+                                    <td>
+                                        <a class="modal-effect btn btn-info" href="{{ url('fees_invoices/'.$fees_invoice->id.'/edit') }}"
+                                           title="تعديل"><i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="modal-effect btn btn-danger" data-effect="effect-scale"
+                                           data-id="{{ $fees_invoice->id }}" data-fees_type="{{ $fees_invoice->getStudyFees->name }}"
+                                           data-student_name="{{ $fees_invoice->getStudent->student_name }}"
+                                           data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -86,14 +80,15 @@
                     <h6 class="modal-title">حذف رسم دراسي</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="" method="post">
+                <form action="{{route('fees_invoices.destroy','test')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
 
                     <div class="modal-body">
                         <p>{{trans('grades_trans.msg_delete_stage')}}</p><br>
                         <input type="hidden" name="id" id="id" value="">
-                        <input class="form-control" name="name" id="name" type="text" readonly>
+                        <input class="form-control" name="student_name" id="student_name" type="text" readonly><br>
+                        <input class="form-control" name="fees_type" id="fees_type" type="text" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('grades_trans.btn_cancel')}}</button>
@@ -117,12 +112,14 @@
     <!-- This For Delete Form -->
     <script>
         $('#delete').on('show.bs.modal',function (event){
-            var button = $(event.relatedTarget)
-            var id     = button.data('id')
-            var name   = button.data('name')
-            var modal  = $(this)
+            var button          = $(event.relatedTarget)
+            var id              = button.data('id')
+            var fees_type       = button.data('fees_type')
+            var student_name    = button.data('student_name')
+            var modal           = $(this)
             modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #name').val(name);
+            modal.find('.modal-body #fees_type').val(fees_type);
+            modal.find('.modal-body #student_name').val(student_name);
         })
     </script>
     <!-- This For Delete Form -->
