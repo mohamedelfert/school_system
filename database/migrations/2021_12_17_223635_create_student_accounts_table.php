@@ -15,12 +15,12 @@ class CreateStudentAccountsTable extends Migration
     {
         Schema::create('student_accounts', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('date');
+            $table->string('type');
+            $table->integer('fees_invoice_id')->unsigned();
+            $table->foreign('fees_invoice_id')->references('id')->on('fees_invoices')->onDelete('cascade');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->integer('grade_id')->unsigned();
-            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->integer('chapter_id')->unsigned();
-            $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');
             $table->decimal('debit',8,2)->nullable();
             $table->decimal('credit',8,2)->nullable();
             $table->string('notes')->nullable();

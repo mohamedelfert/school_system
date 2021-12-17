@@ -79,7 +79,7 @@ class FeesInvoicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $this->fees_invoices->editFeesInvoice($id);
     }
 
     /**
@@ -89,9 +89,19 @@ class FeesInvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rules = [
+            'fee_id' => 'required',
+            'amount' => 'required',
+        ];
+        $validate_msg_ar = [
+            'fee_id.required'  => 'يجب اختيار نوع الرسوم',
+            'amount.required'  => 'يجب اختيار مبلغ الرسوم',
+        ];
+        $validate = $this->validate($request,$rules,$validate_msg_ar);
+
+        return $this->fees_invoices->updateFeesInvoice($request);
     }
 
     /**
@@ -100,8 +110,8 @@ class FeesInvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        return $this->fees_invoices->deleteFeesInvoice($request);
     }
 }

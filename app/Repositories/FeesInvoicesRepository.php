@@ -13,7 +13,7 @@ class FeesInvoicesRepository implements FeesInvoicesRepositoryInterface
 
     public function getAllFeesInvoices()
     {
-        $title             = 'مدرستي - الرسوم الدراسيه للطلاب';
+        $title             = 'مدرستي - الفواتير الدراسيه للطلاب';
         $all_fees_invoices = FeesInvoices::all();
         return view('fees_invoices.show_all',compact('title','all_fees_invoices'));
     }
@@ -48,12 +48,13 @@ class FeesInvoicesRepository implements FeesInvoicesRepositoryInterface
 
                 // save in student_accounts table
                 $student_account               = new StudentAccount();
-                $student_account->student_id   = $list['student_id'];
-                $student_account->grade_id     = $request->grade_id;
-                $student_account->chapter_id   = $request->chapter_id;
-                $student_account->debit        = $list['amount'];
-                $student_account->credit       = 0.00;
-                $student_account->notes        = $list['notes'];
+                $student_account->date              = date('Y-m-d');
+                $student_account->type              = 'invoice';
+                $student_account->fees_invoice_id   = $fees_invoice->id;
+                $student_account->student_id        = $list['student_id'];
+                $student_account->debit             = $list['amount'];
+                $student_account->credit            = 0.00;
+                $student_account->notes             = $list['notes'];
                 $student_account->save();
             }
 
@@ -65,5 +66,50 @@ class FeesInvoicesRepository implements FeesInvoicesRepositoryInterface
             DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
+    }
+
+    public function editFeesInvoice($id)
+    {
+        $title              = 'مدرستي - تعديل فاتوره رسوم';
+        $fees_invoice       = FeesInvoices::findOrFail($id);
+        $fees               = StudyFees::where('chapter_id',$fees_invoice->chapter_id)->get();
+        return view('fees_invoices.edit_fees_invoice',compact('title','fees_invoice','fees'));
+    }
+
+    public function updateFeesInvoice($request)
+    {
+        DB::beginTransaction();
+        try {
+
+            // edit in fees_invoices table
+            $fees_invoice               = FeesInvoices::findOrFail($request->id);
+            $fees_invoice->fee_id	    = $request->fee_id;
+            $fees_invoice->amount       = $request->amount;
+            $fees_invoice->notes        = $request->notes;
+            $fees_invoice->update();
+
+            // edit in student_accounts table
+            $student_account                    = StudentAccount::where('fees_invoice_id',$request->id)->first();
+            $student_account->fees_invoice_id   = $fees_invoice->id;
+            $student_account->debit             = $request->amount;
+            $student_account->notes             = $request->notes;
+            $student_account->update();
+
+
+            DB::commit();
+
+            toastr()->success(trans('messages.update'));
+            return redirect('fees_invoices');
+        }catch (\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+        }
+    }
+
+    public function deleteFeesInvoice($request)
+    {
+        FeesInvoices::findOrFail($request->id)->delete();
+        toastr()->error(trans('messages.delete'));
+        return back();
     }
 }

@@ -202,7 +202,7 @@
                                 </div>
                                 <div class="row mt-20">
                                     <div class="col-12">
-                                        <input class="btn btn-success" data-repeater-create type="button" value="اضفه حقل جديد"/>
+                                        <input class="btn btn-success" data-repeater-create type="button" value="اضافه حقل جديد"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="margin-top: 10px">

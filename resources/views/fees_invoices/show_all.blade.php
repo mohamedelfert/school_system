@@ -8,7 +8,7 @@
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    فواتير الرسوم الدراسيه للطلاب
+    {{trans('main_sidebar.fees_invoices')}}
 @stop
 <!-- breadcrumb -->
 @endsection
