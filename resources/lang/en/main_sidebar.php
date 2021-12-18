@@ -30,6 +30,7 @@ return [
     'accounts'              => 'Accounts',
     'study_fees'            => 'Study Fees',
     'fees_invoices'         => 'Study Fees Invoices',
+    'receipt_students'      => 'Receipts Students',
     'attendance_absence'    => 'Attendances & Absence',
     'exams'                 => 'Exams',
     'library'               => 'Library',

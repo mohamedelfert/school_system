@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\ReceiptStudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ReceiptStudentController extends Controller
 {
+
+    private $receipts;
+    public function __construct(ReceiptStudentRepositoryInterface $receipts)
+    {
+        $this->receipts = $receipts;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class ReceiptStudentController extends Controller
      */
     public function index()
     {
-        //
+        return $this->receipts->getAllReceipts();
     }
 
     /**
@@ -35,7 +42,18 @@ class ReceiptStudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'amount'  => 'required|min:0',
+            'notes'   => 'required',
+        ];
+        $validate_msg_ar = [
+            'amount.required'   => 'يجب ادخال المبلغ',
+            'amount.min'        => 'يجب ان يكون المبلغ اكثر من 0 $',
+            'notes.required'    => 'يجب كتابه ملاحظات',
+        ];
+        $data = $this->validate($request,$rules,$validate_msg_ar);
+
+        return $this->receipts->storeReceipt($request);
     }
 
     /**
@@ -46,7 +64,7 @@ class ReceiptStudentController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->receipts->showReceipts($id);
     }
 
     /**
@@ -57,7 +75,7 @@ class ReceiptStudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $this->receipts->editReceipt($id);
     }
 
     /**
@@ -69,7 +87,18 @@ class ReceiptStudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'amount'   => 'required|min:0',
+            'notes'    => 'required',
+        ];
+        $validate_msg_ar = [
+            'amount.required'    => 'يجب ادخال المبلغ',
+            'amount.min'         => 'يجب ان يكون المبلغ اكثر من 0 $',
+            'notes.required'     => 'يجب كتابه ملاحظات',
+        ];
+        $data = $this->validate($request,$rules,$validate_msg_ar);
+
+        return $this->receipts->updateReceipt($request);
     }
 
     /**
@@ -78,8 +107,8 @@ class ReceiptStudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        return $this->receipts->deleteReceipt($request);
     }
 }

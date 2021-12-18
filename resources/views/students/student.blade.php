@@ -93,19 +93,23 @@
                                         <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary btn-sm"
                                                 data-toggle="dropdown" id="dropdownMenuButton" type="button"> العمليات <i class="fas fa-caret-down ml-1"></i>
                                         </button>
-                                        <div  class="dropdown-menu tx-13" style="padding-right:10px;">
-                                            <a class="modal-effect btn btn-warning btn-sm" href="{{ route('student.show',$student->id) }}"
-                                               title="عرض بيانات الطالب"><i class="fa fa-eye"></i>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="{{ route('student.show',$student->id) }}">
+                                                <i class="far fa-eye text-warning"></i>&nbsp;عرض بيانات الطالب
                                             </a>
-                                            <a class="modal-effect btn btn-info btn-sm" href="{{ url('student/'.$student->id.'/edit') }}"
-                                               title="تعديل بيانات الطالب"><i class="fa fa-edit"></i>
+                                            <a class="dropdown-item" href="{{ url('student/'.$student->id.'/edit') }}">
+                                                <i class="fas fa-user-edit text-primary"></i>&nbsp;تعديل بيانات الطالب
                                             </a>
-                                            <a class="modal-effect btn btn-success btn-sm" href="{{ route('fees_invoices.show',$student->id) }}"
-                                               title="اضافه فاتوره رسوم"><i class="fa fa-plus-circle"></i>
+                                            <a class="dropdown-item" href="{{ route('fees_invoices.show',$student->id) }}">
+                                                <i class="fa fa-plus-circle text-success"></i>&nbsp;اضافة فاتورة رسوم
                                             </a>
-                                            <a class="modal-effect btn btn-danger btn-sm" data-effect="effect-scale"
+                                            <a class="dropdown-item" href="{{ route('receipt_students.show',$student->id) }}">
+                                                <i class="fas fa-money-bill-alt text-info"></i>&nbsp;اضافه سند قبض
+                                            </a>
+                                            <a class="dropdown-item" data-effect="effect-scale"
                                                data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
-                                               data-toggle="modal" href="#delete" title="حذف الطالب"><i class="fa fa-trash"></i>
+                                               data-toggle="modal" href="#delete">
+                                                <i class="fa fa-trash text-danger"></i>&nbsp;حذف بيانات الطالب
                                             </a>
                                         </div>
                                     </div>

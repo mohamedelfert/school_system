@@ -30,6 +30,7 @@ return [
     'accounts'              => 'الحسابات',
     'study_fees'            => 'الرسوم الدراسيه',
     'fees_invoices'         => 'فواتير الرسوم الدراسيه',
+    'receipt_students'      => 'سندات القبض',
     'attendance_absence'    => 'الحضور والغياب',
     'exams'                 => 'الامتحانات',
     'library'               => 'المكتبه',
