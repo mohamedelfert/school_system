@@ -17,8 +17,10 @@ class CreateStudentAccountsTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->string('type');
-            $table->integer('fees_invoice_id')->unsigned();
+            $table->integer('fees_invoice_id')->nullable()->unsigned();
             $table->foreign('fees_invoice_id')->references('id')->on('fees_invoices')->onDelete('cascade');
+            $table->integer('receipt_student_id')->nullable()->unsigned();
+            $table->foreign('receipt_student_id')->references('id')->on('receipt_students')->onDelete('cascade');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->decimal('debit',8,2)->nullable();

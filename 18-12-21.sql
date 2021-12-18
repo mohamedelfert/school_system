@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2021 at 12:54 AM
+-- Generation Time: Dec 18, 2021 at 09:10 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -118,14 +118,22 @@ CREATE TABLE `fees_invoices` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `fees_invoices`
+-- Table structure for table `fund_accounts`
 --
 
-INSERT INTO `fees_invoices` (`id`, `invoice_date`, `student_id`, `grade_id`, `chapter_id`, `fee_id`, `amount`, `notes`, `created_at`, `updated_at`) VALUES
-(1, '2021-12-17', 1, 2, 9, 3, '10000.00', 'رسوم تسجيل الطالب اول مره', '2021-12-17 20:40:51', '2021-12-17 21:40:35'),
-(2, '2021-12-17', 1, 2, 9, 6, '5000.00', 'مصاريف الباص السنويه', '2021-12-17 20:40:51', '2021-12-17 20:40:51'),
-(4, '2021-12-17', 5, 2, 9, 3, '10000.00', 'مصاريف العام الدراسي', '2021-12-17 21:43:45', '2021-12-17 21:43:45');
+CREATE TABLE `fund_accounts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `receipt_id` int(10) UNSIGNED NOT NULL,
+  `debit` decimal(8,2) DEFAULT NULL,
+  `credit` decimal(8,2) DEFAULT NULL,
+  `notes` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -240,7 +248,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2021_12_16_140022_create_study_fees_table', 9),
 (20, '2021_12_17_185803_create_fees_invoices_table', 10),
 (21, '2021_12_17_190019_create_student_accounts_table', 10),
-(22, '2021_12_17_223635_create_student_accounts_table', 11);
+(22, '2021_12_17_223635_create_student_accounts_table', 11),
+(23, '2021_12_18_192102_create_receipt_students_table', 12),
+(24, '2021_12_18_192158_create_fund_accounts_table', 12),
+(25, '2021_12_18_223635_create_student_accounts_table', 13);
 
 -- --------------------------------------------------------
 
@@ -598,6 +609,22 @@ CREATE TABLE `promotions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `receipt_students`
+--
+
+CREATE TABLE `receipt_students` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `student_id` int(10) UNSIGNED NOT NULL,
+  `debit` decimal(8,2) DEFAULT NULL,
+  `notes` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `religions`
 --
 
@@ -724,7 +751,8 @@ CREATE TABLE `student_accounts` (
   `id` int(10) UNSIGNED NOT NULL,
   `date` date NOT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fees_invoice_id` int(10) UNSIGNED NOT NULL,
+  `fees_invoice_id` int(10) UNSIGNED DEFAULT NULL,
+  `receipt_student_id` int(10) UNSIGNED DEFAULT NULL,
   `student_id` int(10) UNSIGNED NOT NULL,
   `debit` decimal(8,2) DEFAULT NULL,
   `credit` decimal(8,2) DEFAULT NULL,
@@ -732,15 +760,6 @@ CREATE TABLE `student_accounts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `student_accounts`
---
-
-INSERT INTO `student_accounts` (`id`, `date`, `type`, `fees_invoice_id`, `student_id`, `debit`, `credit`, `notes`, `created_at`, `updated_at`) VALUES
-(1, '2021-12-17', 'invoice', 1, 1, '10000.00', '0.00', 'رسوم تسجيل الطالب اول مره', '2021-12-17 20:40:51', '2021-12-17 21:40:35'),
-(2, '2021-12-17', 'invoice', 2, 1, '5000.00', '0.00', 'مصاريف الباص السنويه', '2021-12-17 20:40:51', '2021-12-17 20:40:51'),
-(4, '2021-12-17', 'invoice', 4, 5, '10000.00', '0.00', 'مصاريف العام الدراسي', '2021-12-17 21:43:45', '2021-12-17 21:43:45');
 
 -- --------------------------------------------------------
 
@@ -934,6 +953,13 @@ ALTER TABLE `fees_invoices`
   ADD KEY `fees_invoices_fee_id_foreign` (`fee_id`);
 
 --
+-- Indexes for table `fund_accounts`
+--
+ALTER TABLE `fund_accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fund_accounts_receipt_id_foreign` (`receipt_id`);
+
+--
 -- Indexes for table `genders`
 --
 ALTER TABLE `genders`
@@ -1012,6 +1038,13 @@ ALTER TABLE `promotions`
   ADD KEY `promotions_to_section_id_foreign` (`to_section_id`);
 
 --
+-- Indexes for table `receipt_students`
+--
+ALTER TABLE `receipt_students`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `receipt_students_student_id_foreign` (`student_id`);
+
+--
 -- Indexes for table `religions`
 --
 ALTER TABLE `religions`
@@ -1052,6 +1085,7 @@ ALTER TABLE `students`
 ALTER TABLE `student_accounts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_accounts_fees_invoice_id_foreign` (`fees_invoice_id`),
+  ADD KEY `student_accounts_receipt_student_id_foreign` (`receipt_student_id`),
   ADD KEY `student_accounts_student_id_foreign` (`student_id`);
 
 --
@@ -1116,6 +1150,12 @@ ALTER TABLE `fees_invoices`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `fund_accounts`
+--
+ALTER TABLE `fund_accounts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `genders`
 --
 ALTER TABLE `genders`
@@ -1137,7 +1177,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `my_parents`
@@ -1162,6 +1202,12 @@ ALTER TABLE `parent_attachments`
 --
 ALTER TABLE `promotions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `receipt_students`
+--
+ALTER TABLE `receipt_students`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `religions`
@@ -1191,7 +1237,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `student_accounts`
 --
 ALTER TABLE `student_accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `study_fees`
@@ -1237,6 +1283,12 @@ ALTER TABLE `fees_invoices`
   ADD CONSTRAINT `fees_invoices_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `fund_accounts`
+--
+ALTER TABLE `fund_accounts`
+  ADD CONSTRAINT `fund_accounts_receipt_id_foreign` FOREIGN KEY (`receipt_id`) REFERENCES `receipt_students` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `my_parents`
 --
 ALTER TABLE `my_parents`
@@ -1266,6 +1318,12 @@ ALTER TABLE `promotions`
   ADD CONSTRAINT `promotions_to_section_id_foreign` FOREIGN KEY (`to_section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `receipt_students`
+--
+ALTER TABLE `receipt_students`
+  ADD CONSTRAINT `receipt_students_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `sections`
 --
 ALTER TABLE `sections`
@@ -1289,6 +1347,7 @@ ALTER TABLE `students`
 --
 ALTER TABLE `student_accounts`
   ADD CONSTRAINT `student_accounts_fees_invoice_id_foreign` FOREIGN KEY (`fees_invoice_id`) REFERENCES `fees_invoices` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `student_accounts_receipt_student_id_foreign` FOREIGN KEY (`receipt_student_id`) REFERENCES `receipt_students` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `student_accounts_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
 
 --

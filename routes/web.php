@@ -95,5 +95,8 @@ Route::group(
 
         // this route for study fees invoices
         Route::resource('/fees_invoices','FeesInvoicesController');
+
+        // this route for receipt students
+        Route::resource('/receipt_students','ReceiptStudentController');
     });
 });

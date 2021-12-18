@@ -33,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\FeesInvoicesRepositoryInterface',
             'App\Repositories\FeesInvoicesRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\ReceiptStudentRepositoryInterface',
+            'App\Repositories\ReceiptStudentRepository'
+        );
     }
 
     /**
