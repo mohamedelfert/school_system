@@ -109,6 +109,9 @@
                                             <a class="dropdown-item" href="{{ route('processing_fees.show',$student->id) }}">
                                                 <i class="fas fa-dollar text-black-50"></i>&nbsp;&nbsp;&nbsp;استبعاد رسوم
                                             </a>
+                                            <a class="dropdown-item" href="{{ route('payments_students.show',$student->id) }}">
+                                                <i class="fas fa-donate text-warning"></i>&nbsp;&nbsp;&nbsp;استرجاع رسوم للطلاب
+                                            </a>
                                             <a class="dropdown-item" data-effect="effect-scale"
                                                data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
                                                data-toggle="modal" href="#delete">

@@ -101,5 +101,8 @@ Route::group(
 
         // this route for processing fees
         Route::resource('/processing_fees','ProcessingFeeController');
+
+        // this route for payments to students
+        Route::resource('/payments_students','PaymentsStudentsController');
     });
 });

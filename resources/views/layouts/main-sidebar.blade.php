@@ -163,6 +163,7 @@
                             <li> <a href="{{route('fees_invoices.index')}}">{{trans('main_sidebar.fees_invoices')}}</a> </li>
                             <li> <a href="{{route('receipt_students.index')}}">{{trans('main_sidebar.receipt_students')}}</a> </li>
                             <li> <a href="{{route('processing_fees.index')}}">{{trans('main_sidebar.processing_fee')}}</a> </li>
+                            <li> <a href="{{route('payments_students.index')}}">{{trans('main_sidebar.payment_students')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Accounts -->

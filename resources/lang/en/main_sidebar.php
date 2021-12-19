@@ -32,6 +32,7 @@ return [
     'fees_invoices'         => 'Study Fees Invoices',
     'receipt_students'      => 'Receipts Students',
     'processing_fee'        => 'Exclusion ( Processing ) Fees',
+    'payment_students'      => 'Payments To Students',
     'attendance_absence'    => 'Attendances & Absence',
     'exams'                 => 'Exams',
     'library'               => 'Library',

@@ -8,7 +8,7 @@
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    استبعاد رسوم للطالب : {{$student->student_name}}
+    اضافه سند صرف للطالب : {{$student->student_name}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -38,7 +38,7 @@
                                     </a>
                                 </div>
                                 <hr>
-                                <form action="{{ route('processing_fees.store') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('payments_students.store') }}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
 
                                     <div class="row" style="margin-bottom: 20px;">

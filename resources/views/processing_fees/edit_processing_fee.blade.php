@@ -50,7 +50,7 @@
                                             <input type="number" min="0" class="form-control" id="amount" name="amount" value="{{$precessing_fee->amount}}" required>
                                         </div>
                                         <div class="col">
-                                            <label for="exampleInputEmail1">رصيد الطالب</label>
+                                            <label for="exampleInputEmail1">رصيد الطالب ( الدين علي الطالب )</label>
                                             <input type="text" min="0" class="form-control" id="student_credit" name="student_credit"
                                                    value="{{ number_format($precessing_fee->getStudentAccount->sum('debit') - $precessing_fee->getStudentAccount->sum('credit'),2) }}" readonly>
                                         </div>
