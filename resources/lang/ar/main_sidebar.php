@@ -31,6 +31,7 @@ return [
     'study_fees'            => 'الرسوم الدراسيه',
     'fees_invoices'         => 'فواتير الرسوم الدراسيه',
     'receipt_students'      => 'سندات القبض',
+    'processing_fee'        => 'استبعاد ( معالجه ) رسوم',
     'attendance_absence'    => 'الحضور والغياب',
     'exams'                 => 'الامتحانات',
     'library'               => 'المكتبه',

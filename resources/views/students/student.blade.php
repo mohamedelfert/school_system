@@ -101,15 +101,18 @@
                                                 <i class="fas fa-user-edit text-primary"></i>&nbsp;تعديل بيانات الطالب
                                             </a>
                                             <a class="dropdown-item" href="{{ route('fees_invoices.show',$student->id) }}">
-                                                <i class="fa fa-plus-circle text-success"></i>&nbsp;اضافة فاتورة رسوم
+                                                <i class="fa fa-plus-circle text-success"></i>&nbsp;&nbsp;اضافة فاتورة رسوم
                                             </a>
                                             <a class="dropdown-item" href="{{ route('receipt_students.show',$student->id) }}">
                                                 <i class="fas fa-money-bill-alt text-info"></i>&nbsp;اضافه سند قبض
                                             </a>
+                                            <a class="dropdown-item" href="{{ route('processing_fees.show',$student->id) }}">
+                                                <i class="fas fa-dollar text-black-50"></i>&nbsp;&nbsp;&nbsp;استبعاد رسوم
+                                            </a>
                                             <a class="dropdown-item" data-effect="effect-scale"
                                                data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
                                                data-toggle="modal" href="#delete">
-                                                <i class="fa fa-trash text-danger"></i>&nbsp;حذف بيانات الطالب
+                                                <i class="fa fa-trash text-danger"></i>&nbsp;&nbsp;حذف بيانات الطالب
                                             </a>
                                         </div>
                                     </div>

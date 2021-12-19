@@ -98,5 +98,8 @@ Route::group(
 
         // this route for receipt students
         Route::resource('/receipt_students','ReceiptStudentController');
+
+        // this route for processing fees
+        Route::resource('/processing_fees','ProcessingFeeController');
     });
 });
