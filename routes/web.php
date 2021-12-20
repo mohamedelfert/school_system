@@ -104,5 +104,8 @@ Route::group(
 
         // this route for payments to students
         Route::resource('/payments_students','PaymentsStudentsController');
+
+        // this route for students attendance & absence
+        Route::resource('/attendances','AttendancesController');
     });
 });

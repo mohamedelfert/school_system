@@ -51,4 +51,8 @@ class Student extends Model
     public function getStudentAccount(){
         return $this->hasMany(StudentAccount::class,'student_id');
     }
+
+    public function getAttendances(){
+        return $this->hasMany(Attendance::class,'student_id');
+    }
 }

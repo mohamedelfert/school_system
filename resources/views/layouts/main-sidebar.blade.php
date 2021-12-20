@@ -176,7 +176,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="attendance_absence" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
+                            <li> <a href="{{route('attendances.index')}}">{{trans('main_sidebar.student_list_attendance')}}</a> </li>
                         </ul>
                     </li>
                     <!-- attendance_absence -->
