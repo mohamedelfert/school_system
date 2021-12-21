@@ -25,6 +25,8 @@ return [
     'teachers_list'             => 'قائمه المعلمين',
     'specialization'            => 'التخصصات',
     'specialization_list'       => 'قائمه التخصصات',
+    'subjects'                  => 'المواد الدراسيه',
+    'subjects_list'             => 'قائمه المواد الدراسيه',
     'parents'                   => 'أولياء الامور',
     'list_parent'               => 'قائمه اولياء الامور',
     'accounts'                  => 'الحسابات',

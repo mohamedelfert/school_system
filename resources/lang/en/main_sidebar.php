@@ -25,6 +25,8 @@ return [
     'teachers_list'             => 'Teachers List',
     'specialization'            => 'Specialization',
     'specialization_list'       => 'Specialization List',
+    'subjects'                  => 'Subjects',
+    'subjects_list'             => 'Subjects List',
     'parents'                   => 'Parents',
     'list_parent'               => 'List Parents',
     'accounts'                  => 'Accounts',

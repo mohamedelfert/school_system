@@ -108,4 +108,8 @@ Route::group(
         // this route for students attendance & absence
         Route::resource('/attendances','AttendancesController');
     });
+
+    Route::group(['namespace' => 'Subjects'],function (){
+        Route::resource('/subjects','SubjectsController');
+    });
 });

@@ -128,7 +128,7 @@
                     <!-- Specialization -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#specialization">
-                            <div class="pull-left"><i class="fas fa-books"></i><span class="right-nav-text">{{trans('main_sidebar.specialization')}}</span></div>
+                            <div class="pull-left"><i class="fas fa-book-user"></i><span class="right-nav-text">{{trans('main_sidebar.specialization')}}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
@@ -137,6 +137,19 @@
                         </ul>
                     </li>
                     <!-- Specialization -->
+
+                    <!-- Subjects -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#subjects">
+                            <div class="pull-left"><i class="fas fa-books"></i><span class="right-nav-text">{{trans('main_sidebar.subjects')}}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="subjects" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{route('subjects.index')}}">{{trans('main_sidebar.subjects_list')}}</a> </li>
+                        </ul>
+                    </li>
+                    <!-- Subjects -->
 
                     <!-- Parents -->
                     <li>
