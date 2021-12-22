@@ -53,6 +53,16 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\AttendancesRepositoryInterface',
             'App\Repositories\AttendancesRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\ExamsRepositoryInterface',
+            'App\Repositories\ExamsRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\QuestionsRepositoryInterface',
+            'App\Repositories\QuestionsRepository'
+        );
     }
 
     /**

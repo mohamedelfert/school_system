@@ -38,6 +38,8 @@ return [
     'attendance_absence'        => 'Attendances & Absence',
     'student_list_attendance'   => 'Students List Attendance',
     'exams'                     => 'Exams',
+    'exams_list'                => 'Exams List',
+    'questions_list'            => 'Questions List',
     'library'                   => 'Library',
     'online'                    => 'Online Classrooms',
     'settings'                  => 'Settings',

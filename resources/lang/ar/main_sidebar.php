@@ -38,6 +38,8 @@ return [
     'attendance_absence'        => 'الحضور والغياب',
     'student_list_attendance'   => 'قوائم الطلاب',
     'exams'                     => 'الامتحانات',
+    'exams_list'                => 'قائمه الامتحانات',
+    'questions_list'            => 'قائمه الاسئله',
     'library'                   => 'المكتبه',
     'online'                    => 'فصول الاونلاين',
     'settings'                  => 'الاعدادات',

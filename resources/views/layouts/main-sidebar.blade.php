@@ -202,7 +202,8 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="exams" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
+                            <li> <a href="{{route('exams.index')}}">{{trans('main_sidebar.exams_list')}}</a> </li>
+                            <li> <a href="{{route('questions.index')}}">{{trans('main_sidebar.questions_list')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Exams -->

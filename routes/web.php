@@ -112,4 +112,12 @@ Route::group(
     Route::group(['namespace' => 'Subjects'],function (){
         Route::resource('/subjects','SubjectsController');
     });
+
+    Route::group(['namespace' => 'Exams'],function (){
+        Route::resource('/exams','ExamsController');
+    });
+
+    Route::group(['namespace' => 'Questions'],function (){
+        Route::resource('/questions','QuestionController');
+    });
 });
