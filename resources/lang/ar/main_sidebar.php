@@ -41,7 +41,8 @@ return [
     'exams_list'                => 'قائمه الامتحانات',
     'questions_list'            => 'قائمه الاسئله',
     'library'                   => 'المكتبه',
-    'online'                    => 'فصول الاونلاين',
+    'online_classes'            => 'حصص الاونلاين',
+    'online_classes_list'       => 'قائمه الحصص الاونلاين',
     'settings'                  => 'الاعدادات',
     'users'                     => 'المستخدمين',
 

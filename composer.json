@@ -17,6 +17,7 @@
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.8",
+        "macsidigital/laravel-zoom": "^4.0",
         "mcamara/laravel-localization": "^1.6",
         "spatie/laravel-translatable": "^4.6",
         "yoeunes/toastr": "^1.2"

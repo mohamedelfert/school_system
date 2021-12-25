@@ -120,4 +120,11 @@ Route::group(
     Route::group(['namespace' => 'Questions'],function (){
         Route::resource('/questions','QuestionController');
     });
+
+    Route::group(['namespace' => 'OnlineClasses'],function (){
+        Route::resource('/online_classes','OnlineClassController');
+        Route::get('indirect','OnlineClassController@indirectCreate')->name('indirect.indirectCreate');
+        Route::post('indirect','OnlineClassController@indirectStore')->name('indirect.indirectStore');
+        Route::put('indirect','OnlineClassController@indirectUpdate')->name('indirect.indirectUpdate');
+    });
 });
