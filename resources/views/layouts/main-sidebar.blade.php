@@ -216,7 +216,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="library" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
+                            <li> <a href="{{route('library.index')}}">{{trans('main_sidebar.library_list')}}</a> </li>
                         </ul>
                     </li>
                     <!-- Library -->

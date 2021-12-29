@@ -127,4 +127,10 @@ Route::group(
         Route::post('indirect','OnlineClassController@indirectStore')->name('indirect.indirectStore');
         Route::put('indirect','OnlineClassController@indirectUpdate')->name('indirect.indirectUpdate');
     });
+
+    Route::group(['namespace' => 'Libraries'],function (){
+        Route::resource('/library','LibraryController');
+        // to download File
+        Route::get('download/{file_name}','LibraryController@downloadFile');
+    });
 });

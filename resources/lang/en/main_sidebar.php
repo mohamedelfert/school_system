@@ -41,6 +41,7 @@ return [
     'exams_list'                => 'Exams List',
     'questions_list'            => 'Questions List',
     'library'                   => 'Library',
+    'library_list'              => 'Books List',
     'online_classes'            => 'Online Classes',
     'online_classes_list'       => 'Online Classes List',
     'settings'                  => 'Settings',
