@@ -133,4 +133,7 @@ Route::group(
         // to download File
         Route::get('download/{file_name}','LibraryController@downloadFile');
     });
+
+    Route::resource('/setting','SettingController');
+
 });

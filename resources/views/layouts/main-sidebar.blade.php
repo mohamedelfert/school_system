@@ -236,14 +236,7 @@
 
                     <!-- Settings -->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#settings">
-                            <div class="pull-left"><i class="fas fa-cogs"></i><span class="right-nav-text">{{trans('main_sidebar.settings')}}</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="settings" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="editor.html">Editor</a> </li>
-                        </ul>
+                        <a href="{{route('setting.index')}}"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>{{trans('main_sidebar.settings')}}</a>
                     </li>
                     <!-- Settings -->
 

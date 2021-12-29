@@ -80,7 +80,7 @@ class LibraryController extends Controller
             $library->teacher_id    = $request->teacher_id;
             $library->date          = date('Y-m-d H:i:s');
             $library->save();
-            $this->uploadFile($request,'file_name');
+            $this->uploadFile($request,'file_name','library');
 
             toastr()->success(trans('messages.success'));
             return redirect('library');
@@ -151,9 +151,9 @@ class LibraryController extends Controller
             // check if request has file or not
             if ($request->hasFile('file_name')){
                 // delete old file
-                $this->deleteFile($book->file_name);
+                $this->deleteFile($book->file_name,'library');
                 // upload new file
-                $this->uploadFile($request,'file_name');
+                $this->uploadFile($request,'file_name','library');
                 // get new file name
                 $new_file_name   = $request->file('file_name')->getClientOriginalName();
                 // check if file name is new or not
@@ -184,7 +184,7 @@ class LibraryController extends Controller
     public function destroy(Request $request)
     {
         Library::find($request->id)->delete();
-        $this->deleteFile($request->file_name);
+        $this->deleteFile($request->file_name,'library');
         toastr()->error(trans('messages.delete'));
         return back();
     }
