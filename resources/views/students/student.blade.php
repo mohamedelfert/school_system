@@ -80,7 +80,7 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $student->student_name }}</td>
-                                <td>{{ $student->student_email }}</td>
+                                <td>{{ $student->email }}</td>
                                 <td>{{ $student->getGrades->name }}</td>
                                 <td>{{ $student->getChapters->chapter_name }}</td>
                                 <td>{{ $student->getSections->section_name }}</td>

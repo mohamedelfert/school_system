@@ -23,10 +23,10 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $title = 'مدرستي - المعلمين';
-        $all_teachers = $this->teachers->getAllTeachers();
+        $title               = 'مدرستي - المعلمين';
+        $all_teachers        = $this->teachers->getAllTeachers();
         $all_specializations = $this->teachers->getAllSpecializations();
-        $all_genders = $this->teachers->getAllGenders();
+        $all_genders         = $this->teachers->getAllGenders();
         return view('teachers.teacher',compact('title','all_teachers','all_specializations','all_genders'));
     }
 
@@ -51,7 +51,7 @@ class TeacherController extends Controller
         $rules = [
             'teacher_name'      => 'required',
             'teacher_name_en'   => 'required',
-            'teacher_email'     => 'required|email|unique:teachers,teacher_email',
+            'email'             => 'required|email|unique:teachers,email',
             'password'          => 'required',
             'joining_at'        => 'required',
             'specialization_id' => 'required',
@@ -61,9 +61,9 @@ class TeacherController extends Controller
         $validate_msg_ar = [
             'teacher_name.required'         => 'يجب كتابه اسم المعلم بالعربيه',
             'teacher_name_en.required'      => 'يجب كتابه اسم المعلم بالانجليزيه',
-            'teacher_email.required'        => 'يجب كتابه البريد الالكتروني',
-            'teacher_email.email'           => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
-            'teacher_email.unique'          => 'البريد الالكتروني مسجل مسبقا',
+            'email.required'                => 'يجب كتابه البريد الالكتروني',
+            'email.email'                   => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
+            'email.unique'                  => 'البريد الالكتروني مسجل مسبقا',
             'password.required'             => 'يجب كتابه كلمه مرور',
             'joining_at.required'           => 'يجب اختيار تاريخ الالتحاق',
             'specialization_id.required'    => 'يجب اختيار التخصص',
@@ -110,7 +110,7 @@ class TeacherController extends Controller
         $rules = [
             'teacher_name'      => 'required',
             'teacher_name_en'   => 'required',
-            'teacher_email'     => 'required|email|unique:teachers,teacher_email,'.$id,
+            'email'             => 'required|email|unique:teachers,email,'.$id,
             'joining_at'        => 'required',
             'specialization_id' => 'required',
             'gender_id'         => 'required',
@@ -119,9 +119,9 @@ class TeacherController extends Controller
         $validate_msg_ar = [
             'teacher_name.required'         => 'يجب كتابه اسم المعلم بالعربيه',
             'teacher_name_en.required'      => 'يجب كتابه اسم المعلم بالانجليزيه',
-            'teacher_email.required'        => 'يجب كتابه البريد الالكتروني',
-            'teacher_email.email'           => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
-            'teacher_email.unique'          => 'البريد الالكتروني مسجل مسبقا',
+            'email.required'                => 'يجب كتابه البريد الالكتروني',
+            'email.email'                   => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
+            'email.unique'                  => 'البريد الالكتروني مسجل مسبقا',
             'joining_at.required'           => 'يجب اختيار تاريخ الالتحاق',
             'specialization_id.required'    => 'يجب اختيار التخصص',
             'gender_id.required'            => 'يجب اختيار النوع',

@@ -62,7 +62,7 @@
 {{--                                                <img class="rounded-circle mt-5" width="150px" src="{{ 'public/attachments/students/'.$student->student_name .'/'. $image->file_name }}">--}}
                                                 <img class="rounded-circle mt-5" width="150px" src="{{ $student->getGenders->gender_name === 'ذكر' ?  URL::asset('assets/images/male.png') : URL::asset('assets/images/female.png') }}">
                                                 <span class="font-weight-bold">{{ $student->student_name }}</span>
-                                                <span class="text-black-50">{{ $student->student_email }}</span>
+                                                <span class="text-black-50">{{ $student->email }}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-5 border-right">

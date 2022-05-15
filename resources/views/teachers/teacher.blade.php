@@ -64,7 +64,7 @@
                                 <tr>
                                     <td>{{$i++}}</td>
                                     <td>{{$teacher->teacher_name}}</td>
-                                    <td>{{$teacher->teacher_email}}</td>
+                                    <td>{{$teacher->email}}</td>
                                     <td>{{$teacher->teacher_address}}</td>
                                     <td>{{$teacher->getSpecialization->name}}</td>
                                     <td>{{$teacher->getGender->gender_name}}</td>
@@ -86,7 +86,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">تعديل تخصص</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">تعديل بيانات معلم</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -110,7 +110,7 @@
                                                     <div class="row" style="margin-bottom: 10px;">
                                                         <div class="col">
                                                             <label for="exampleInputEmail1">البريد الالكتروني</label>
-                                                            <input type="email" class="form-control" id="teacher_email" name="teacher_email" value="{{$teacher->teacher_email}}" required>
+                                                            <input type="email" class="form-control" id="email" name="email" value="{{$teacher->email}}" required>
                                                         </div>
                                                         <div class="col">
                                                             <label for="exampleInputEmail1">تاريخ الالتحاق</label>
@@ -186,7 +186,7 @@
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col">
                                 <label for="exampleInputEmail1">البريد الالكتروني</label>
-                                <input type="email" class="form-control" id="teacher_email" name="teacher_email" value="{{old('teacher_email')}}" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{old('email')}}" required>
                             </div>
                             <div class="col">
                                 <label for="exampleInputEmail1">كلمه المرور</label>

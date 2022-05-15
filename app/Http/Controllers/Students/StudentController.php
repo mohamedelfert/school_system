@@ -46,7 +46,7 @@ class StudentController extends Controller
         $rules = [
             'student_name'      => 'required',
             'student_name_en'   => 'required',
-            'student_email'     => 'required|email|unique:students,student_email',
+            'email'             => 'required|email|unique:students,email',
             'password'          => 'required',
             'gender_id'         => 'required',
             'nationality_id'    => 'required',
@@ -62,9 +62,9 @@ class StudentController extends Controller
         $validate_msg_ar = [
             'student_name.required'         => 'يجب كتابه اسم الطالب بالعربيه',
             'student_name_en.required'      => 'يجب كتابه اسم الطالب بالانجليزيه',
-            'student_email.required'        => 'يجب كتابه البريد الالكتروني',
-            'student_email.email'           => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
-            'student_email.unique'          => 'البريد الالكتروني مسجل مسبقا',
+            'email.required'                => 'يجب كتابه البريد الالكتروني',
+            'email.email'                   => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
+            'email.unique'                  => 'البريد الالكتروني مسجل مسبقا',
             'password.required'             => 'يجب كتابه كلمه مرور',
             'gender_id.required'            => 'يجب اختيار النوع',
             'nationality_id.required'       => 'يجب اختيار الجنسيه',
@@ -117,7 +117,7 @@ class StudentController extends Controller
         $rules = [
             'student_name'      => 'required',
             'student_name_en'   => 'required',
-            'student_email'     => 'required|email|unique:students,student_email,'.$id,
+            'email'             => 'required|email|unique:students,email,'.$id,
             'password'          => 'required',
             'gender_id'         => 'required',
             'nationality_id'    => 'required',
@@ -133,9 +133,9 @@ class StudentController extends Controller
         $validate_msg_ar = [
             'student_name.required'         => 'يجب كتابه اسم الطالب بالعربيه',
             'student_name_en.required'      => 'يجب كتابه اسم الطالب بالانجليزيه',
-            'student_email.required'        => 'يجب كتابه البريد الالكتروني',
-            'student_email.email'           => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
-            'student_email.unique'          => 'البريد الالكتروني مسجل مسبقا',
+            'email.required'                => 'يجب كتابه البريد الالكتروني',
+            'email.email'                   => 'يجب أن يكون البريد الالكتروني مثل ( a@yahoo.com )',
+            'email.unique'                  => 'البريد الالكتروني مسجل مسبقا',
             'password.required'             => 'يجب كتابه كلمه مرور',
             'gender_id.required'            => 'يجب اختيار النوع',
             'nationality_id.required'       => 'يجب اختيار الجنسيه',

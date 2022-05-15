@@ -13,15 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+//Auth::routes();
+//
+//// if user didn't login forward to login page
+//Route::group(['middleware' => 'guest'], function () {
+//
+//    Route::get('/', function () {
+//        return view('auth.login');
+//    });
+//
+//});
 
-// if user didn't login forward to login page
-Route::group(['middleware' => 'guest'], function () {
+Route::get('/', 'HomeController@index')->name('selection');
 
-    Route::get('/', function () {
-        return view('auth.login');
-    });
-
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('/login/{type}','LoginController@loginForm')->middleware('guest')->name('login.show');
+    Route::post('/login','LoginController@login')->name('login');
+    Route::get('/logout/{type}', 'LoginController@logout')->name('logout');
 });
 
 Route::group(
@@ -36,35 +44,42 @@ Route::group(
 //            return view('dashboard');
 //        });
 
-    // forward to dashboard
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    //======================== forward to dashboard =======================================//
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
+    //======================== Grades =======================================//
     Route::group(['namespace' => 'Grades'],function (){
         Route::resource('/grade','GradeController');
     });
 
+    //======================== Specializations =======================================//
     Route::group(['namespace' => 'Specializations'],function (){
         Route::resource('/specialization','SpecializationController');
     });
 
+    //======================== Chapters =======================================//
     Route::group(['namespace' => 'Chapters'],function (){
         Route::resource('/chapter','ChapterController');
         Route::post('delete_checked_chapters','ChapterController@delete_checked')->name('delete_checked_chapters');
         Route::post('filter_chapters','ChapterController@filter_chapters')->name('filter_chapters');
     });
 
+    //======================== Sections =======================================//
     Route::group(['namespace' => 'Sections'],function (){
         Route::resource('/section','SectionController');
         // this route to get Chapters Name by ajax when he chose Grade.
         Route::get('/chapter/{id}','SectionController@getChaptersName');
     });
 
-    Route::view('/parent','livewire.show_form');
+    //======================== Parent LiveWire =======================================//
+    Route::view('/parent','livewire.show_form')->name('parent');
 
+    //======================== Teachers =======================================//
     Route::group(['namespace' => 'Teachers'],function (){
         Route::resource('/teacher','TeacherController');
     });
 
+    //======================== Students =======================================//
     Route::group(['namespace' => 'Students'],function (){
         Route::resource('/student','StudentController');
         // this route to get Chapters Name by ajax when he chose Grade.
@@ -109,18 +124,22 @@ Route::group(
         Route::resource('/attendances','AttendancesController');
     });
 
+    //======================== Subjects =======================================//
     Route::group(['namespace' => 'Subjects'],function (){
         Route::resource('/subjects','SubjectsController');
     });
 
+    //======================== Exams =======================================//
     Route::group(['namespace' => 'Exams'],function (){
         Route::resource('/exams','ExamsController');
     });
 
+    //======================== Questions =======================================//
     Route::group(['namespace' => 'Questions'],function (){
         Route::resource('/questions','QuestionController');
     });
 
+    //======================== OnlineClasses =======================================//
     Route::group(['namespace' => 'OnlineClasses'],function (){
         Route::resource('/online_classes','OnlineClassController');
         Route::get('indirect','OnlineClassController@indirectCreate')->name('indirect.indirectCreate');
@@ -128,12 +147,14 @@ Route::group(
         Route::put('indirect','OnlineClassController@indirectUpdate')->name('indirect.indirectUpdate');
     });
 
+    //======================== Libraries =======================================//
     Route::group(['namespace' => 'Libraries'],function (){
         Route::resource('/library','LibraryController');
         // to download File
         Route::get('download/{file_name}','LibraryController@downloadFile');
     });
 
+    //======================== setting =======================================//
     Route::resource('/setting','SettingController');
 
 });

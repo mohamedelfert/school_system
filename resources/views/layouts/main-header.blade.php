@@ -68,10 +68,8 @@ header start-->
                         class="float-right text-muted time">22 mins</small> </a>
                 <a href="#" class="dropdown-item">Server error report<small
                         class="float-right text-muted time">7 hrs</small> </a>
-                <a href="#" class="dropdown-item">Database report<small class="float-right text-muted time">1
-                        days</small> </a>
-                <a href="#" class="dropdown-item">Order confirmation<small class="float-right text-muted time">2
-                        days</small> </a>
+                <a href="#" class="dropdown-item">Database report<small class="float-right text-muted time">1 days</small> </a>
+                <a href="#" class="dropdown-item">Order confirmation<small class="float-right text-muted time">2 days</small> </a>
             </div>
         </li>
         <li class="nav-item dropdown ">
@@ -121,13 +119,20 @@ header start-->
                 <a class="dropdown-item" href="#"><i class="text-dark ti-layers-alt"></i>Projects <span
                         class="badge badge-info">6</span> </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="text-danger ti-unlock"></i>{{ __('main_header.logout') }}</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <a class="dropdown-item" href="{{ route('setting.index') }}"><i class="text-info ti-settings"></i>Settings</a>
+                @if(auth('student')->check())
+                    <form method="GET" action="{{ route('logout','student') }}">
+                @elseif(auth('teacher')->check())
+                    <form method="GET" action="{{ route('logout','teacher') }}">
+                @elseif(auth('parent')->check())
+                    <form method="GET" action="{{ route('logout','parent') }}">
+                @else
+                    <form method="GET" action="{{ route('logout','web') }}">
+                @endif
                     @csrf
-                </form>
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault();this.closest('form').submit();">
+                            <i class="text-danger ti-unlock"></i>{{ __('main_header.logout') }}</a>
+                    </form>
             </div>
         </li>
     </ul>

@@ -48,7 +48,7 @@ class StudentRepository implements StudentRepositoryInterface {
         try {
 
             $data['student_name']           = ['ar' => $request->student_name,'en' => $request->student_name_en];
-            $data['student_email']          = $request->student_email;
+            $data['email']                  = $request->email;
             $data['password']               = Hash::make($request->password);
             $data['gender_id']              = $request->gender_id;
             $data['nationality_id']         = $request->nationality_id;
@@ -118,7 +118,7 @@ class StudentRepository implements StudentRepositoryInterface {
             $id                             = $request->id;
             $student                        = Student::findOrFail($id);
             $data['student_name']           = ['ar' => $request->student_name,'en' => $request->student_name_en];
-            $data['student_email']          = $request->student_email;
+            $data['email']                  = $request->email;
             $data['password']               = Hash::make($request->password);
             $data['gender_id']              = $request->gender_id;
             $data['nationality_id']         = $request->nationality_id;

@@ -30,7 +30,7 @@ class TeacherRepository implements TeacherRepositoryInterface {
         try {
 
             $data['teacher_name']           = ['ar' => $request->teacher_name,'en' => $request->teacher_name_en];
-            $data['teacher_email']          = $request->teacher_email;
+            $data['email']                  = $request->email;
             $data['password']               = Hash::make($request->password);
             $data['joining_at']             = $request->joining_at;
             $data['specialization_id']      = $request->specialization_id;
@@ -58,7 +58,7 @@ class TeacherRepository implements TeacherRepositoryInterface {
             $id = $request->id;
             $teacher = Teacher::find($id);
             $data['teacher_name']           = ['ar' => $request->teacher_name,'en' => $request->teacher_name_en];
-            $data['teacher_email']          = $request->teacher_email;
+            $data['email']                  = $request->email;
             $data['joining_at']             = $request->joining_at;
             $data['specialization_id']      = $request->specialization_id;
             $data['gender_id']              = $request->gender_id;

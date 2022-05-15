@@ -41,6 +41,17 @@ login-->
 
     <section class="height-100vh d-flex align-items-center page-section-ptb login"
              style="background-image: url(assets/images/login-bg.jpg);">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
@@ -48,13 +59,22 @@ login-->
                 </div>
                 <div class="col-lg-4 col-md-6 bg-white">
                     <div class="login-fancy pb-40 clearfix">
-                        <h3 class="mb-30">تسجيل الدخول</h3>
+                        @if($type === 'student')
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل الدخول طالب</h3>
+                        @elseif($type === 'teacher')
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل الدخول معلم</h3>
+                        @elseif($type === 'parent')
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل الدخول ولي أمر</h3>
+                        @else
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل الدخول الأدمن</h3>
+                        @endif
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="section-field mb-20">
-                                <label class="mb-10" for="name">البريدالالكتروني*</label>
+                                <input type="hidden" name="type" value="{{ $type }}">
+                                <label class="mb-10" for="name">البريدالالكتروني *</label>
                                 <input id="email" type="email"
                                        class="form-control @error('email') is-invalid @enderror" name="email"
                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -83,7 +103,7 @@ login-->
                                 <div class="remember-checkbox mb-30">
                                     <input type="checkbox" class="form-control" name="two" id="two" />
                                     <label for="two"> تذكرني</label>
-                                    <a href="#" class="float-right">هل نسيت كلمةالمرور ؟</a>
+                                    <a href="#" class="float-right">هل نسيت كلمة المرور ؟</a>
                                 </div>
                             </div>
                             <button class="button"><span>دخول</span><i class="fa fa-check"></i></button>

@@ -58,7 +58,7 @@
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col">
                                         <label for="exampleInputEmail1">البريد الالكتروني</label>
-                                        <input type="email" class="form-control" id="student_email" name="student_email" value="{{old('student_email')}}" required>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{old('email')}}" required>
                                     </div>
                                     <div class="col">
                                         <label for="exampleInputEmail1">كلمه المرور</label>

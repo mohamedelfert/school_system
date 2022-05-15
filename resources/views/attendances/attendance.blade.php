@@ -54,7 +54,7 @@
                                 <tr>
                                     <td>{{$i++}}</td>
                                     <td>{{$student->student_name}}</td>
-                                    <td>{{$student->student_email}}</td>
+                                    <td>{{$student->email}}</td>
                                     <td>{{$student->getGenders->gender_name}}</td>
                                     <td>{{$student->getGrades->name}}</td>
                                     <td>{{$student->getChapters->chapter_name}}</td>
