@@ -16,12 +16,28 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:teacher' ]
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:teacher']
+    ], function () {
 
     // forward to dashboard student
-    Route::get('/teachers/dashboard', function (){
-        return view('teachers.dashboard');
+//    Route::get('/teachers/dashboard', function () {
+////        $sectionIds = \App\Models\Teacher::findOrFail(auth::user()->id)->sections()->pluck('section_id');
+////        $sectionsCount = $sectionIds->count();
+////        $studentsCount = \App\Models\Student::whereIn('section_id',$sectionIds)->count();
+//
+//        $sectionIds = DB::table('teachers_sections')->where('teacher_id', auth()->user()->id)
+//            ->pluck('section_id');
+//        $sectionsCount = $sectionIds->count();
+//        $studentsCount = DB::table('students')->whereIn('section_id',$sectionIds)->count();
+//        return view('teachers.dashboard', compact('sectionsCount', 'studentsCount'));
+//    });  Or
+
+    Route::group(['namespace' => 'Teachers'], function () {
+        Route::get('/teachers/dashboard', 'TeacherController@teacherDashboard');
+    });
+
+    Route::group(['namespace' => 'Teachers\Dashboard'], function () {
+        Route::get('/teachers/students', 'StudentController@index')->name('students.index');
     });
 
 });
