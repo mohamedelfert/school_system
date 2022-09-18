@@ -6,101 +6,96 @@
 @stop
 @endsection
 @section('page-header')
-<!-- breadcrumb -->
+    <!-- breadcrumb -->
 @section('PageTitle')
-    {{trans('main_sidebar.students_list')}}
+    {{$title}}
 @stop
 <!-- breadcrumb -->
 @endsection
 @section('content')
-<!-- row -->
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <!-- row -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-<div class="row">
-    <div class="col-xl-12 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div style="margin-bottom: 10px;">
-                    <a type="button" class="modal-effect btn btn-success" href="student/create">
-                            <i class="ti-plus"></i> اضافه طالب
-                    </a>
-                </div>
-                <hr>
-                <div class="table-responsive">
-                    <table id="datatable" class="table table-striped table-bordered p-0 text-center">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>اسم الطالب</th>
-                                <th>البريد الإلكتروني</th>
-                                <th>النوع</th>
-                                <th>المرحلة</th>
-                                <th>الصف الدراسي</th>
-                                <th>الفصل</th>
-                                <th>العمليات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($students as $index=>$student)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $student->student_name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->getGenders->gender_name }}</td>
-                                <td>{{ $student->getGrades->name }}</td>
-                                <td>{{ $student->getChapters->chapter_name }}</td>
-                                <td>{{ $student->getSections->section_name }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary btn-sm"
-                                                data-toggle="dropdown" id="dropdownMenuButton" type="button"> العمليات <i class="fas fa-caret-down ml-1"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="{{ route('student.show',$student->id) }}">
-                                                <i class="far fa-eye text-warning"></i>&nbsp;عرض بيانات الطالب
-                                            </a>
-                                            <a class="dropdown-item" href="{{ url('student/'.$student->id.'/edit') }}">
-                                                <i class="fas fa-user-edit text-primary"></i>&nbsp;تعديل بيانات الطالب
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('fees_invoices.show',$student->id) }}">
-                                                <i class="fa fa-plus-circle text-success"></i>&nbsp;&nbsp;اضافة فاتورة رسوم
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('receipt_students.show',$student->id) }}">
-                                                <i class="fas fa-money-bill-alt text-info"></i>&nbsp;اضافه سند قبض
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('processing_fees.show',$student->id) }}">
-                                                <i class="fas fa-dollar text-black-50"></i>&nbsp;&nbsp;&nbsp;استبعاد رسوم
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('payments_students.show',$student->id) }}">
-                                                <i class="fas fa-donate text-warning"></i>&nbsp;&nbsp;&nbsp;استرجاع رسوم للطلاب
-                                            </a>
-                                            <a class="dropdown-item" data-effect="effect-scale"
-                                               data-id="{{$student->id}}" data-student_name="{{$student->student_name}}"
-                                               data-toggle="modal" href="#delete">
-                                                <i class="fa fa-trash text-danger"></i>&nbsp;&nbsp;حذف بيانات الطالب
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+    <div class="row">
+        <div class="col-xl-12 mb-30">
+            <div class="card card-statistics h-100">
+                <div class="card-body">
+                    <div class="text-danger" style="margin-bottom: 10px;font-size: large;font-weight: bold;font-family: 'Cairo', sans-serif">
+                        تاريخ اليوم : {{date('Y-m-d')}}
+                    </div>
+                    <hr>
+                    <form method="post" action="{{ route('attendance.store') }}">
+                        @csrf
+
+                        <table id="datatable" class="table table-striped table-bordered p-0 text-center">
+                            <thead>
+                                <tr class="alert-success">
+                                    <th>#</th>
+                                    <th>اسم الطالب</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>النوع</th>
+                                    <th>المرحلة الدراسية</th>
+                                    <th>الصف الدراسي</th>
+                                    <th>الفصل</th>
+                                    <th>الحضور & الغياب</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($students as $index => $student)
+                                <tr>
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{$student->student_name}}</td>
+                                    <td>{{$student->email}}</td>
+                                    <td>{{$student->getGenders->gender_name}}</td>
+                                    <td>{{$student->getGrades->name}}</td>
+                                    <td>{{$student->getChapters->chapter_name}}</td>
+                                    <td>{{$student->getSections->section_name}}</td>
+                                    <td>
+                                        <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
+                                            <input name="attendances[{{ $student->id }}]"
+                                                   @foreach($student->getAttendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
+                                                       {{ $attendance->attendance_status == true ? 'checked':''}}
+                                                   @endforeach
+                                                   class="leading-tight" type="radio" value="presence">
+                                            <span class="text-success">حضور</span>
+                                        </label>
+                                        <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
+                                            <input name="attendances[{{ $student->id }}]"
+                                                   @foreach($student->getAttendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
+                                                        {{ $attendance->attendance_status == false ? 'checked':''}}
+                                                   @endforeach
+                                                   class="leading-tight" type="radio" value="absence">
+                                            <span class="text-danger">غياب</span>
+                                        </label>
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        <input type="hidden" class="form-control" name="student_id[]" value="{{@$student->id}}" required>
+                        <input type="hidden" class="form-control" name="grade_id" value="{{@$student->grade_id}}" required>
+                        <input type="hidden" class="form-control" name="chapter_id" value="{{@$student->chapter_id}}" required>
+                        <input type="hidden" class="form-control" name="section_id" value="{{@$student->section_id}}" required>
+
+                        <div class="modal-footer" style="margin-top: 10px">
+                            <button type="submit" name="submit" class="btn btn-success">تأكيد</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
-<!-- row closed -->
+    <!-- row closed -->
 @endsection
 @section('js')
     @toastr_js

@@ -46,6 +46,8 @@ return [
     'online_classes_list'       => 'Online Classes List',
     'settings'                  => 'Settings',
     'users'                     => 'Users',
+    'attendance_absence_report' => 'Attendance Absence Report',
+    'exams_report'              => 'Exams Report',
 
     'copyright'                 => 'All Rights Are Reserved ',
     'programmer_name'           => 'Mohamed Ibrahiem ',

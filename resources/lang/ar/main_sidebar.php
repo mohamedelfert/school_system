@@ -46,6 +46,8 @@ return [
     'online_classes_list'       => 'قائمه الحصص الاونلاين',
     'settings'                  => 'الاعدادات',
     'users'                     => 'المستخدمين',
+    'attendance_absence_report' => 'تقرير الحضور والغياب',
+    'exams_report'              => 'تقرير الامتحانات',
 
     'copyright'                 => 'جميع الحقوق محفوظة ',
     'programmer_name'           => 'محمد ابراهيم',

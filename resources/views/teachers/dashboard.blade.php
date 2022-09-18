@@ -66,7 +66,7 @@
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
                                 <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i>
-                                <a href="{{ route('students.index') }}">مشاهده</a>
+                                <a href="{{ route('students') }}">مشاهده</a>
                             </p>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
                                 <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i>
-                                <a href="{{ route('section.index') }}">مشاهده</a>
+                                <a href="{{ route('sections') }}">مشاهده</a>
                             </p>
                         </div>
                     </div>

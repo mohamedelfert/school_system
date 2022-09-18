@@ -37,7 +37,9 @@ Route::group(
     });
 
     Route::group(['namespace' => 'Teachers\Dashboard'], function () {
-        Route::get('/teachers/students', 'StudentController@index')->name('students.index');
+        Route::get('/teachers/students', 'DashboardController@students')->name('students');
+        Route::get('/teachers/sections', 'DashboardController@sections')->name('sections');
+        Route::post('/students/attendance', 'DashboardController@attendance')->name('attendance.store');
     });
 
 });
