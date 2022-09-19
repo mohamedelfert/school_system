@@ -48,6 +48,10 @@ return [
     'users'                     => 'Users',
     'attendance_absence_report' => 'Attendance Absence Report',
     'exams_report'              => 'Exams Report',
+    'reports'                   => 'Reports',
+    'from_date'                 => 'From Date',
+    'to_date'                   => 'To Date',
+    'clear'                     => 'Clear',
 
     'copyright'                 => 'All Rights Are Reserved ',
     'programmer_name'           => 'Mohamed Ibrahiem ',

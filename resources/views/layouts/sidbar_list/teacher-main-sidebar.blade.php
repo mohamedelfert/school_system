@@ -33,7 +33,7 @@
 
     <!-- Exams -->
     <li>
-        <a href="{{route('students')}}">
+        <a href="#">
             <i class="fas fa-book-open"></i><span class="right-nav-text"></span>{{trans('main_sidebar.exams')}}
         </a>
     </li>
@@ -41,14 +41,14 @@
 
     <!-- Reports -->
     <li>
-        <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">
-            <div class="pull-left"><i class="fas fa-calendar-alt"></i><span class="right-nav-text">{{trans('main_sidebar.exams')}}</span></div>
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#reports">
+            <div class="pull-left"><i class="fas fa-pie-chart"></i><span class="right-nav-text">{{trans('main_sidebar.reports')}}</span></div>
             <div class="pull-right"><i class="ti-plus"></i></div>
             <div class="clearfix"></div>
         </a>
-        <ul id="exams" class="collapse" data-parent="#sidebarnav">
-            <li> <a href="{{route('exams.index')}}">{{trans('main_sidebar.attendance_absence_report')}}</a> </li>
-            <li> <a href="{{route('questions.index')}}">{{trans('main_sidebar.exams_report')}}</a> </li>
+        <ul id="reports" class="collapse" data-parent="#sidebarnav">
+            <li> <a href="{{route('attendance-reports')}}">{{trans('main_sidebar.attendance_absence_report')}}</a> </li>
+            <li> <a href="#">{{trans('main_sidebar.exams_report')}}</a> </li>
         </ul>
     </li>
     <!-- Reports -->

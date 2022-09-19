@@ -40,6 +40,8 @@ Route::group(
         Route::get('/teachers/students', 'DashboardController@students')->name('students');
         Route::get('/teachers/sections', 'DashboardController@sections')->name('sections');
         Route::post('/students/attendance', 'DashboardController@attendance')->name('attendance.store');
+        Route::get('/attendance-reports', 'DashboardController@attendanceReports')->name('attendance-reports');
+        Route::post('/attendance-search', 'DashboardController@attendanceSearch')->name('attendance-search');
     });
 
 });
