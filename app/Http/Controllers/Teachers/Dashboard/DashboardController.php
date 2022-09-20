@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    // show all students for specified teacher
     public function students()
     {
         $title = 'الطلاب - الحضور والغياب';
@@ -21,6 +22,7 @@ class DashboardController extends Controller
         return view('teachers.dashboard.students', compact('title', 'students'));
     }
 
+    // show all sections for specified teacher
     public function sections()
     {
         $title = 'مدرستي - الفصول الدراسية';
@@ -29,6 +31,7 @@ class DashboardController extends Controller
         return view('teachers.dashboard.sections', compact('title', 'sections'));
     }
 
+    // teacher can make attendances for students
     public function attendance(Request $request)
     {
         try {
@@ -64,6 +67,7 @@ class DashboardController extends Controller
         }
     }
 
+    // attendances reports for students
     public function attendanceReports()
     {
         $title = 'التقارير - الحضور والغياب';
@@ -72,6 +76,7 @@ class DashboardController extends Controller
         return view('teachers.dashboard.attendance_reports', compact('title', 'students'));
     }
 
+    // attendances search
     public function attendanceSearch(Request $request)
     {
         $rules = [

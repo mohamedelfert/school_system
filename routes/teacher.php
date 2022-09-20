@@ -42,6 +42,8 @@ Route::group(
         Route::post('/students/attendance', 'DashboardController@attendance')->name('attendance.store');
         Route::get('/attendance-reports', 'DashboardController@attendanceReports')->name('attendance-reports');
         Route::post('/attendance-search', 'DashboardController@attendanceSearch')->name('attendance-search');
+
+        Route::resource('/tests', 'ExamController');
     });
 
 });

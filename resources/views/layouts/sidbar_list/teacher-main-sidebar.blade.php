@@ -33,9 +33,15 @@
 
     <!-- Exams -->
     <li>
-        <a href="#">
-            <i class="fas fa-book-open"></i><span class="right-nav-text"></span>{{trans('main_sidebar.exams')}}
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">
+            <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{trans('main_sidebar.exams')}}</span></div>
+            <div class="pull-right"><i class="ti-plus"></i></div>
+            <div class="clearfix"></div>
         </a>
+        <ul id="exams" class="collapse" data-parent="#sidebarnav">
+            <li> <a href="{{ route('tests.index')}} ">{{trans('main_sidebar.exams_list')}}</a> </li>
+            <li> <a href="#">{{trans('main_sidebar.questions_list')}}</a> </li>
+        </ul>
     </li>
     <!-- Exams -->
 
