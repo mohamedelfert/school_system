@@ -20,8 +20,7 @@ class StudyFeesRepository implements StudyFeesRepositoryInterface{
     {
         $title        = 'مدرستي - اضافه رسوم دراسيه';
         $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
-        return view('fees.add_fees',compact('title','all_grades','all_chapters'));
+        return view('fees.add_fees',compact('title','all_grades'));
     }
 
     public function storeFees($request)
@@ -55,8 +54,7 @@ class StudyFeesRepository implements StudyFeesRepositoryInterface{
         $title        = 'مدرستي - تعديل رسوم دراسيه';
         $fee          = StudyFees::findOrFail($id);
         $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
-        return view('fees.edit_fees',compact('title','fee','all_grades','all_chapters'));
+        return view('fees.edit_fees',compact('title','fee','all_grades'));
     }
 
     public function updateFees($request)

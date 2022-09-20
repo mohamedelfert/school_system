@@ -11,7 +11,6 @@ use App\Models\Teacher;
 
 class ExamsRepository implements ExamsRepositoryInterface{
 
-
     public function index()
     {
         $title      = 'مدرستي - الامتحانات';
@@ -24,10 +23,8 @@ class ExamsRepository implements ExamsRepositoryInterface{
         $title         = 'مدرستي - اضافه امتحان';
         $all_subjects  = Subject::all();
         $all_grades    = Grade::all();
-        $all_chapters  = Chapter::all();
-        $all_sections  = Section::all();
         $all_teachers  = Teacher::all();
-        return view('exams.add',compact('title','all_subjects','all_grades','all_chapters','all_sections','all_teachers'));
+        return view('exams.add',compact('title','all_subjects','all_grades','all_teachers'));
     }
 
     public function store($request)
@@ -58,10 +55,8 @@ class ExamsRepository implements ExamsRepositoryInterface{
         $exam          = Exam::findOrFail($id);
         $all_subjects  = Subject::all();
         $all_grades    = Grade::all();
-        $all_chapters  = Chapter::all();
-        $all_sections  = Section::all();
         $all_teachers  = Teacher::all();
-        return view('exams.edit',compact('title','exam','all_subjects','all_grades','all_chapters','all_sections','all_teachers'));
+        return view('exams.edit',compact('title','exam','all_subjects','all_grades','all_teachers'));
     }
 
     public function update($request)

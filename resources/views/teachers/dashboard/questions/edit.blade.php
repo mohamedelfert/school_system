@@ -28,13 +28,7 @@
         <div class="col-xl-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
-                    <div style="margin-bottom: 10px;">
-                        <a type="button" class="btn btn-primary" href="/questions">
-                            <i class="ti-back-left"></i>الرجوع للاسئله
-                        </a>
-                    </div>
-                    <hr>
-                    <form action="{{ route('questions.update','test') }}" method="post">
+                    <form action="{{ route('test-questions.update','test') }}" method="post">
                         {{method_field('PUT')}}
                         {{ csrf_field() }}
 
@@ -60,14 +54,6 @@
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 10px;">
-                            <div class="col">
-                                <label for="exampleInputEmail1">الامتحانات</label>
-                                <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="exam_id" name="exam_id">
-                                    @foreach ($all_exams as $exam)
-                                        <option value="{{ $exam->id }}" {{ $question->exam_id == $exam->id ? 'selected':'' }}>{{ $exam->name }} -- ( {{ $exam->getGrades->name .' -> '. $exam->getChapters->chapter_name .' -> '. $exam->getSections->section_name }} )</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="col">
                                 <label for="exampleInputEmail1">درجه السؤال</label>
                                 <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="score" name="score">

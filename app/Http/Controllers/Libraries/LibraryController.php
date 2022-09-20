@@ -16,11 +16,6 @@ class LibraryController extends Controller
 {
     use AttachFilesTrait;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title     = 'مدرستي - المكتبه';
@@ -28,27 +23,14 @@ class LibraryController extends Controller
         return view('libraries.show_all',compact('title','all_books'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $title        = 'مدرستي - اضافه كتاب جديد';
         $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
-        $all_sections = Section::all();
         $all_teachers = Teacher::all();
-        return view('libraries.add',compact('title','all_grades','all_chapters','all_sections','all_teachers'));
+        return view('libraries.add',compact('title','all_grades','all_teachers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $rules = [
@@ -90,41 +72,20 @@ class LibraryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $title        = 'مدرستي - تعديل كتاب';
         $book         = Library::FindOrFail($id);
         $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
-        $all_sections = Section::all();
         $all_teachers = Teacher::all();
-        return view('libraries.edit',compact('title','book','all_grades','all_chapters','all_sections','all_teachers'));
+        return view('libraries.edit',compact('title','book','all_grades','all_teachers'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $rules = [
@@ -175,12 +136,6 @@ class LibraryController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         Library::find($request->id)->delete();

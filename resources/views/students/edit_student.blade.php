@@ -113,27 +113,33 @@
                                         </div>
                                         <div class="row" style="margin-bottom: 20px;">
                                             <div class="col">
-                                                <label for="exampleInputEmail1">المرحله الدراسيه</label>
-                                                <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="grade_id" name="grade_id">
+                                                <label for="grade_id">المرحله الدراسيه</label>
+                                                <select class="form-control form-control-lg" id="grade_id" name="grade_id">
                                                     @foreach ($all_grades as $grade)
                                                         <option value="{{ $grade->id }}" {{ $student->grade_id == $grade->id ? 'selected':'' }}>{{ $grade->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <label for="exampleInputEmail1">الصف الدراسي</label>
-                                                <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="chapter_id" name="chapter_id">
-                                                    @foreach ($all_chapters as $chapter)
-                                                        <option value="{{ $chapter->id }}" {{ $student->chapter_id == $chapter->id ? 'selected':'' }}>{{ $chapter->chapter_name }}</option>
-                                                    @endforeach
+                                                <label for="chapter_id">الصف الدراسي</label>
+                                                <select class="form-control form-control-lg" id="chapter_id" name="chapter_id">
+                                                    <option value="{{ $student->getChapters->id }}" {{ $student->chapter_id == $student->getChapters->id ? 'selected':'' }}>
+                                                        {{ $student->getChapters->chapter_name }}
+                                                    </option>
+{{--                                                    @foreach ($all_chapters as $chapter)--}}
+{{--                                                        <option value="{{ $chapter->id }}" {{ $student->chapter_id == $chapter->id ? 'selected':'' }}>{{ $chapter->chapter_name }}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <label for="exampleInputEmail1">الفصل</label>
-                                                <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="section_id" name="section_id">
-                                                    @foreach ($all_sections as $section)
-                                                        <option value="{{ $section->id }}" {{ $student->section_id == $section->id ? 'selected':'' }}>{{ $section->section_name }}</option>
-                                                    @endforeach
+                                                <label for="section_id">الفصل</label>
+                                                <select class="form-control form-control-lg" id="section_id" name="section_id">
+                                                    <option value="{{ $student->getSections->id }}" {{ $student->section_id == $student->getSections->id ? 'selected':'' }}>
+                                                        {{ $student->getSections->section_name }}
+                                                    </option>
+{{--                                                    @foreach ($all_sections as $section)--}}
+{{--                                                        <option value="{{ $section->id }}" {{ $student->section_id == $section->id ? 'selected':'' }}>{{ $section->section_name }}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
                                             </div>
                                         </div>
@@ -173,54 +179,45 @@
 @section('js')
     @toastr_js
     @toastr_render
-
-    {{-- Start This Ajax Code To Get Chapter Name And ID --}}
     <script>
-        $(document).ready(function () {
-            $('select[name="grade_id"]').on('change', function () {
-                var grade_id = $(this).val();
-                if (grade_id) {
+        $(document).ready(function() {
+            $('select[name="grade_id"]').on('change', function(){
+                let grade_id = $(this).val();
+                if(grade_id){
                     $.ajax({
-                        url: "{{ URL::to('chapter') }}/" + grade_id,
+                        url: "{{ url('chapters-name') }}/" + grade_id,
                         type: "GET",
                         dataType: "json",
-                        success: function (data) {
+                        success:function(data){
                             $('select[name="chapter_id"]').empty();
-                            $.each(data, function (key, value) {
-                                $('select[name="chapter_id"]').append('<option value="' + key + '">' + value + '</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="chapter_id"]').append(`<option value="${key}">${value}</option>`);
                             });
                         },
                     });
-                } else {
-                    console.log('AJAX load did not work');
+                }else{
+                    console.log('Ajax Load Failed');
                 }
             });
-        });
-    </script>
-    {{-- Start This Ajax Code To Get Chapter Name And ID --}}
 
-    {{-- Start This Ajax Code To Get Section Name And ID --}}
-    <script>
-        $(document).ready(function () {
-            $('select[name="chapter_id"]').on('change', function () {
-                var chapter_id = $(this).val();
-                if (chapter_id) {
+            $('select[name="chapter_id"]').on('change', function(){
+                let chapter_id = $(this).val();
+                if(chapter_id){
                     $.ajax({
-                        url: "{{ URL::to('section') }}/" + chapter_id,
+                        url: "{{ url('sections-name') }}/" + chapter_id,
                         type: "GET",
                         dataType: "json",
-                        success: function (data) {
+                        success:function(data){
                             $('select[name="section_id"]').empty();
-                            $.each(data, function (key, value) {
-                                $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="section_id"]').append(`<option value="${key}">${value}</option>`);
                             });
                         },
                     });
-                } else {
-                    console.log('AJAX load did not work');
+                }else{
+                    console.log('Ajax Load Failed');
                 }
             });
         });
     </script>
-    {{-- Start This Ajax Code To Get Section Name And ID --}}
 @endsection

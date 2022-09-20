@@ -44,6 +44,12 @@ Route::group(
         Route::post('/attendance-search', 'DashboardController@attendanceSearch')->name('attendance-search');
 
         Route::resource('/tests', 'ExamController');
+        Route::resource('/test-questions','QuestionController');
+
+        // this route to get Chapters Name by ajax when he chose Grade.
+        Route::get('/chapters/{id}','ExamController@getChapters');
+        // this route to get Section Name by ajax when he chose Grade.
+        Route::get('/sections/{id}','ExamController@getSections');
     });
 
 });

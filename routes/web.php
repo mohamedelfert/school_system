@@ -68,7 +68,7 @@ Route::group(
     Route::group(['namespace' => 'Sections'],function (){
         Route::resource('/section','SectionController');
         // this route to get Chapters Name by ajax when he chose Grade.
-        Route::get('/chapter/{id}','SectionController@getChaptersName');
+        Route::get('/chapter-name/{id}','SectionController@getChapters');
     });
 
     //======================== Parent LiveWire =======================================//
@@ -83,9 +83,9 @@ Route::group(
     Route::group(['namespace' => 'Students'],function (){
         Route::resource('/student','StudentController');
         // this route to get Chapters Name by ajax when he chose Grade.
-        Route::get('/chapter/{id}','StudentController@getChapters');
+        Route::get('/chapters-name/{id}','StudentController@getChapters');
         // this route to get Section Name by ajax when he chose Grade.
-        Route::get('/section/{id}','StudentController@getSections');
+        Route::get('/sections-name/{id}','StudentController@getSections');
         // to add new attachments
         Route::post('upload_attach','StudentController@upload_attach');
         // to show photo

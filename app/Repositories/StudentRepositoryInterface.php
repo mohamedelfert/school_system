@@ -18,9 +18,9 @@ interface StudentRepositoryInterface {
 
     public function deleteStudent($request);
 
-    public function getAllChapters($id);
+    public function getChapters($id);
 
-    public function getAllSections($id);
+    public function getSections($id);
 
     public function uploadAttachments($request);
 

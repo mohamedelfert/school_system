@@ -126,10 +126,10 @@
                                                                                         <div class="col">
                                                                                             <label for="exampleFormControlTextarea1">اسم الصف:</label>
                                                                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="chapter_id" name="chapter_id">
-                                                                                                {{--<option value="{{ $chapter->getGrades->id }}">{{ $chapter->getGrades->name }}</option>--}}
-                                                                                                @foreach ($all_chapters as $chapter)
-                                                                                                    <option value="{{ $chapter->id }}" {{ ($list_section->chapter_id === $chapter->id) ? 'selected' : '' }}>{{ $chapter->chapter_name }}</option>
-                                                                                                @endforeach
+                                                                                                <option value="{{ $list_section->chapter_id }}" {{ ($list_section->chapter_id === $grade->id) ? 'selected' : '' }}>{{ $list_section->getChapters->chapter_name }}</option>
+{{--                                                                                                @foreach ($all_chapters as $chapter)--}}
+{{--                                                                                                    <option value="{{ $chapter->id }}" {{ ($list_section->chapter_id === $chapter->id) ? 'selected' : '' }}>{{ $chapter->chapter_name }}</option>--}}
+{{--                                                                                                @endforeach--}}
                                                                                             </select>
                                                                                         </div>
                                                                                     </div>
@@ -205,21 +205,21 @@
                         </div>
                         <div class="row" style="margin-bottom: 15px">
                             <div class="col">
-                                <label for="inputName" class="control-label">اسم المرحله</label>
+                                <label for="grade_id" class="control-label">اسم المرحلة</label>
                                 <select name="grade_id" id="grade_id" class="form-control SlectBox" onchange="console.log($(this).val())">
-                                    <option value="" selected disabled>اختر المرحله</option>
+                                    <option value="" selected disabled>اختر المرحلة</option>
                                     @foreach($all_grades as $list_grade)
                                         <option value="{{ $list_grade->id }}">{{ $list_grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="inputName" class="control-label">اسم الصف</label>
+                                <label for="chapter_id" class="control-label">اسم الصف</label>
                                 <select id="chapter_id" name="chapter_id" class="form-control">
                                     <option value="" selected disabled>اختر الصف</option>
-                                    @foreach($all_chapters as $chapter)
-                                        <option value="{{ $chapter->id }}">{{ $chapter->chapter_name }}</option>
-                                    @endforeach
+{{--                                    @foreach($all_chapters as $chapter)--}}
+{{--                                        <option value="{{ $chapter->id }}">{{ $chapter->chapter_name }}</option>--}}
+{{--                                    @endforeach--}}
                                 </select>
                             </div>
                         </div>
@@ -289,23 +289,23 @@
 
     {{-- Start This Ajax Code To Get Chapter Name And ID --}}
     <script>
-        $(document).ready(function () {
-            $('select[name="grade_id"]').on('change', function () {
-                var grade_id = $(this).val();
-                if (grade_id) {
+        $(document).ready(function() {
+            $('select[name="grade_id"]').on('change', function(){
+                let grade_id = $(this).val();
+                if(grade_id){
                     $.ajax({
-                        url: "{{ URL::to('chapter') }}/" + grade_id,
+                        url: "{{ url('chapter-name') }}/" + grade_id,
                         type: "GET",
                         dataType: "json",
-                        success: function (data) {
+                        success:function(data){
                             $('select[name="chapter_id"]').empty();
-                            $.each(data, function (key, value) {
-                                $('select[name="chapter_id"]').append('<option value="' + key + '">' + value + '</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="chapter_id"]').append(`<option value="${key}">${value}</option>`);
                             });
                         },
                     });
-                } else {
-                    console.log('AJAX load did not work');
+                }else{
+                    console.log('Ajax Load Failed');
                 }
             });
         });

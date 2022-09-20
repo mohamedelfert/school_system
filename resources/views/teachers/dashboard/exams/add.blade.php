@@ -70,18 +70,18 @@
                             <label for="exampleInputEmail1">الصف الدراسي</label>
                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="chapter_id" name="chapter_id">
                                 <option value="">اختر الصف</option>
-                                @foreach ($chapters as $chapter)
-                                    <option value="{{ $chapter->id }}">{{ $chapter->chapter_name }}</option>
-                                @endforeach
+{{--                                @foreach ($chapters as $chapter)--}}
+{{--                                    <option value="{{ $chapter->id }}">{{ $chapter->chapter_name }}</option>--}}
+{{--                                @endforeach--}}
                             </select>
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1">الفصل</label>
                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="section_id" name="section_id">
                                 <option value="">اختر الفصل</option>
-                                @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}">{{ $section->section_name }}</option>
-                                @endforeach
+{{--                                @foreach ($sections as $section)--}}
+{{--                                    <option value="{{ $section->id }}">{{ $section->section_name }}</option>--}}
+{{--                                @endforeach--}}
                             </select>
                         </div>
                     </div>
@@ -117,4 +117,45 @@
 @section('js')
     @toastr_js
     @toastr_render
+    <script>
+        $(document).ready(function() {
+           $('select[name="grade_id"]').on('change', function(){
+                let grade_id = $(this).val();
+                if(grade_id){
+                    $.ajax({
+                        url: "{{ url('chapters') }}/" + grade_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data){
+                            $('select[name="chapter_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="chapter_id"]').append(`<option value="${key}">${value}</option>`);
+                            });
+                        },
+                    });
+                }else{
+                    console.log('Ajax Load Failed');
+                }
+           });
+
+            $('select[name="chapter_id"]').on('change', function(){
+                let chapter_id = $(this).val();
+                if(chapter_id){
+                    $.ajax({
+                        url: "{{ url('sections') }}/" + chapter_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data){
+                            $('select[name="section_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="section_id"]').append(`<option value="${key}">${value}</option>`);
+                            });
+                        },
+                    });
+                }else{
+                    console.log('Ajax Load Failed');
+                }
+            });
+        });
+    </script>
 @endsection

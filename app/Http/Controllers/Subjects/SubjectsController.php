@@ -11,11 +11,6 @@ use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title    = 'مدرستي - المواد الدراسيه';
@@ -23,26 +18,14 @@ class SubjectsController extends Controller
         return view('subjects.show_all',compact('title','subjects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $title        = 'مدرستي - اضافه ماده جديده';
         $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
         $all_teachers = Teacher::all();
-        return view('subjects.add',compact('title','all_grades','all_chapters','all_teachers'));
+        return view('subjects.add',compact('title','all_grades','all_teachers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $rules = [
@@ -72,40 +55,20 @@ class SubjectsController extends Controller
         return redirect('subjects');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $title        = 'مدرستي - تعديل ماده دراسيه';
         $subject      = Subject::findOrFail($id);
         $all_grades   = Grade::all();
-        $all_chapters = Chapter::all();
         $all_teachers = Teacher::all();
-        return view('subjects.edit',compact('title','subject','all_grades','all_chapters','all_teachers'));
+        return view('subjects.edit',compact('title','subject','all_grades','all_teachers'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $id = $request->id;
@@ -137,12 +100,6 @@ class SubjectsController extends Controller
         return redirect('subjects');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         Subject::findOrFail($request->id)->delete();

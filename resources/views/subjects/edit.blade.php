@@ -51,8 +51,8 @@
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col">
-                            <label for="exampleInputEmail1">المرحله الدراسيه</label>
-                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="grade_id" name="grade_id">
+                            <label for="grade_id">المرحله الدراسيه</label>
+                            <select class="form-control form-control-lg" id="grade_id" name="grade_id">
                                 <option value="">اختر المرحله</option>
                                 @foreach ($all_grades as $grade)
                                     <option value="{{ $grade->id }}" {{$subject->grade_id == $grade->id ? 'selected':''}}>{{ $grade->name }}</option>
@@ -60,12 +60,13 @@
                             </select>
                         </div>
                         <div class="col">
-                            <label for="exampleInputEmail1">الصف الدراسي</label>
-                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" id="chapter_id" name="chapter_id">
+                            <label for="chapter_id">الصف الدراسي</label>
+                            <select class="form-control form-control-lg" id="chapter_id" name="chapter_id">
                                 <option value="">اختر الصف</option>
-                                @foreach ($all_chapters as $chapter)
-                                    <option value="{{ $chapter->id }}" {{$subject->chapter_id == $chapter->id ? 'selected':''}}>{{ $chapter->chapter_name }}</option>
-                                @endforeach
+                                <option value="{{ $subject->getChapters->id }}" {{ $subject->chapter_id == $subject->getChapters->id ? 'selected':'' }}>{{ $subject->getChapters->chapter_name }}</option>
+{{--                                @foreach ($all_chapters as $chapter)--}}
+{{--                                    <option value="{{ $chapter->id }}" {{$subject->chapter_id == $chapter->id ? 'selected':''}}>{{ $chapter->chapter_name }}</option>--}}
+{{--                                @endforeach--}}
                             </select>
                         </div>
                         <div class="col">
@@ -91,4 +92,45 @@
 @section('js')
     @toastr_js
     @toastr_render
+    <script>
+        $(document).ready(function() {
+            $('select[name="grade_id"]').on('change', function(){
+                let grade_id = $(this).val();
+                if(grade_id){
+                    $.ajax({
+                        url: "{{ url('chapters-name') }}/" + grade_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data){
+                            $('select[name="chapter_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="chapter_id"]').append(`<option value="${key}">${value}</option>`);
+                            });
+                        },
+                    });
+                }else{
+                    console.log('Ajax Load Failed');
+                }
+            });
+
+            $('select[name="chapter_id"]').on('change', function(){
+                let chapter_id = $(this).val();
+                if(chapter_id){
+                    $.ajax({
+                        url: "{{ url('sections-name') }}/" + chapter_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data){
+                            $('select[name="section_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="section_id"]').append(`<option value="${key}">${value}</option>`);
+                            });
+                        },
+                    });
+                }else{
+                    console.log('Ajax Load Failed');
+                }
+            });
+        });
+    </script>
 @endsection
