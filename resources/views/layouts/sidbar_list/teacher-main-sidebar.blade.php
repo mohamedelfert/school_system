@@ -31,6 +31,19 @@
     </li>
     <!-- Students -->
 
+    <!-- Online Classes-->
+    <li>
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#online">
+            <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{trans('main_sidebar.online_classes')}}</span></div>
+            <div class="pull-right"><i class="ti-plus"></i></div>
+            <div class="clearfix"></div>
+        </a>
+        <ul id="online" class="collapse" data-parent="#sidebarnav">
+            <li> <a href="{{route('online-classes.index')}}">{{trans('main_sidebar.online_classes_list')}}</a> </li>
+        </ul>
+    </li>
+    <!-- Online -->
+
     <!-- Exams -->
     <li>
         <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">
@@ -53,7 +66,7 @@
             <div class="clearfix"></div>
         </a>
         <ul id="reports" class="collapse" data-parent="#sidebarnav">
-            <li> <a href="{{route('attendance-reports')}}">{{trans('main_sidebar.attendance_absence_report')}}</a> </li>
+            <li> <a href="{{ route('attendance-reports') }}">{{trans('main_sidebar.attendance_absence_report')}}</a> </li>
             <li> <a href="#">{{trans('main_sidebar.exams_report')}}</a> </li>
         </ul>
     </li>
@@ -61,7 +74,7 @@
 
     <!-- Profile -->
     <li>
-        <a href="#"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>الملف الشخصي</a>
+        <a href="{{ route('teacher.showProfile') }}"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>الملف الشخصي</a>
     </li>
     <!-- Profile -->
 

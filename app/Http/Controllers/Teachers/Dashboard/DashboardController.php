@@ -7,6 +7,7 @@ use App\Models\Attendance;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,12 +57,12 @@ class DashboardController extends Controller
                         'teacher_id' => auth()->user()->id,
                         'attendance_date' => date('Y-m-d'),
                         'attendance_status' => $attendance_status,
-                    ]);
+                    ]
+                );
             }
 
             toastr()->success(trans('messages.success'));
             return back();
-
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
@@ -106,5 +107,44 @@ class DashboardController extends Controller
                 ->where('student_id', $request->student_id)->get();
             return view('teachers.dashboard.attendance_reports', compact('title', 'students', 'attendances'));
         }
+    }
+
+    public function showProfile()
+    {
+        $teacher = Teacher::findOrFail(auth::user()->id);
+        $title = 'مدرستي - الملف الشخصي';
+        return view('teachers.dashboard.teacher_profile', compact('title', 'teacher'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'name_en' => 'required',
+            'address' => 'required',
+            'password' => 'sometimes|nullable',
+        ];
+        $validate_msg_ar = [
+            'name.required' => 'يجب كتابه الاسم بالعربيه',
+            'name_en.required' => 'يجب كتابه الاسم بالانجليزيه',
+            'address.required' => 'يجب كتابه العنوان',
+        ];
+        $validate = $this->validate($request, $rules, $validate_msg_ar);
+
+        $teacher = Teacher::findOrFail($request->id);
+        if ($request->password) {
+            $data['teacher_name'] = ['ar' => $request->name, 'en' => $request->name_en];
+            $data['teacher_address'] = $request->address;
+            $data['password'] = bcrypt($request->password);
+
+            $teacher->update($data);
+        } else {
+            $data['teacher_name'] = ['ar' => $request->name, 'en' => $request->name_en];
+            $data['teacher_address'] = $request->address;
+
+            $teacher->update($data);
+        }
+        toastr()->success(trans('messages.update'));
+        return back();
     }
 }

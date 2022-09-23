@@ -44,12 +44,20 @@ Route::group(
         Route::post('/attendance-search', 'DashboardController@attendanceSearch')->name('attendance-search');
 
         Route::resource('/tests', 'ExamController');
-        Route::resource('/test-questions','QuestionController');
+        Route::resource('/test-questions', 'QuestionController');
 
         // this route to get Chapters Name by ajax when he chose Grade.
-        Route::get('/chapters/{id}','ExamController@getChapters');
+        Route::get('/chapters/{id}', 'ExamController@getChapters');
         // this route to get Section Name by ajax when he chose Grade.
-        Route::get('/sections/{id}','ExamController@getSections');
+        Route::get('/sections/{id}', 'ExamController@getSections');
+
+        Route::resource('/online-classes', 'OnlineClassController');
+        Route::get('indirect-online', 'OnlineClassController@indirectCreate')->name('indirect.create');
+        Route::post('indirect-online', 'OnlineClassController@indirectStore')->name('indirect.store');
+        Route::put('indirect-online', 'OnlineClassController@indirectUpdate')->name('indirect.update');
+
+        Route::get('/teacher-profile', 'DashboardController@showProfile')->name('teacher.showProfile');
+        Route::post('/teacher-profile/{id}', 'DashboardController@updateProfile')->name('teacher.updateProfile');
     });
 
 });

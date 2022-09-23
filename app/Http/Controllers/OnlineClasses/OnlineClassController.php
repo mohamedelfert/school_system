@@ -151,18 +151,15 @@ class OnlineClassController extends Controller
         $title         = 'مدرستي - تعديل حصه اونلاين';
         $online_class  = OnlineClass::where('meeting_id',$id)->first();
         $all_grades    = Grade::all();
-        $all_chapters  = Chapter::all();
-        $all_sections  = Section::all();
         if ($online_class->integration == true){
-            return view('online_classes.edit',compact('title','all_grades','all_chapters','all_sections','online_class'));
+            return view('online_classes.edit',compact('title','all_grades','online_class'));
         }else{
-            return view('online_classes.indirect_edit',compact('title','all_grades','all_chapters','all_sections','online_class'));
+            return view('online_classes.indirect_edit',compact('title','all_grades','online_class'));
         }
     }
 
     public function update(Request $request)
     {
-
         $rules = [
             'grade_id'   => 'required',
             'chapter_id' => 'required',
