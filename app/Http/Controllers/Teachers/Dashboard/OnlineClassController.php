@@ -61,7 +61,7 @@ class OnlineClassController extends Controller
                 'grade_id' => $request->grade_id,
                 'chapter_id' => $request->chapter_id,
                 'section_id' => $request->section_id,
-                'user_id' => auth()->user()->id,
+                'created_by' => auth()->user()->email,
                 'meeting_id' => $meeting->id,
                 'topic' => $request->topic,
                 'start_at' => $request->start_at,
@@ -129,7 +129,7 @@ class OnlineClassController extends Controller
                 'grade_id' => $request->grade_id,
                 'chapter_id' => $request->chapter_id,
                 'section_id' => $request->section_id,
-                'user_id' => auth()->user()->id,
+                'created_by' => auth()->user()->email,
                 'meeting_id' => $request->meeting_id,
                 'topic' => $request->topic,
                 'start_at' => $request->start_at,
@@ -196,7 +196,7 @@ class OnlineClassController extends Controller
             $data['grade_id'] = $request->grade_id;
             $data['chapter_id'] = $request->chapter_id;
             $data['section_id'] = $request->section_id;
-            $data['user_id'] = auth()->user()->id;
+            $data['created_by']    = auth()->user()->email;
             $data['meeting_id'] = $meeting->id;
             $data['topic'] = $request->topic;
             $data['start_at'] = $request->start_at;
@@ -252,7 +252,7 @@ class OnlineClassController extends Controller
             $data['grade_id'] = $request->grade_id;
             $data['chapter_id'] = $request->chapter_id;
             $data['section_id'] = $request->section_id;
-            $data['user_id'] = auth()->user()->id;
+            $data['created_by']    = auth()->user()->email;
             $data['meeting_id'] = $request->meeting_id;
             $data['topic'] = $request->topic;
             $data['start_at'] = $request->start_at;

@@ -287,6 +287,23 @@
                     </div>
                 </div>
             </div>
+            <!--=================================
+wrapper -->
+
+
+
+
+            <div class="row">
+                <div class="col-xl-12 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="tab nav-border" style="position: relative;">
+                                <livewire:calendar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     <!--=================================footer -->
 
@@ -296,6 +313,8 @@
     <!--=================================footer -->
 
     @include('layouts.footer-scripts')
+    @livewireScripts
+    @stack('scripts')
 
 </body>
 
