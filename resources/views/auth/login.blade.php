@@ -108,6 +108,7 @@ login-->
                                 </div>
                             </div>
                             <button class="button"><span>دخول</span><i class="fa fa-check"></i></button>
+                            <a href="/" class="float-right"> الصفحة الرئيسية <i class="fa fa-arrow-left"></i></a>
                         </form>
                     </div>
                 </div>

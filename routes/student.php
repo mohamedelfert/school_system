@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:student' ]
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student']
+    ], function () {
 
-    // forward to dashboard student
-    Route::get('/students/dashboard', function (){
-        return view('students.dashboard');
+    Route::group(['namespace' => 'Students'], function () {
+        Route::get('/students/dashboard', 'StudentController@studentDashboard');
+    });
+
+    Route::group(['namespace' => 'Students\Dashboard'], function () {
+        Route::resource('student-exams', 'ExamController');
     });
 
 });

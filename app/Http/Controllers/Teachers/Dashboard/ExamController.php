@@ -26,8 +26,6 @@ class ExamController extends Controller
         $title = 'مدرستي - اضافه امتحان';
         $subjects = Subject::where('teacher_id', auth()->user()->id)->get();
         $grades = Grade::all();
-//        $chapters = Chapter::all();
-//        $sections = Section::all();
         return view('teachers.dashboard.exams.add', compact('title', 'subjects', 'grades'));
     }
 
@@ -91,9 +89,7 @@ class ExamController extends Controller
         $exam = Exam::findOrFail($id);
         $subjects = Subject::where('teacher_id', auth()->user()->id)->get();
         $grades = Grade::all();
-        $chapters = Chapter::all();
-        $sections = Section::all();
-        return view('teachers.dashboard.exams.edit', compact('title', 'exam', 'subjects', 'grades', 'chapters', 'sections'));
+        return view('teachers.dashboard.exams.edit', compact('title', 'exam', 'subjects', 'grades'));
     }
 
     public function update(Request $request)

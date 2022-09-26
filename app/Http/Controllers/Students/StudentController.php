@@ -15,6 +15,11 @@ class StudentController extends Controller
         $this->students = $students;
     }
 
+    public function studentDashboard()
+    {
+        return view('students.dashboard');
+    }
+
     public function index()
     {
         return $this->students->getAllStudents();
