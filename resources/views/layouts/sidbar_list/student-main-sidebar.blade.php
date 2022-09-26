@@ -24,7 +24,7 @@
 
     <!-- Profile -->
     <li>
-        <a href="#"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>الملف الشخصي</a>
+        <a href="{{ route('student.showProfile') }}"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>الملف الشخصي</a>
     </li>
     <!-- Profile -->
 

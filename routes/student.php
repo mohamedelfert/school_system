@@ -25,6 +25,8 @@ Route::group(
 
     Route::group(['namespace' => 'Students\Dashboard'], function () {
         Route::resource('student-exams', 'ExamController');
+        Route::get('/student-profile', 'DashboardController@showProfile')->name('student.showProfile');
+        Route::post('/student-profile/{id}', 'DashboardController@updateProfile')->name('student.updateProfile');
     });
 
 });
