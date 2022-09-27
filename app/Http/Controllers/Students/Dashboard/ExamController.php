@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Students\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -29,9 +30,15 @@ class ExamController extends Controller
         //
     }
 
-    public function show($id)
+    public function show($exam_id)
     {
-        return 'show exam questions';
+        $exam = Exam::findOrFail($exam_id);
+        if($exam->id != $exam_id){
+            return redirect()->back();
+        }
+        $title = 'مدرستي - الأسئلة';
+        $student_id = auth::user()->id;
+        return view('students.dashboard.exams.show', compact('title', 'exam_id', 'student_id'));
     }
 
     public function edit($id)

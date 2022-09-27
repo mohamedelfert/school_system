@@ -57,12 +57,25 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a class="btn btn-warning btn-sm" href="{{ route('student-exams.show',$exam->id) }}" title="دخول">
-                                            <i class="fa fa-hourglass-start"></i>
-                                        </a>
-                                        <span class="badge badge-pill badge-success">
-                                            100
-                                        </span>
+                                        @if($exam->degrees->count() > 0 && $exam->id === $exam->degrees[0]->exam_id)
+                                            @if($exam->degrees[0]->score <= 25)
+                                                <span class="badge badge-pill badge-danger">
+                                                    {{ $exam->degrees[0]->score }}
+                                                </span>
+                                            @elseif($exam->degrees[0]->score > 25 && $exam->degrees[0]->score <= 60)
+                                                <span class="badge badge-pill badge-primary">
+                                                    {{ $exam->degrees[0]->score }}
+                                                </span>
+                                            @else
+                                                <span class="badge badge-pill badge-success">
+                                                    {{ $exam->degrees[0]->score }}
+                                                </span>
+                                            @endif
+                                        @else
+                                            <a class="btn btn-warning btn-sm" href="{{ route('student-exams.show',$exam->id) }}" onclick="alertAbuse()" title="دخول">
+                                                <i class="fa fa-hourglass-start"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,4 +92,9 @@
 @section('js')
     @toastr_js
     @toastr_render
+    <script type="text/javascript">
+        function alertAbuse() {
+            alert('الرجاء عدم إعادة تحميل الصفحة بعد دخول الامتحان - في حال عمل ذلك يتم إلغاء الامتحان تلقائيا');
+        }
+    </script>
 @endsection

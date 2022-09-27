@@ -76,15 +76,18 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" href="{{ route('tests.edit',$exam->id) }}" title="تعديل">
+                                        <a class="btn btn-sm btn-info" href="{{ route('tests.edit',$exam->id) }}" title="تعديل">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="modal-effect btn btn-danger" data-effect="effect-scale"
+                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $exam->id }}" data-name="{{ $exam->name }}"
                                            data-toggle="modal" href="#delete" title="حذف"><i class="fa fa-trash"></i>
                                         </a>
-                                        <a class="btn btn-primary" href="{{ route('tests.show',$exam->id) }}" title="عرض">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('tests.show',$exam->id) }}" title="عرض">
                                             <i class="fa fa-binoculars"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-info" href="{{ route('student.degrees',$exam->id) }}" title="عرض">
+                                            <i class="fa fa-eye-slash"></i>
                                         </a>
                                     </td>
                                 </tr>

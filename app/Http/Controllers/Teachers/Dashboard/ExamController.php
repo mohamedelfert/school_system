@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teachers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chapter;
+use App\Models\Degree;
 use App\Models\Exam;
 use App\Models\Grade;
 use App\Models\Question;
@@ -78,9 +79,9 @@ class ExamController extends Controller
     public function show($id)
     {
         $title = 'مدرستي - قائمه الأسئلة';
-        $questions = Question::where('exam_id',$id)->get();
+        $questions = Question::where('exam_id', $id)->get();
         $exam = Exam::findOrFail($id);
-        return view('teachers.dashboard.questions.index', compact('title', 'questions','exam'));
+        return view('teachers.dashboard.questions.index', compact('title', 'questions', 'exam'));
     }
 
     public function edit($id)
@@ -148,11 +149,27 @@ class ExamController extends Controller
 
     public function getChapters($id)
     {
-        return Chapter::where('grade_id',$id)->pluck('chapter_name','id');
+        return Chapter::where('grade_id', $id)->pluck('chapter_name', 'id');
     }
 
     public function getSections($id)
     {
-        return Section::where('chapter_id',$id)->pluck('section_name','id');
+        return Section::where('chapter_id', $id)->pluck('section_name', 'id');
+    }
+
+    public function studentTests($id)
+    {
+        $title = 'مدرستي - نتائج الطلاب';
+        $degrees = Degree::where('exam_id', $id)->get();
+        return view('teachers.dashboard.exams.student_degrees', compact('title', 'degrees'));
+    }
+
+    public function testRepeat(Request $request)
+    {
+        Degree::where('exam_id', $request->exam_id)
+            ->where('student_id', $request->student_id)
+            ->delete();
+        toastr()->success('تم إعادة الامتحان للطالب');
+        return redirect()->back();
     }
 }

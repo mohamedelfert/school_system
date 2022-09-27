@@ -28,7 +28,7 @@
     <div class="col-lg-4 pull-right">
         <div class="card mb-4">
             <div class="card-body text-center">
-                <img src="{{ asset('assets/images/student.jpg') }}"
+                <img src="{{ asset('assets/images/student.png') }}"
                      alt="avatar"
                      class="rounded-circle img-fluid" style="width: 150px;">
                 <h5 style="font-family: Cairo" class="my-3">{{ $student->student_name }}</h5>

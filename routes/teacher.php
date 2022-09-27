@@ -58,6 +58,9 @@ Route::group(
 
         Route::get('/teacher-profile', 'DashboardController@showProfile')->name('teacher.showProfile');
         Route::post('/teacher-profile/{id}', 'DashboardController@updateProfile')->name('teacher.updateProfile');
+
+        Route::get('/student-degrees/{id}', 'ExamController@studentTests')->name('student.degrees');
+        Route::post('/test-repeat', 'ExamController@testRepeat')->name('test.repeat');
     });
 
 });
