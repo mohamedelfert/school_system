@@ -15,7 +15,7 @@ class GradesSeeder extends Seeder
     {
         DB::table('grades')->delete();
 
-        $specialization = [
+        $grades = [
             [
                 'ar' => 'رياض اطفال',
                 'en' => 'Kindergarten stage',
@@ -34,8 +34,8 @@ class GradesSeeder extends Seeder
             ],
         ];
 
-        foreach ($specialization as $s){
-            Grade::create(['name' => $s]);
+        foreach ($grades as $grade){
+            Grade::create(['name' => $grade]);
         }
     }
 }

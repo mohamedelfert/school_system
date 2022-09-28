@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:parent' ]
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:parent']
+    ], function () {
 
-    // forward to dashboard student
-    Route::get('/parents/dashboard', function (){
-        return view('livewire.dashboard');
+    Route::group(['namespace' => 'Parents'], function () {
+        Route::get('/parents/dashboard', 'ParentController@parentDashboard')->name('parent.dashboard');
+        Route::get('/children', 'ParentController@parentChildren')->name('parent.children');
+        Route::get('/children-results/{id}', 'ParentController@childrenResults')->name('children.results');
     });
-
 });

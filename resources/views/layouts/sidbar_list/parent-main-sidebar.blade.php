@@ -2,7 +2,7 @@
 
     <!-- Dashboard -->
     <li>
-        <a href="{{ url('/dashboard') }}">
+        <a href="{{ url('/parents/dashboard') }}">
             <div class="pull-left"><i class="ti-home"></i>
                 <span class="right-nav-text">{{ trans('main_sidebar.dashboard') }}</span>
             </div>
@@ -15,19 +15,23 @@
     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">{{ trans('main_sidebar.main_title') }}</li>
     <!-- Title -->
 
-    <!-- Exams -->
+    <!-- children -->
     <li>
-        <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">
-            <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{trans('main_sidebar.exams')}}</span></div>
-            <div class="pull-right"><i class="ti-plus"></i></div>
-            <div class="clearfix"></div>
-        </a>
-        <ul id="exams" class="collapse" data-parent="#sidebarnav">
-            <li> <a href="{{route('exams.index')}}">{{trans('main_sidebar.exams_list')}}</a> </li>
-            <li> <a href="{{route('questions.index')}}">{{trans('main_sidebar.questions_list')}}</a> </li>
-        </ul>
+        <a href="{{ route('parent.children') }}"><i class="fas fa-users"></i><span class="right-nav-text"></span>الأبناء</a>
     </li>
-    <!-- Exams -->
+    <!-- children -->
+
+    <!-- Attendance Report -->
+    <li>
+        <a href="#"><i class="fas fa-pie-chart"></i><span class="right-nav-text"></span>تقرير الحضور والغياب</a>
+    </li>
+    <!-- Attendance Report -->
+
+    <!-- Fees Report -->
+    <li>
+        <a href="#"><i class="fas fa-money"></i><span class="right-nav-text"></span>تقرير المالية</a>
+    </li>
+    <!-- Fees Report -->
 
     <!-- Profile -->
     <li>

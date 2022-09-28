@@ -13,4 +13,9 @@ class Degree extends Model
     {
         return $this->belongsTo(Student::class, 'student_id');
     }
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class, 'exam_id');
+    }
 }
