@@ -23,7 +23,7 @@
 
     <!-- Attendance Report -->
     <li>
-        <a href="#"><i class="fas fa-pie-chart"></i><span class="right-nav-text"></span>تقرير الحضور والغياب</a>
+        <a href="{{ route('attendance.reports') }}"><i class="fas fa-pie-chart"></i><span class="right-nav-text"></span>تقرير الحضور والغياب</a>
     </li>
     <!-- Attendance Report -->
 

@@ -23,5 +23,8 @@ Route::group(
         Route::get('/parents/dashboard', 'ParentController@parentDashboard')->name('parent.dashboard');
         Route::get('/children', 'ParentController@parentChildren')->name('parent.children');
         Route::get('/children-results/{id}', 'ParentController@childrenResults')->name('children.results');
+
+        Route::get('/student-attendance-reports', 'ParentController@attendanceReports')->name('attendance.reports');
+        Route::post('/student-attendance-search', 'ParentController@attendanceSearch')->name('attendance.search');
     });
 });
