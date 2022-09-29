@@ -26,5 +26,11 @@ Route::group(
 
         Route::get('/student-attendance-reports', 'ParentController@attendanceReports')->name('attendance.reports');
         Route::post('/student-attendance-search', 'ParentController@attendanceSearch')->name('attendance.search');
+
+        Route::get('/student-fees', 'ParentController@studentFees')->name('student-fees');
+        Route::get('/student-receipt/{id}', 'ParentController@studentReceipt')->name('student-receipt');
+
+        Route::get('/parent-profile', 'ParentController@showProfile')->name('parent.showProfile');
+        Route::post('/parent-profile/{id}', 'ParentController@updateProfile')->name('parent.updateProfile');
     });
 });

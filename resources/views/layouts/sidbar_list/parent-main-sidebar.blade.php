@@ -29,13 +29,13 @@
 
     <!-- Fees Report -->
     <li>
-        <a href="#"><i class="fas fa-money"></i><span class="right-nav-text"></span>تقرير المالية</a>
+        <a href="{{ route('student-fees') }}"><i class="fas fa-money"></i><span class="right-nav-text"></span>تقرير المالية</a>
     </li>
     <!-- Fees Report -->
 
     <!-- Profile -->
     <li>
-        <a href="#"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>الملف الشخصي</a>
+        <a href="{{ route('parent.showProfile') }}"><i class="fas fa-cogs"></i><span class="right-nav-text"></span>الملف الشخصي</a>
     </li>
     <!-- Profile -->
 

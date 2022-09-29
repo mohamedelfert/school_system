@@ -79,7 +79,7 @@ preloader -->
                                                         <span>{{$student->getChapters->chapter_name}}</span>
                                                     </div>
                                                     <div class="d-flex justify-content-between">
-                                                        <span>القسم</span>
+                                                        <span>الفصل</span>
                                                         <span>{{$student->getSections->section_name}}</span>
                                                     </div>
                                                     <div class="d-flex justify-content-between">

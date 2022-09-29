@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('css')
+        @media print {
+            .print_btn {display: none}
+        }
     @toastr_css
 @section('title')
     {{$title}}
@@ -58,9 +61,11 @@
                                     <div class="row">
                                         <div class="col-md-2 border-right">
                                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-{{--                                                @foreach($student->images as $image)@endforeach--}}
+{{--                                                @foreach($student->images as $image)--}}
 {{--                                                <img class="rounded-circle mt-5" width="150px" src="{{ 'public/attachments/students/'.$student->student_name .'/'. $image->file_name }}">--}}
-                                                <img class="rounded-circle mt-5" width="150px" src="{{ $student->getGenders->gender_name === 'ذكر' ?  URL::asset('assets/images/male.png') : URL::asset('assets/images/female.png') }}">
+{{--                                                @endforeach--}}
+                                                <img class="rounded-circle mt-5" alt="صوره الطالب" width="150px" src="{{ $student->gender_id == 1 ?  asset('assets/images/male.png') : asset('assets/images/female.png') }}">
+                                                <hr>
                                                 <span class="font-weight-bold">{{ $student->student_name }}</span>
                                                 <span class="text-black-50">{{ $student->email }}</span>
                                             </div>
@@ -90,7 +95,7 @@
                                                             <input type="text" class="form-control" placeholder="{{ $student->getParents->mother_phone }}" readonly>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: 15px">
-                                                            <label class="labels">البريد الالكتروني لولي الامر</label>
+                                                            <label class="labels">البريد الإلكتروني لولي الامر</label>
                                                             <input type="text" class="form-control" placeholder="{{ $student->getParents->email }}" readonly>
                                                         </div>
                                                     </div>
@@ -100,7 +105,7 @@
                                                             <input type="text" class="form-control" placeholder="{{ $student->getGenders->gender_name }}" readonly>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label class="labels">الجنسيه</label>
+                                                            <label class="labels">الجنسية</label>
                                                             <input type="text" class="form-control" placeholder="{{ $student->getNationalities->name }}" readonly>
                                                         </div>
                                                         <div class="col-md-4">
@@ -125,7 +130,7 @@
                                         <div class="col-md-5">
                                                 <div class="p-3 py-5">
                                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                                        <h4 class="text-right text-info">البيانات الدراسيه</h4>
+                                                        <h4 class="text-right text-info">البيانات الدراسية</h4>
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-md-6">
@@ -133,7 +138,7 @@
                                                             <input type="text" class="form-control" placeholder="{{ $student->joining_at }}" readonly>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label class="labels">السنه الدراسيه</label>
+                                                            <label class="labels">السنه الدراسية</label>
                                                             <input type="text" class="form-control" placeholder="{{ $student->academic_year }}" readonly>
                                                         </div>
                                                     </div>
@@ -152,34 +157,34 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <div class="col-md-6 border-right" style="float: right;margin-top: 20px;">
-                                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                                            <h4 class="text-right text-warning">المواد الدراسيه</h4>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <ul class="list-group list-group-flush">
-                                                                <li class="list-group-item">Cras justo odio</li>
-                                                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                                <li class="list-group-item">Morbi leo risus</li>
-                                                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                                                <li class="list-group-item">Vestibulum at eros</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6" style="float: left;margin-top: 20px;">
-                                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                                            <h4 class="text-right text-danger">درجات المواد</h4>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <ul class="list-group list-group-flush">
-                                                                <li class="list-group-item">Cras justo odio</li>
-                                                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                                <li class="list-group-item">Morbi leo risus</li>
-                                                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                                                <li class="list-group-item">Vestibulum at eros</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="col-md-6 border-right" style="float: right;margin-top: 20px;">--}}
+{{--                                                        <div class="d-flex justify-content-between align-items-center mb-3">--}}
+{{--                                                            <h4 class="text-right text-warning">المواد الدراسية</h4>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="row mt-2">--}}
+{{--                                                            <ul class="list-group list-group-flush">--}}
+{{--                                                                <li class="list-group-item">Cras justo odio</li>--}}
+{{--                                                                <li class="list-group-item">Dapibus ac facilisis in</li>--}}
+{{--                                                                <li class="list-group-item">Morbi leo risus</li>--}}
+{{--                                                                <li class="list-group-item">Porta ac consectetur ac</li>--}}
+{{--                                                                <li class="list-group-item">Vestibulum at eros</li>--}}
+{{--                                                            </ul>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="col-md-6" style="float: left;margin-top: 20px;">--}}
+{{--                                                        <div class="d-flex justify-content-between align-items-center mb-3">--}}
+{{--                                                            <h4 class="text-right text-danger">درجات المواد</h4>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="row mt-2">--}}
+{{--                                                            <ul class="list-group list-group-flush">--}}
+{{--                                                                <li class="list-group-item">Cras justo odio</li>--}}
+{{--                                                                <li class="list-group-item">Dapibus ac facilisis in</li>--}}
+{{--                                                                <li class="list-group-item">Morbi leo risus</li>--}}
+{{--                                                                <li class="list-group-item">Porta ac consectetur ac</li>--}}
+{{--                                                                <li class="list-group-item">Vestibulum at eros</li>--}}
+{{--                                                            </ul>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                     </div>
@@ -263,24 +268,27 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="wd-5p border-bottom-0">#</th>
-                                                        <th class="wd-25p border-bottom-0">اسم الرسوم</th>
-                                                        <th class="wd-25p border-bottom-0">نوع الرسوم</th>
-                                                        <th class="wd-25p border-bottom-0">المدفوع</th>
-                                                        <th class="wd-25p border-bottom-0">المتبقي</th>
+                                                        <th class="wd-25p border-bottom-0">المبلغ</th>
                                                         <th class="wd-15p border-bottom-0">تاريخ الدفع</th>
+                                                        <th class="wd-15p border-bottom-0">ملاحظات</th>
                                                         <th class="wd-30p border-bottom-0">العمليات</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @foreach($student->getStudentReceipts as $index => $studentReceipt)
                                                     <tr>
-                                                        <th class="wd-5p border-bottom-0">#</th>
-                                                        <th class="wd-25p border-bottom-0">اسم الملف</th>
-                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
-                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
-                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
-                                                        <th class="wd-15p border-bottom-0">تاريخ الاضافه</th>
-                                                        <th class="wd-30p border-bottom-0">العمليات</th>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>{{ number_format($studentReceipt->debit, 2) }} $</td>
+                                                        <td>{{ $studentReceipt->date }}</td>
+                                                        <td>{{ $studentReceipt->notes }}</td>
+                                                        <td>
+                                                            <button type="submit" id="receipt_print_btn"
+                                                                    class="btn btn-primary btn-sm btn-block print_btn" onclick="receiptPrint()">
+                                                                <i class="fa fa-print"></i> طباعه
+                                                            </button>
+                                                        </td>
                                                     </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -347,4 +355,13 @@
         })
     </script>
     <!-- This For Delete File -->
+
+    <script>
+        function receiptPrint(){
+            var content = document.getElementById('tab3').innerHTML;
+            document.body.innerHTML = content;
+            window.print();
+            location.reload();
+        }
+    </script>
 @endsection
